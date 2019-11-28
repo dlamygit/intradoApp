@@ -1,0 +1,102 @@
+<div class="container col-lg-10">
+    <div class="card">
+
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-8" align="center">
+                    <h3>Customer Input Information</h3>
+                </div>
+                <div class="col-lg-4">
+                    <h3>Network Information</h3>
+                </div>
+            </div>
+        </div>
+
+    <div class="card-body">
+        <div class="row">    
+            <div class="col-lg-8" >
+                <div class="container">
+                    <div class="row card-body  ">
+                        <div class="col-lg-6 ">
+                            <h5>Customer Name</h5>
+                            <label >Username</label>
+                            <input type="text" class="form-control col-lg-8" name="customerUsername">     
+
+                            <br>
+                            <h5>Active Directory</h5>
+                            <label >Username</label>
+                            <input type="text" class="form-control col-lg-8" name="adUsername">     
+                            <label >Password</label>
+                            <input type="password" class="form-control col-lg-8" name="password">     
+                            <label >Search Base</label>
+                            <input type="text" class="form-control col-lg-8" name="searchbase">     
+                            <label >IP</label>
+                            <input type="text" class="form-control col-lg-8" name="ip">     
+                            <label >Secondary IP(Optional)</label>
+                            <input type="text" class="form-control col-lg-8" name="secondaryip">     
+                            <label >Port</label>
+                            <input type="number" class="form-control col-lg-8" name="port">     
+                        
+                            <h5>DNS</h5>
+                            <label >Primary</label>
+                            <input type="text" class="form-control col-lg-8" name="customerUsername">     
+                            <label >Secondary</label>
+                            <input type="text" class="form-control col-lg-8" name="customerUsername">     
+
+                            <h5>Extension Length</h5>
+                            <label >Extension lenth</label>
+                            <input type="text" class="form-control col-lg-8" name="customerUsername">  
+                        </div>
+                        <div class="col-lg-6">
+                            <h5>Number of Users</h5>
+                            <div>
+                                <label>Number of Users</label>
+                                <input type="text" class="form-control col-lg-8" name="customerUsername">    
+                            </div>
+                            <h5>Services</h5>
+                            <div align="left">
+                                <input type="checkbox" class="col-lg-1"  name="expressway">
+                                <label>Expressway</label>   
+                            </div>
+                            <div align="left">
+                                <input type="checkbox" class="col-lg-1" name="customerUsername">   
+                                <label>Hybrid Calling/Calendar</label>
+                            </div>
+                            <div align="left">
+                                <input type="checkbox" class="col-lg-1" name="customerUsername">                      
+                                <label>Attendant Console</label>
+                            </div>
+                            <div align="left">
+                                <input type="checkbox" class="col-lg-1" name="customerUsername">   
+                                <label>EGW</label>
+                            </div>
+                            <div align="left">
+                                <input type="checkbox" class="col-lg-1" name="customerUsername">   
+                                <label>CCCE</label>
+                            </div>
+
+                            <h5>Internal Locations Length</h5>
+                            <div align="left">
+                                <input type="checkbox" class="col-lg-1" name="expressway">
+                                <label>APAC</label>
+                            </div>
+                            <div align="left">
+                                <input type="checkbox" class="col-lg-1" name="expressway">
+                                <label>Europe</label>
+                            </div>
+                        </div>     
+                    </div>            
+                </div>
+            </div>
+            <div class="card-body col-lg-4">
+                    <label>APAC</label>         
+                    <input type="text" class="form-control col-lg-8" name="expressway">
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer" align="center">
+        <button class="btn btn-primary col-lg-4 offset-lg-8" (click)="onSubmit()" type="submit">Provision VM</button>
+    </div> 
+</div>
+</div>
