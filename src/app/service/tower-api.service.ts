@@ -9,22 +9,19 @@ export class TowerAPIService {
 
   constructor(private http: HttpClient) { }
 
-
   url = "https://172.10.7.13/api/login";
-  url2 = "http://172.10.7.13/api/v2/job_templates/10/launch";
+  url2 = "https://172.10.7.13/api/v2/job_templates/18/launch/";
 
   startJob(){  
    
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8',
-        'X-CSRFToken': 'OF5VMAnMqgsCwiuBRMzsul0thU2RxrQmnsOHk1cNHAwGy7q42IsOOMvZEpQgs5rX',
-        'Authorization': 'Basic ' +  btoa('admin:admin'),
-        'Cookie':'csrftoken=OF5VMAnMqgsCwiuBRMzsul0thU2RxrQmnsOHk1cNHAwGy7q42IsOOMvZEpQgs5rX'
-      })
+        'Authorization': 'Bearer LLsBa0a11n545hTcXarCxoNlONwxsF'
+      }),
+      data: {"limit" : "ansible"}
     };
     
-
     return this.http.post(this.url2,{},httpOptions);
     
   }
