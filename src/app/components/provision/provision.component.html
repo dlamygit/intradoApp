@@ -1,4 +1,4 @@
-<div class="container col-lg-10">
+<div class="container col-lg-11">
     <div class="card">
 
         <div class="card-header">
@@ -12,56 +12,88 @@
             </div>
         </div>
 
-    <div class="card-body scroll">
+    <div class="card-body scroll" >
         <div class="row">    
             <div class="col-lg-8" >
                 <div class="container">
                     <div class="row card-body  ">
-                        <div class="col-lg-6 ">
+                        <div class="col-lg-6">
                             <h5>Customer Name</h5>
-                            <label >Username</label>
-                            <input type="text" class="form-control col-lg-8" name="customerUsername">     
-
+                            <div class="input-group">
+                                <div class="col-lg-12">
+                                    <label >Customer ID (####ABC)</label>
+                                    <input type="text" class="form-control col-lg-6" name="customerUsername">
+                                </div>     
+                            </div>
                             <br>
 
                             <h5>DNS</h5>
-                            <label >Primary</label>
-                            <input type="text" class="form-control col-lg-8" name="customerUsername">     
-                            <label >Secondary</label>
-                            <input type="text" class="form-control col-lg-8" name="customerUsername">     
-
+                            <div class="input-group">
+                                <div class="col-lg-6">
+                                    <label >Primary</label>
+                                    <input type="text" class="form-control col-lg-12" name="customerUsername">     
+                                </div>
+                                <div class="col-lg-6">
+                                    <label >Secondary</label>
+                                    <input type="text" class="form-control col-lg-12" name="customerUsername">     
+                                </div>    
+                            </div>
                             <br>
 
                             <h5>Active Directory</h5>
-                            <label >Username</label>
-                            <input type="text" class="form-control col-lg-8" name="adUsername">     
-                            <label >Password</label>
-                            <input type="password" class="form-control col-lg-8" name="password">     
-                            <label >Search Base</label>
-                            <input type="text" class="form-control col-lg-8" name="searchbase">     
-                            <label >IP</label>
-                            <input type="text" class="form-control col-lg-8" name="ip">     
-                            <label >Secondary IP(Optional)</label>
-                            <input type="text" class="form-control col-lg-8" name="secondaryip">     
-                            <label >Port</label>
-                            <input type="number" class="form-control col-lg-8" name="port">     
+
+                            <div class="input-group">
+                                <div class="col-lg-6">
+                                    <label  >Username</label>
+                                    <input type="text" class="form-control" name="adUsername"> 
+                                </div>
+                                <div class="col-lg-6">
+                                    <label >Password</label>
+                                    <input type="password" class="form-control" name="password">     
+                                </div>
+                          
+                                <div class="col-lg-12">
+                                        <label >Search Base</label>
+                                        <input type="text" class="form-control col-lg-6" name="searchbase">  
+                                    </div> 
+                                <div class="col-lg-6">
+                                    <label >IP</label>
+                                    <input type="text" class="form-control col-lg-12" name="ip">   
+                                </div>   
+                                <div class="col-lg-6">
+                                    <label >Secondary IP (Optional)</label>
+                                    <input type="text" class="form-control col-lg-12" name="secondaryip"> 
+                                </div>       
+                                
+                            
+                                <div class="col-lg-12">
+                                    <label >Port</label>
+                                    <input type="number" class="form-control col-lg-6" name="port">     
+                                </div>       
+                            </div> 
+                           
                         
                             
                            
                         </div>
                         <div class="col-lg-6">
+                                
+                            <h5>Quantities</h5>
                             <div>
-                                <h5>Number of Users</h5>
+                                <label>Number of Users</label>
                                 <input type="number" class="form-control col-lg-8" name="customerUsername">    
                             </div>
                             <br>
 
                             <div>
-                                <h5>Number of Sites</h5>
+                                <label>Number of Sites</label>
                                 <input type="number" class="form-control col-lg-8" name="customerUsername">    
                             </div>
                             <br>
-                            <h5>Services</h5>
+                            <h5>Additional Services</h5>
+                            <div class="info-text">
+                                <label>(Checking any of the below boxes will require additional information before proceeding)</label>
+                            </div>
                             <div align="left">
                                 <input type="checkbox" class="col-lg-1"  name="expressway">
                                 <label>Expressway</label>   
@@ -88,8 +120,17 @@
                 </div>
             </div>
             <div class="card-body col-lg-4">
-                    <h5>Extension Length</h5>
-                    <input type="text" class="form-control col-lg-8" name="customerUsername">  
+                    <h5>Desired Extension Length</h5>
+                    <div class="info-text">
+                        <label>(Multiple or variable length extensions will require an engineering consulation)</label>
+                    </div>
+                    <div class="input-group">
+                        <div class="col-lg-12">
+                            <label >Extension length  (4-10 numbers)</label>
+                            <input type="text" class="form-control col-lg-6" name="customerUsername">  
+                        </div>
+                    </div>    
+                    
             </div>
         </div>
     </div>
