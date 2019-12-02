@@ -13,18 +13,10 @@ export class ProvisionComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
   onSubmit(){
-
-    //this.tower_api_service.login()
-   // .subscribe((data) => {
- 
-   //  console.log(data.headers.get('Set-Cookie'));
-   // });
-  
     this.tower_api_service.startJob()
     .subscribe((data) => {
+      alert("VM Provisioning started");
       console.log(data);
     });
   

@@ -9,8 +9,7 @@ export class TowerAPIService {
 
   constructor(private http: HttpClient) { }
 
-  url = "https://172.10.7.13/api/login";
-  url2 = "https://172.10.7.13/api/v2/job_templates/18/launch/";
+  url = "https://172.10.7.13/api/v2/job_templates/18/launch/";
 
   startJob(){  
    
@@ -22,12 +21,9 @@ export class TowerAPIService {
       data: {"limit" : "ansible"}
     };
     
-    return this.http.post(this.url2,{},httpOptions);
+    return this.http.post(this.url,{},httpOptions);
     
   }
 
-  login(){     
-    return this.http.get(this.url,{ observe: 'response' });
-  }
 }
 
