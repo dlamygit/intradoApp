@@ -1,15 +1,13 @@
 <br><br><br><br><br>
 <div class="container col-3">
     <div class="card">
-        <div class="card-header" align="center">
-            <h3>Login to Web Portal</h3>
+        <div class="card-header" align="left">
+            <h3>Login</h3>
         </div>
        
         <div class="card-body ">
             <form #loginForm="ngForm" (ngSubmit)="onSubmit(user)">
-                    <div align="center">
-                        <img src="../../../assets/images/IntradoLogo.JPG">
-                    </div>
+                
                     <div [hidden]="!invalidUser" align="center" class="alert alert-danger">
                         Invalid username or password
                     </div>

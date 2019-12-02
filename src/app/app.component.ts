@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Web portal & build orchestration platform';
+  title = 'UCaaS Platform Transformation ';
 }
