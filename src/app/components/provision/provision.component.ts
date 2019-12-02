@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TowerAPIService } from 'src/app/service/tower-api.service';
+import Swal from 'sweetalert2';
+import { SelectMultipleControlValueAccessor } from '@angular/forms';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-provision',
@@ -14,10 +17,25 @@ export class ProvisionComponent implements OnInit {
   }
 
   onSubmit(){
+    
+  
+
     this.tower_api_service.startJob()
     .subscribe((data) => {
-      alert("VM Provisioning started");
+      Swal.fire(
+        'VM Provisioning process started successfully',
+        '',
+        'success'
+      );
+      
       console.log(data);
+    }, err => {
+      Swal.fire(
+        'VM Provisioning process failed',
+        err.error.detail,
+        'error'
+      );
+      console.log(err);
     });
   
   }
