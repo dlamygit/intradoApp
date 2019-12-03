@@ -17,9 +17,7 @@ export class ProvisionComponent implements OnInit {
   }
 
   onSubmit(){
-    
   
-
     this.tower_api_service.startJob()
     .subscribe((data) => {
       Swal.fire(
