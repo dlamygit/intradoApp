@@ -18,7 +18,7 @@ export class ProvisionComponent implements OnInit {
 
   onSubmit(){
   
-    this.tower_api_service.startJob()
+    this.tower_api_service.startJob(18)
     .subscribe((data) => {
       Swal.fire(
         'VM Provisioning process started successfully',
