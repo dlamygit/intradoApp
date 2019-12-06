@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { User } from '../Model/user';
+import { CloneParameter } from '../Model/CloneParameter';
+import { FolderParameter } from '../Model/FolderParameter';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class TowerAPIService {
 
   url = "https://172.10.7.13/api/v2/job_templates/";
 
-  startJob(job_id:number){  
+  startJob(job_id:number,clones_parameters:CloneParameter[],folder_parameters:FolderParameter[]){  
    
     const httpOptions = {
       headers: new HttpHeaders({
@@ -21,33 +23,13 @@ export class TowerAPIService {
       data: {"limit" : "ansible"}
     };
     
+    console.log(clones_parameters);
+
     var body_post = {
       "extra_vars":{
          "call_from_tower": true,
-         "clones_parameters": [
-          {
-           "datacenter_name": "Datacenters",
-           "vm_state": "poweredoff",
-           "vm_name": "qa_extra_INTCCM1P01SWN",
-           "vm_template_name": "Linux-CentOS-Template-Demo",
-           "full_folder_path": "/Atlanta & Suwanee - Customers/1202INT - INTRADO",
-           "datastore": "datastore3",
-           "host": "172.10.3.29",
-           "vm_final_state": "poweredoff",
-           "answer_file_name": "c1-platformConfig.xml"
-          },
-          {
-           "datacenter_name": "Datacenters",
-           "vm_state": "poweredoff",
-           "vm_name": "qa_extra_INTCCM1P01DEN",
-           "vm_template_name": "Linux-CentOS-Template-Demo",
-           "full_folder_path": "/Denver - Customers/1202INT - INTRADO",
-           "datastore": "datastore2",
-           "host": "172.10.3.29",
-           "vm_final_state": "poweredoff",
-           "answer_file_name": "c1-platformConfig.xml"
-          }
-         ],
+         "clones_parameters": JSON.stringify(clones_parameters)
+         ,
          "cucm_primary_node": {
           "answer_file_path": "temp/INTRADO/c1-platformConfig.xml",
           "app_user_username": "cucm_appuser",
@@ -89,20 +71,7 @@ export class TowerAPIService {
          "datastore_name": "datastore2",
          "datastore_type": "vmfs",
          "env_name": "qa_extra",
-         "folders_parameters": [
-          {
-           "datacenter_name": "Datacenters",
-           "sub_folder_name": "1202INT - INTRADO",
-           "parent_folder_name": "Atlanta & Suwanee - Customers",
-           "folder_state": "present"
-          },
-          {
-           "datacenter_name": "Datacenters",
-           "sub_folder_name": "1202INT - INTRADO",
-           "parent_folder_name": "Denver - Customers",
-           "folder_state": "present"
-          }
-         ],
+         "folders_parameters": JSON.stringify(folder_parameters),
          "host_name": "172.10.3.29",
          "vcenter_hostname": "photon-machine.localdomain",
          "vcenter_password": "Root718293?",
