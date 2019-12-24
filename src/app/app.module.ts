@@ -7,21 +7,34 @@ import { LoginComponent } from './components/login/login.component';
 import { ProvisionComponent } from './components/provision/provision.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BuildsComponent } from './components/builds/builds.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BuildConfigComponent } from './components/build-config/build-config.component';
+import { LogsComponent } from './components/logs/logs.component';
+
+import { LOCAL_STORAGE,StorageServiceModule } from 'ngx-webstorage-service';
+import { BuildsService } from './service/builds.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProvisionComponent
+    ProvisionComponent,
+    BuildsComponent,
+    BuildConfigComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule      
+    HttpClientModule,
+    NgbModule,
+    StorageServiceModule 
   ],
-  providers: [],
+  providers: [BuildsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

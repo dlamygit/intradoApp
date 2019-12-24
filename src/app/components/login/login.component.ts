@@ -12,6 +12,7 @@ import { Alert } from 'selenium-webdriver';
 })
 export class LoginComponent implements OnInit {
 
+
   constructor(private router:Router, private authService:AuthService) { }
 
   user:User = new User();
@@ -21,9 +22,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(user:User){
+    
     console.log(user);
     if(this.authService.authenticate(user)){
-      this.router.navigate(["provision"]);
+      this.router.navigate(["builds"]);
     }
     else{
       this.invalidUser = true;

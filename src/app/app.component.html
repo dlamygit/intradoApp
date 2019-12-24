@@ -7,12 +7,19 @@
 
         </a>
 
-      <div class="col-lg-8" align="left">
+      <div class="col-lg-8" align="center">
           <br>
           <h1>
             {{title}}
           </h1>
       
+      </div>
+
+      <div class="col-lg-2" style="padding-top: 20px" align="right" > 
+          <div [hidden]=!showLogout>
+            User: Platform Engineer's name <br>       
+            <button class="btn btn-link" (click)="logout()">Logout</button>
+          </div>
       </div>
 
   </div>

@@ -1,0 +1,75 @@
+<div class="body-background" style="padding-left: 15px;padding-right: 15px;oaddubg-bottom: 10px">
+        <ngb-tabset>
+            <ngb-tab title="Validation Logs">
+              <ng-template ngbTabContent>
+                  <div class="card-body border" style="height:800px">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%">#</th>
+                                    <th style="width: 10%">Module</th>
+                                    <th style="width: 15%">Configuration Type</th>
+                                    <th style="width: 10%">Status</th>
+                                    <th style="width: 50%">Detail</th>
+                                    <th style="width: 10%">Los level logs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                   
+                    <div class="col">
+                        <div class="row" style="padding-top: 15px;">
+                            <div class="col-lg-6"  align="left" style="padding-left: 35px;" >
+                                <button class="btn btn-primary" style="margin-right: 10px;" (click)="back()">Back</button>
+                            </div>                                  
+                            <div class="col-lg-6"  align="right" style="padding-right: 15px;" >
+                                <button class="btn btn-danger"  style="margin-right: 15px;" (click)="cancel()">Cancel</button>
+                                <button class="btn btn-primary"  (click)="cancel()">Run</button>
+                            </div>   
+                        </div>
+                    </div>
+        
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+              <ng-template ngbTabTitle>Execution Logs</ng-template>
+              <ng-template ngbTabContent>
+                    <div class="card-body border" style="height:800px">
+                            <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%">#</th>
+                                            <th style="width: 10%">Module</th>
+                                            <th style="width: 15%">Configuration Type</th>
+                                            <th style="width: 10%">Status</th>
+                                            <th style="width: 50%">Detail</th>
+                                            <th style="width: 10%">Los level logs</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                            </div>
+
+                            <div class="col">
+
+                                <div class="row" style="padding-top: 15px;">
+                                    <div class="col-lg-6"  align="left" style="padding-left: 35px;" >
+                                        <button class="btn btn-primary" style="margin-right: 10px;" (click)="back()">Back</button>
+                                    </div>                                
+                                    <div class="col-lg-6"  align="right" style="padding-right: 15px;" >
+                                        <button class="btn btn-danger"  (click)="cancel()">Cancel</button>
+                                    </div>   
+                                </div>
+                            </div>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </div>
