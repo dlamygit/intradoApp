@@ -17,6 +17,28 @@ export class BuildsService {
 
   updateCurrentBuild(id: string) {
 
+    if(id=="0"){
+      var defaultBuild:Build =
+      {
+      "id": "",
+      "customer": {
+        "name":"",
+        "id_letters":"",
+        "id_numbers":"",
+        "location":""
+      },
+      "datacenter": "",
+      "platform_engineer": "",
+      "size": "",
+      "status": "",
+      "completion": ""
+      }
+
+      this.currentBuildSource.next(defaultBuild);
+
+    }
+    else{
+      
     var nextBuild:Build;
 
     for(var i=0;i<this.builds.length;i++){
@@ -28,10 +50,8 @@ export class BuildsService {
     //nextBuild = this.builds.find(build => build.id = id);
     // Investigate why this is not working since seems similar to the previous search
 
-    console.log(nextBuild);
-    this.currentBuildSource.next(nextBuild);
-    console.log(this.currentBuild);
-
+      this.currentBuildSource.next(nextBuild);
+    }
 
   }
 
@@ -52,6 +72,20 @@ export class BuildsService {
     return this.getBuild(build.id); //Just for checking that was added
   }
 
+  updateBuild(id: string,build:Build){
+    
+    var builds:Build[] = this.getBuilds();
+
+    for(var i=0;i<this.builds.length;i++){
+      if(this.builds[i].id==id){
+        this.builds[i] = build;
+      }
+    }
+
+    this.storage.set(this.STORAGE_BUILDS,this.builds);
+
+  }
+
   deleteBuild(build: Build){
     var builds:Build[] = this.getBuilds();
     var index = builds.indexOf(build);
@@ -64,25 +98,7 @@ export class BuildsService {
   }
 
   constructor(@Inject(LOCAL_STORAGE) private storage:StorageService) { 
-
-    var defaultBuild:Build =
-    {
-     "id": "",
-     "customer": {
-       "name":"",
-       "id_letters":"",
-       "id_numbers":"",
-       "location":""
-     },
-     "datacenter": "",
-     "platform_engineer": "",
-     "size": "",
-     "status": "",
-     "completion": ""
-    }
-
-    this.currentBuildSource.next(defaultBuild);
-    
+ 
     //Incomplete Builds
     var b1:Build =
     {

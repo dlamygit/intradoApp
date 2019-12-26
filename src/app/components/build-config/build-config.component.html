@@ -9,17 +9,17 @@
                             
                                 <div class="col-lg-12">
                                     <label >Customer name</label>
-                                    <input type="text" class="form-control col-lg-12" value="{{currentBuild.customer.name}}">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.name">
                                 </div>     
                         
                                 <div class="input-group">
                                     <div class="col-lg-6">
                                         <label >Customer ID (letters) </label>
-                                        <input type="text" class="form-control col-lg-11" value="{{currentBuild.customer.id_letters}}">
+                                        <input type="text" class="form-control col-lg-11" [(ngModel)]="currentBuild.customer.id_letters">
                                     </div>     
                                     <div class="col-lg-6">
                                         <label >Customer ID (numbers) </label>
-                                        <input type="text" class="form-control col-lg-11" value="{{currentBuild.customer.id_numbers}}">
+                                        <input type="text" class="form-control col-lg-11" [(ngModel)]="currentBuild.customer.id_numbers">
                                     </div>     
                                 </div>
                                 <br>

@@ -26,6 +26,7 @@ export class BuildsComponent implements OnInit {
   }
 
   newCustomer() {
+    this.buildsService.updateCurrentBuild("0");
     this.router.navigate(["build_config"]);    
   }
 
@@ -35,6 +36,7 @@ export class BuildsComponent implements OnInit {
   }
 
   details(id:string){
+    this.buildsService.updateCurrentBuild(id);
     this.router.navigate(["build_config"]);    
   }
 

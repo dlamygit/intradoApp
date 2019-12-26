@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BuildsService } from 'src/app/service/builds.service';
 import { Build } from 'src/app/Model/Build';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-build-config',
@@ -35,7 +37,25 @@ export class BuildConfigComponent implements OnInit {
   }
 
   save(id:string){
-    console.log(id);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, save changes!'
+    }).then((result) => {
+      if (result.value) {
+        this.buildsService.updateBuild(id,this.currentBuild);
+        Swal.fire(
+          'Deleted!',
+          'Changes applied',
+          'success'
+        )
+      }
+    })
+    
   }  
 
   
