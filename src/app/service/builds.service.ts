@@ -4,86 +4,56 @@ import { Build } from '../Model/Build';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class BuildsService {
 
-  saveCurrentBuild(id: string, build_type: string) {
+  builds:Build[] = new  Array<Build>();
+  STORAGE_BUILDS:string = "builds";
 
-    var builds:Build[];
-    if(build_type=="incomplete_builds"){
-       builds = this.incomplete_builds;
-    }
-    else{
-       builds = this.complete_builds;
-    }
-    
-    for(var i=0;i<builds.length;i++){
+  private currentBuildSource = new BehaviorSubject<Build>(null);
+  currentBuild = this.currentBuildSource.asObservable();
 
-      if(builds[i].id==id){
-         this.currentBuild.subscribe(currentBuild => builds[i] = currentBuild);
-
-         console.log(builds[i]);
-         console.log(this.currentBuild);
-         if(build_type=="incomplete_builds"){
-            this.incomplete_builds = builds;
-            this.storage.set("incomplete_builds",this.incomplete_builds);
-          }
-          else{
-            this.complete_builds = builds;
-            this.storage.set("complete_builds",this.complete_builds);
-
-          }
-      }
-    }
-
-
+  updateCurrentBuild(id: string) {
+    console.log(id);
+    var build = this.getBuild(id);
+    console.log(build);
+    this.currentBuildSource.next(build);
+    console.log(this.currentBuild);
 
   }
+
+  getBuilds(): Build[] {
+    return this.storage.get(this.STORAGE_BUILDS);  
+  }
+
+  getBuild(id: string): Build {
+    var builds:Build[] = this.getBuilds();
+
+    return builds.find(build => build.id = id);
+  }
+  
+  addBuild(build: Build):Build {    
+    var builds:Build[] = this.getBuilds();
+    builds.push(build);
+    this.storage.set(this.STORAGE_BUILDS,builds);
+    return this.getBuild(build.id); //Just for checking that was added
+  }
+
+  deleteBuild(build: Build){
+    var builds:Build[] = this.getBuilds();
+    var index = builds.indexOf(build);
+    builds.splice(index,1);
+    this.storage.set(this.STORAGE_BUILDS,builds);    
+  }
+
   runBuild(id:string) {
     console.log("Runnning build: "+id);
   }
 
-  
- 
-  private currentBuildSource = new BehaviorSubject<Build>(null);
-  currentBuild = this.currentBuildSource.asObservable();
-
-  incomplete_builds:Build[] = new  Array<Build>();
-  complete_builds:Build[] = new  Array<Build>();
-
-  setCurrentBuildObs(build:Build){
-    this.currentBuildSource.next(build);
-  }
-
-  setCurrentBuild(id: string, build_type: string) {
-
-    var builds:Build[] = this.storage.get(build_type);
-    for(var i=0;i<builds.length;i++){
-      if(builds[i].id==id){
-        this.setCurrentBuildObs(builds[i]);
-      }
-    }
-
-  }
-
-  getBuilds(builds_type:string): Build[] {
-    return this.storage.get(builds_type);  
-  }
-
-  getBuild(buildID: string): Build {
-    return this.storage.get(buildID);  
-  }
-  
-  addBuild(b1: import("../Model/Build").Build) {
-    this.storage.set(b1.id,b1);
-  }
-
   constructor(@Inject(LOCAL_STORAGE) private storage:StorageService) { 
 
-    
     var defaultBuild:Build =
     {
      "id": "",
@@ -100,9 +70,9 @@ export class BuildsService {
      "completion": ""
     }
 
-    this.setCurrentBuildObs(defaultBuild);
-
+    this.currentBuildSource.next(defaultBuild);
     
+    //Incomplete Builds
     var b1:Build =
     {
      "id": "customer1",
@@ -179,24 +149,23 @@ export class BuildsService {
      "completion": "83"
     }
 
-    this.incomplete_builds.push(b1);
-    this.incomplete_builds.push(b2);
-    this.incomplete_builds.push(b3);
-    this.incomplete_builds.push(b4);
-    this.incomplete_builds.push(b5);
-    this.incomplete_builds.push(b1);
-    this.incomplete_builds.push(b2);
-    this.incomplete_builds.push(b3);
-    this.incomplete_builds.push(b4);
-    this.incomplete_builds.push(b5);
-    this.incomplete_builds.push(b1);
-    this.incomplete_builds.push(b2);
-    this.incomplete_builds.push(b3);
-    this.incomplete_builds.push(b4);
-    this.incomplete_builds.push(b5);
+    this.builds.push(b1);
+    this.builds.push(b2);
+    this.builds.push(b3);
+    this.builds.push(b4);
+    this.builds.push(b5);
+    this.builds.push(b1);
+    this.builds.push(b2);
+    this.builds.push(b3);
+    this.builds.push(b4);
+    this.builds.push(b5);
+    this.builds.push(b1);
+    this.builds.push(b2);
+    this.builds.push(b3);
+    this.builds.push(b4);
+    this.builds.push(b5);
 
-    this.storage.set("incomplete_builds",this.incomplete_builds);
-
+    //Complete Builds
     var bc12:Build =
     {
      "id": "customer12c",      
@@ -273,23 +242,23 @@ export class BuildsService {
      "completion": "100"
     }
 
-    this.complete_builds.push(bc12);
-    this.complete_builds.push(bc22);
-    this.complete_builds.push(bc32);
-    this.complete_builds.push(bc42);
-    this.complete_builds.push(bc52);
-    this.complete_builds.push(bc12);
-    this.complete_builds.push(bc22);
-    this.complete_builds.push(bc32);
-    this.complete_builds.push(bc42);
-    this.complete_builds.push(bc52);
-    this.complete_builds.push(bc12);
-    this.complete_builds.push(bc22);
-    this.complete_builds.push(bc32);
-    this.complete_builds.push(bc42);
-    this.complete_builds.push(bc52);
+    this.builds.push(bc12);
+    this.builds.push(bc22);
+    this.builds.push(bc32);
+    this.builds.push(bc42);
+    this.builds.push(bc52);
+    this.builds.push(bc12);
+    this.builds.push(bc22);
+    this.builds.push(bc32);
+    this.builds.push(bc42);
+    this.builds.push(bc52);
+    this.builds.push(bc12);
+    this.builds.push(bc22);
+    this.builds.push(bc32);
+    this.builds.push(bc42);
+    this.builds.push(bc52);
 
-    this.storage.set("complete_builds",this.complete_builds);
+    this.storage.set(this.STORAGE_BUILDS,this.builds);
 
   }
 }

@@ -12,14 +12,13 @@ import { Build } from 'src/app/Model/Build';
 export class BuildConfigComponent implements OnInit {
 
   constructor(private router:Router,private buildsService:BuildsService) { 
+   
   }
 
   currentBuild:Build;
-  
+
   ngOnInit() {
-
-   this.buildsService.currentBuild.subscribe(currentBuild => this.currentBuild = currentBuild);
-
+    this.buildsService.currentBuild.subscribe(currentBuild => this.currentBuild = currentBuild);
   }
 
   back(){
@@ -37,8 +36,6 @@ export class BuildConfigComponent implements OnInit {
 
   save(id:string){
     console.log(id);
-    this.buildsService.setCurrentBuild(this.currentBuild.id,"incomplete_builds");
-    this.buildsService.saveCurrentBuild(id,"incomplete_builds");
   }  
 
   

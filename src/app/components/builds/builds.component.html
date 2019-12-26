@@ -20,7 +20,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ng-container *ngFor="let build of incomplete_builds | slice: (pageInc-1) * pageSizeInc : (pageInc-1) * pageSizeInc + pageSizeInc">
+                                    <ng-container *ngFor="let build of incompleted_builds | slice: (pageInc-1) * pageSizeInc : (pageInc-1) * pageSizeInc + pageSizeInc">
                                         <tr>
                                             <td>1</td>
                                             <td>{{build.customer.name}}</td>
@@ -45,7 +45,7 @@
                             <ngb-pagination
                                 [(page)]="pageInc"
                                 [pageSize]="pageSizeInc"
-                                [collectionSize]="incomplete_builds.length">
+                                [collectionSize]="incompleted_builds.length">
                                 <ng-template ngbPaginationPrevious>Prev</ng-template>
                                 <ng-template ngbPaginationNext>Next</ng-template>
                             </ngb-pagination>
@@ -77,7 +77,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <ng-container *ngFor="let build of complete_builds | slice: (pageCom-1) * pageSizeCom : (pageCom-1) * pageSizeCom + pageSizeCom">
+                            <ng-container *ngFor="let build of completed_builds | slice: (pageCom-1) * pageSizeCom : (pageCom-1) * pageSizeCom + pageSizeCom">
                                 <tr>
                                     <td>1</td>
                                     <td>{{build.customer.name}}</td>
@@ -100,7 +100,7 @@
                         <ngb-pagination
                             [(page)]="pageCom"
                             [pageSize]="pageSizeCom"
-                            [collectionSize]="complete_builds.length">
+                            [collectionSize]="completed_builds.length">
                             <ng-template ngbPaginationPrevious>Prev</ng-template>
                             <ng-template ngbPaginationNext>Next</ng-template>
                         </ngb-pagination>
