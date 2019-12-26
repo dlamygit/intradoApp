@@ -16,11 +16,22 @@ export class BuildsService {
   currentBuild = this.currentBuildSource.asObservable();
 
   updateCurrentBuild(id: string) {
-    console.log(id);
-    var build = this.getBuild(id);
-    console.log(build);
-    this.currentBuildSource.next(build);
+
+    var nextBuild:Build;
+
+    for(var i=0;i<this.builds.length;i++){
+      if(this.builds[i].id==id){
+        nextBuild = this.builds[i];
+      }
+    }
+    
+    //nextBuild = this.builds.find(build => build.id = id);
+    // Investigate why this is not working since seems similar to the previous search
+
+    console.log(nextBuild);
+    this.currentBuildSource.next(nextBuild);
     console.log(this.currentBuild);
+
 
   }
 
