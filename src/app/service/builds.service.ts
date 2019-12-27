@@ -3,94 +3,235 @@ import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Build } from '../Model/Build';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class BuildsService {
 
-  builds:Build[] = new  Array<Build>();
   STORAGE_BUILDS:string = "builds";
+  builds:Build[] = new  Array<Build>();
+
+  private buildsSource = new BehaviorSubject<Build[]>(null);
+  buildsN = this.buildsSource.asObservable();
 
   private currentBuildSource = new BehaviorSubject<Build>(null);
   currentBuild = this.currentBuildSource.asObservable();
 
-  updateCurrentBuild(id: string) {
-
-    if(id=="0"){
-      var defaultBuild:Build =
-      {
-      "id": "",
-      "customer": {
-        "name":"",
-        "id_letters":"",
-        "id_numbers":"",
-        "location":""
-      },
-      "datacenter": "",
-      "platform_engineer": "",
-      "size": "",
-      "status": "",
-      "completion": ""
-      }
-
-      this.currentBuildSource.next(defaultBuild);
-
-    }
-    else{
-      
-    var nextBuild:Build;
-
-    for(var i=0;i<this.builds.length;i++){
-      if(this.builds[i].id==id){
-        nextBuild = this.builds[i];
-      }
-    }
-    
-    //nextBuild = this.builds.find(build => build.id = id);
-    // Investigate why this is not working since seems similar to the previous search
-
-      this.currentBuildSource.next(nextBuild);
-    }
-
-  }
-
+   //GET builds
   getBuilds(): Build[] {
     return this.storage.get(this.STORAGE_BUILDS);  
   }
 
+  //GET individual Build
   getBuild(id: string): Build {
-    var builds:Build[] = this.getBuilds();
-
-    return builds.find(build => build.id = id);
+    return this.getBuilds().find(build => build.id === id);
   }
   
-  addBuild(build: Build):Build {    
-    var builds:Build[] = this.getBuilds();
-    builds.push(build);
-    this.storage.set(this.STORAGE_BUILDS,builds);
-    return this.getBuild(build.id); //Just for checking that was added
+  getID(size:Number): string{
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    var _id:string ="";
+    for (let i = 0; i < 8; i++) {
+      _id += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    _id+="-";
+    for (let i = 0; i < 4; i++) {
+      _id += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    _id+="-";
+    for (let i = 0; i < 4; i++) {
+      _id += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    _id+="-";
+    for (let i = 0; i < 4; i++) {
+      _id += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    _id+="-";
+    for (let i = 0; i < 12; i++) {
+      _id += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return _id;
+  }
+  
+
+  createEmptyBuild():Build{
+
+    var emptyBuild:Build =
+    {
+    "id": "0",
+    "customer": {
+      "name":"",
+      "id_letters":"",
+      "id_numbers":"",
+      "ITC_location":"",
+      "address_1":"",
+      "address_2":"",
+      "city":"",
+      "state":"",
+      "zip_code":"",
+      "timezone":"",
+      "default_code_area":"",
+      "local_dial":"",
+      "extension_length":"",
+      "breakout_code":"",
+      "voice_mail_pilot":""
+    },
+    "domain":{
+      "server_domain":"",
+      "presence_domain":""
+    },
+    "active_directory":{
+      "timezone":"",
+      "default_code_area":"",
+      "local_dial":"",
+      "extension_length":"",
+      "breakout_code":"",
+      "voice_mail_pilot":""
+    },
+    "size":"",
+    "unified_messaging":{
+      "username":"",
+      "password":"",
+      "version":"",
+      "ip_address":""
+    },
+    "platform_test_account":{
+      "username":"",
+      "password":""
+    },
+    "customer_notes":"",
+    "primary_datacenter":{
+      "name":"",
+      "host_ip":"",
+      "v_lan":"",
+      "host_gateway":"",
+      "asr_address":""
+    },
+    "secondary_datacenter":{
+      "name":"",
+      "host_ip":"",
+      "v_lan":"",
+      "host_gateway":"",
+      "asr_address":""
+    },
+    "infrastructure":{
+      "datacenter":"",
+      "cluster":"",
+      "datastore":""
+    },
+    "additional_network_data":{
+      "vrf":"",
+      "nat_box_ip":""
+    },
+    "mra_expressway":{
+      "primary_dc_external_ip":"",
+      "primary_dc_internal_ip":"",
+      "secondary_dc_external_ip":"",
+      "secondary_dc_internal_ip":""
+    },
+    "additional_services":{
+      "expressway":true,
+      "singlewire":false,
+      "cuaca":false,
+      "egw":false,
+      "hybrid_services":false
+    },
+    "infrastructure_notes":"",
+    "dns_ntp":{
+      "primary_dns":"",
+      "secondary_dns":"",
+      "ntp_server_1":"",
+      "ntp_server_2":"",
+      "ntp_server_3":"",
+      "ntp_server_4":"",
+      "ntp_server_5":"",
+    },
+    "host_data":{
+      "timezone":"",
+      "continent":"",
+      "city":"",
+      "admin":"",
+      "password":"",
+      "security_password":"",
+      "app_user_password":""
+    },
+    "certificates":{
+      "organization":"",
+      "unit":"",
+      "location":"",
+      "state":"",
+      "country":"",
+      "auto_register_primary":"",
+      "app_user_username":""
+    },
+    "host_data_notes":"",
+    "vms":[],
+    "dns_records":{
+      "dns_to_ip":[],
+      "ip_to_dsn":[]
+    },
+    "platform_engineer": "",
+    "status": "",
+    "completion": ""
+    }
+
+    return emptyBuild;
+
   }
 
-  updateBuild(id: string,build:Build){
-    
-    var builds:Build[] = this.getBuilds();
+  //POST Build
+  addBuild(build: Build):Build {    
+      
+    var _id:string = this.getID(64);
+    build.id = _id;
 
-    for(var i=0;i<this.builds.length;i++){
-      if(this.builds[i].id==id){
-        this.builds[i] = build;
+    //Agregar build
+    this.builds = this.getBuilds().concat(build);
+
+    //Almacenar en localstorage
+    this.storage.set(this.STORAGE_BUILDS,this.builds);
+
+    //Actualizar el observable
+    this.buildsSource.next(this.builds);
+
+    //Just for checking that was added
+    return this.getBuild(build.id); 
+  }
+
+  //PUT Build
+  updateBuild(id: string,build:Build):Build{
+    
+    if(id=="0"){
+      return this.addBuild(build);
+    }
+    else{
+
+      for(var i=0;i<this.builds.length;i++){
+        if(this.builds[i].id==id){
+          this.builds[i] = build;
+        }
+      }
+        
+      this.storage.set(this.STORAGE_BUILDS,this.builds);
+      //Actualizar el observable
+      this.buildsSource.next(this.builds);
+      
+      return this.getBuild(id);
+    }
+    
+  }
+
+  //DELETE Build
+  deleteBuild(id: string){
+    this.builds = this.getBuilds();
+
+    for( var i = 0; i < this.builds.length; i++){ 
+      if ( this.builds[i].id == id) {
+        this.builds.splice(i, 1);         
       }
     }
 
-    this.storage.set(this.STORAGE_BUILDS,this.builds);
-
-  }
-
-  deleteBuild(build: Build){
-    var builds:Build[] = this.getBuilds();
-    var index = builds.indexOf(build);
-    builds.splice(index,1);
-    this.storage.set(this.STORAGE_BUILDS,builds);    
+    this.storage.set(this.STORAGE_BUILDS,this.builds);   
+    this.buildsSource.next(this.builds); 
   }
 
   runBuild(id:string) {
@@ -102,190 +243,482 @@ export class BuildsService {
     //Incomplete Builds
     var b1:Build =
     {
-     "id": "customer1",
-     "customer": {
-       "name":"Customer1",
-       "id_letters":"INT",
-       "id_numbers":"1234",
-       "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "James Bond",
-     "size": "Medium",
-     "status": "Pending",
-     "completion": "100"
+      "id": "asd",
+      "customer": {
+        "name":"Test Customer Name",
+        "id_letters":"INT",
+        "id_numbers":"1234",
+        "ITC_location":"Denver",
+        "address_1":"Old Lake 252",
+        "address_2":"New Lake 525",
+        "city":"Huston",
+        "state":"California",
+        "zip_code":"526182",
+        "timezone":"GTM-5",
+        "default_code_area":"+1",
+        "local_dial":"5251",
+        "extension_length":"51248",
+        "breakout_code":"51324",
+        "voice_mail_pilot":"521651"
+      },
+      "domain":{
+        "server_domain":"denver",
+        "presence_domain":"suwanee"
+      },
+      "active_directory":{
+        "timezone":"GTM-6",
+        "default_code_area":"+2",
+        "local_dial":"12651",
+        "extension_length":"256256",
+        "breakout_code":"15615",
+        "voice_mail_pilot":"156156"
+      },
+      "size":"Medium",
+      "unified_messaging":{
+        "username":"tes_user",
+        "password":"test_password",
+        "version":"1.52.2",
+        "ip_address":"168.226.211.14"
+      },
+      "platform_test_account":{
+        "username":"pf_user",
+        "password":"pf_password"
+      },
+      "customer_notes":"This is a text area to store notes when the build is being created",
+      "primary_datacenter":{
+        "name":"Denver",
+        "host_ip":"173.10.51.2",
+        "v_lan":"32",
+        "host_gateway":"173.10.51.1",
+        "asr_address":"173.10.54.2"
+      },
+      "secondary_datacenter":{
+        "name":"Suwanee",
+        "host_ip":"173.10.52.2",
+        "v_lan":"32",
+        "host_gateway":"173.10.52.1",
+        "asr_address":"173.10.53.2"
+      },
+      "infrastructure":{
+        "datacenter":"Denver",
+        "cluster":"cluster_1",
+        "datastore":"datastore_1"
+      },
+      "additional_network_data":{
+        "vrf":"173.51.23.21",
+        "nat_box_ip":"173.51.23.21"
+      },
+      "mra_expressway":{
+        "primary_dc_external_ip":"173.51.23.21",
+        "primary_dc_internal_ip":"173.51.23.22",
+        "secondary_dc_external_ip":"173.51.23.213",
+        "secondary_dc_internal_ip":"173.51.23.212"
+      },
+      "additional_services":{
+        "expressway":true,
+        "singlewire":false,
+        "cuaca":false,
+        "egw":false,
+        "hybrid_services":false
+      },
+      "infrastructure_notes":"This is a text area to store notes when the build is being created",
+      "dns_ntp":{
+        "primary_dns":"173.51.23.1",
+        "secondary_dns":"173.51.23.2",
+        "ntp_server_1":"173.51.23.3",
+        "ntp_server_2":"173.51.23.4",
+        "ntp_server_3":"173.51.23.5",
+        "ntp_server_4":"173.51.23.6",
+        "ntp_server_5":"173.51.23.7",
+      },
+      "host_data":{
+        "timezone":"GTM-4",
+        "continent":"America",
+        "city":"San Francisco",
+        "admin":"admin_user",
+        "password":"password_test_host",
+        "security_password":"password_test_host",
+        "app_user_password":"password_test_host"
+      },
+      "certificates":{
+        "organization":"org_certificate",
+        "unit":"unit_cert",
+        "location":"loc_certificate",
+        "state":"Lousiana",
+        "country":"EEUU",
+        "auto_register_primary":"test_auto",
+        "app_user_username":"username_auto"
+      },
+      "host_data_notes":"This is a text area to store notes when the build is being created",
+      "vms":[
+        {"vm_name":"",
+         "host_name":"",
+         "host_ip":"",
+         "v_lan":"",
+         "host_gateway":"",
+         "dns_ntp":{
+            "primary_dns":"",
+            "secondary_dns":"",
+            "ntp_server_1":"",
+            "ntp_server_2":"",
+            "ntp_server_3":"",
+            "ntp_server_4":"",
+            "ntp_server_5":"",
+         },
+         "host_data":{
+          "timezone":"",
+          "continent":"",
+          "city":"",
+          "admin":"",
+          "password":"",
+          "security_password":"",
+          "app_user_password":""
+        },
+        "certificates":{
+          "organization":"org_certificate",
+          "unit":"unit_cert",
+          "location":"loc_certificate",
+          "state":"Lousiana",
+          "country":"EEUU",
+          "auto_register_primary":"test_auto",
+          "app_user_username":"username_auto"
+        }  
+      },
+      {"vm_name":"",
+         "host_name":"",
+         "host_ip":"",
+         "v_lan":"",
+         "host_gateway":"",
+         "dns_ntp":{
+            "primary_dns":"",
+            "secondary_dns":"",
+            "ntp_server_1":"",
+            "ntp_server_2":"",
+            "ntp_server_3":"",
+            "ntp_server_4":"",
+            "ntp_server_5":"",
+         },
+         "host_data":{
+          "timezone":"",
+          "continent":"",
+          "city":"",
+          "admin":"",
+          "password":"",
+          "security_password":"",
+          "app_user_password":""
+        },
+        "certificates":{
+          "organization":"",
+          "unit":"",
+          "location":"",
+          "state":"",
+          "country":"",
+          "auto_register_primary":"",
+          "app_user_username":""
+        }  
+      },
+      {"vm_name":"",
+         "host_name":"",
+         "host_ip":"",
+         "v_lan":"",
+         "host_gateway":"",
+         "dns_ntp":{
+            "primary_dns":"",
+            "secondary_dns":"",
+            "ntp_server_1":"",
+            "ntp_server_2":"",
+            "ntp_server_3":"",
+            "ntp_server_4":"",
+            "ntp_server_5":"",
+         },
+         "host_data":{
+          "timezone":"",
+          "continent":"",
+          "city":"",
+          "admin":"",
+          "password":"",
+          "security_password":"",
+          "app_user_password":""
+        },
+        "certificates":{
+          "organization":"",
+          "unit":"",
+          "location":"",
+          "state":"",
+          "country":"",
+          "auto_register_primary":"",
+          "app_user_username":""
+        }  
+      },
+      {"vm_name":"",
+         "host_name":"",
+         "host_ip":"",
+         "v_lan":"",
+         "host_gateway":"",
+         "dns_ntp":{
+            "primary_dns":"",
+            "secondary_dns":"",
+            "ntp_server_1":"",
+            "ntp_server_2":"",
+            "ntp_server_3":"",
+            "ntp_server_4":"",
+            "ntp_server_5":"",
+         },
+         "host_data":{
+          "timezone":"",
+          "continent":"",
+          "city":"",
+          "admin":"",
+          "password":"",
+          "security_password":"",
+          "app_user_password":""
+        },
+        "certificates":{
+          "organization":"",
+          "unit":"",
+          "location":"",
+          "state":"",
+          "country":"",
+          "auto_register_primary":"",
+          "app_user_username":""
+        }  
+      },
+      {"vm_name":"",
+        "host_name":"",
+        "host_ip":"",
+        "v_lan":"",
+        "host_gateway":"",
+        "dns_ntp":{
+          "primary_dns":"",
+          "secondary_dns":"",
+          "ntp_server_1":"",
+          "ntp_server_2":"",
+          "ntp_server_3":"",
+          "ntp_server_4":"",
+          "ntp_server_5":"",
+        },
+        "host_data":{
+        "timezone":"",
+        "continent":"",
+        "city":"",
+        "admin":"",
+        "password":"",
+        "security_password":"",
+        "app_user_password":""
+      },
+      "certificates":{
+        "organization":"",
+        "unit":"",
+        "location":"",
+        "state":"",
+        "country":"",
+        "auto_register_primary":"",
+        "app_user_username":""
+      }  
+      },
+      {"vm_name":"",
+          "host_name":"",
+          "host_ip":"",
+          "v_lan":"",
+          "host_gateway":"",
+          "dns_ntp":{
+            "primary_dns":"",
+            "secondary_dns":"",
+            "ntp_server_1":"",
+            "ntp_server_2":"",
+            "ntp_server_3":"",
+            "ntp_server_4":"",
+            "ntp_server_5":"",
+          },
+          "host_data":{
+          "timezone":"",
+          "continent":"",
+          "city":"",
+          "admin":"",
+          "password":"",
+          "security_password":"",
+          "app_user_password":""
+        },
+        "certificates":{
+          "organization":"",
+          "unit":"",
+          "location":"",
+          "state":"",
+          "country":"",
+          "auto_register_primary":"",
+          "app_user_username":""
+        }  
+      },
+      {"vm_name":"",
+          "host_name":"",
+          "host_ip":"",
+          "v_lan":"",
+          "host_gateway":"",
+          "dns_ntp":{
+            "primary_dns":"",
+            "secondary_dns":"",
+            "ntp_server_1":"",
+            "ntp_server_2":"",
+            "ntp_server_3":"",
+            "ntp_server_4":"",
+            "ntp_server_5":"",
+          },
+          "host_data":{
+          "timezone":"",
+          "continent":"",
+          "city":"",
+          "admin":"",
+          "password":"",
+          "security_password":"",
+          "app_user_password":""
+        },
+        "certificates":{
+          "organization":"",
+          "unit":"",
+          "location":"",
+          "state":"",
+          "country":"",
+          "auto_register_primary":"",
+          "app_user_username":""
+        }  
+      },
+      {"vm_name":"",
+          "host_name":"",
+          "host_ip":"",
+          "v_lan":"",
+          "host_gateway":"",
+          "dns_ntp":{
+            "primary_dns":"",
+            "secondary_dns":"",
+            "ntp_server_1":"",
+            "ntp_server_2":"",
+            "ntp_server_3":"",
+            "ntp_server_4":"",
+            "ntp_server_5":"",
+          },
+          "host_data":{
+          "timezone":"",
+          "continent":"",
+          "city":"",
+          "admin":"",
+          "password":"",
+          "security_password":"",
+          "app_user_password":""
+        },
+        "certificates":{
+          "organization":"",
+          "unit":"",
+          "location":"",
+          "state":"",
+          "country":"",
+          "auto_register_primary":"",
+          "app_user_username":""
+        }  
+      },
+      {"vm_name":"",
+          "host_name":"",
+          "host_ip":"",
+          "v_lan":"",
+          "host_gateway":"",
+          "dns_ntp":{
+            "primary_dns":"",
+            "secondary_dns":"",
+            "ntp_server_1":"",
+            "ntp_server_2":"",
+            "ntp_server_3":"",
+            "ntp_server_4":"",
+            "ntp_server_5":"",
+          },
+          "host_data":{
+          "timezone":"",
+          "continent":"",
+          "city":"",
+          "admin":"",
+          "password":"",
+          "security_password":"",
+          "app_user_password":""
+        },
+        "certificates":{
+          "organization":"",
+          "unit":"",
+          "location":"",
+          "state":"",
+          "country":"",
+          "auto_register_primary":"",
+          "app_user_username":""
+        }  
+      }             
+      ],
+      "dns_records":{
+        "dns_to_ip":[
+          {"dns":"",
+           "ip":""
+          },
+          {"dns":"",
+           "ip":""
+          },
+          {"dns":"",
+           "ip":""
+          },
+          {"dns":"",
+          "ip":""
+          },
+          {"dns":"",
+          "ip":""
+          },
+          {"dns":"",
+          "ip":""
+          },          
+          {"dns":"",
+          "ip":""
+          },
+          {"dns":"",
+          "ip":""
+          },
+          {"dns":"",
+          "ip":""
+          }          
+        ],
+        "ip_to_dsn":[
+          {"dns":"",
+          "ip":""
+         },
+         {"dns":"",
+          "ip":""
+         },
+         {"dns":"",
+          "ip":""
+         },
+         {"dns":"",
+         "ip":""
+         },
+         {"dns":"",
+         "ip":""
+         },
+         {"dns":"",
+         "ip":""
+         },          
+         {"dns":"",
+         "ip":""
+         },
+         {"dns":"",
+         "ip":""
+         },
+         {"dns":"",
+         "ip":""
+         }
+        ]
+      },
+      "platform_engineer": "Test Engineer",
+      "status": "Completed",
+      "completion": "57"
     }
-    var b2:Build =
-    {
-     "id": "customer2",
-     "customer": {
-      "name":"Customer2",
-      "id_letters":"INT",
-      "id_numbers":"4321",
-      "location":"location"
-     },
-     "datacenter": "Suwanee",
-     "platform_engineer": "Patrick James",
-     "size": "Medium",
-     "status": "Pending (Failed Validation)",
-     "completion": "100"
-    }
-    var b3:Build =
-    {
-     "id": "customer3",
-     "customer": {
-      "name":"Customer3",
-      "id_letters":"ANNS",
-      "id_numbers":"4321",
-      "location":"location"
-     },
-     "datacenter": "Suwanee",
-     "platform_engineer": "Steve Hallen",
-     "size": "Small",
-     "status": "Cancelled",
-     "completion": "50"
-    }
-    var b4:Build =
-    {
-     "id": "customer4",
-     "customer": {
-      "name":"Customer4",
-      "id_letters":"ANNS",
-      "id_numbers":"1234",
-      "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "Steve Brock",
-     "size": "Medium",
-     "status": "Running",
-     "completion": "27"
-    }
-    var b5:Build =
-    {
-     "id": "customer5",
-     "customer": {
-      "name":"Customer5",
-      "id_letters":"ANNAS",
-      "id_numbers":"43221",
-      "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "John Deere",
-     "size": "Large",
-     "status": "Failed",
-     "completion": "83"
-    }
-
+        
     this.builds.push(b1);
-    this.builds.push(b2);
-    this.builds.push(b3);
-    this.builds.push(b4);
-    this.builds.push(b5);
-    this.builds.push(b1);
-    this.builds.push(b2);
-    this.builds.push(b3);
-    this.builds.push(b4);
-    this.builds.push(b5);
-    this.builds.push(b1);
-    this.builds.push(b2);
-    this.builds.push(b3);
-    this.builds.push(b4);
-    this.builds.push(b5);
-
-    //Complete Builds
-    var bc12:Build =
-    {
-     "id": "customer12c",      
-     "customer": {
-      "name":"Customer1",
-      "id_letters":"INT",
-      "id_numbers":"1234",
-      "location":"location"
-    },
-     "datacenter": "Denver",
-     "platform_engineer": "James Bond",
-     "size": "Medium",
-     "status": "Completed",
-     "completion": "100"
-    }
-    var bc22:Build =
-    {      
-     "id": "customer22c",
-     "customer": {
-      "name":"Customer2",
-      "id_letters":"INT",
-      "id_numbers":"4321",
-      "location":"location"
-     },
-     "datacenter": "Suwanee",
-     "platform_engineer": "Patrick James",
-     "size": "Medium",
-     "status": "Completed",
-     "completion": "100"
-    }
-    var bc32:Build =
-    {
-     "id": "customer32c",      
-     "customer": {
-      "name":"Customer3",
-      "id_letters":"ANNS",
-      "id_numbers":"4321",
-      "location":"location"
-     },
-     "datacenter": "Suwanee",
-     "platform_engineer": "Steve Hallen",
-     "size": "Small",
-     "status": "Completed",
-     "completion": "100"
-    }
-    var bc42:Build =
-    {
-     "id": "customer42c",      
-     "customer": {
-      "name":"Customer4",
-      "id_letters":"ANNS",
-      "id_numbers":"1234",
-      "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "Steve Brock",
-     "size": "Medium",
-     "status": "Completed",
-     "completion": "100"
-    }
-    var bc52:Build =
-    {
-     "id": "customer52c",      
-     "customer": {
-      "name":"Customer5",
-      "id_letters":"ANNAS",
-      "id_numbers":"43221",
-      "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "John Deere",
-     "size": "Large",
-     "status": "Completed",
-     "completion": "100"
-    }
-
-    this.builds.push(bc12);
-    this.builds.push(bc22);
-    this.builds.push(bc32);
-    this.builds.push(bc42);
-    this.builds.push(bc52);
-    this.builds.push(bc12);
-    this.builds.push(bc22);
-    this.builds.push(bc32);
-    this.builds.push(bc42);
-    this.builds.push(bc52);
-    this.builds.push(bc12);
-    this.builds.push(bc22);
-    this.builds.push(bc32);
-    this.builds.push(bc42);
-    this.builds.push(bc52);
 
     this.storage.set(this.STORAGE_BUILDS,this.builds);
+    this.buildsSource.next(this.builds);
 
   }
 }
+

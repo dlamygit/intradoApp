@@ -27,27 +27,27 @@
 
                                 <div class="col-lg-12">
                                     <label >ITC Location name</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.ITC_location">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Address 1</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.address_1">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Address 2</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.address_2">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >City</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.city">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >State</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.state">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Zip Code</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.zip_code">
                                 </div>                                                                  
 
                             </div>
@@ -55,106 +55,110 @@
                                 <h4>C-Location Continued</h4>
                                 <div class="col-lg-12">
                                     <label >Timezone</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.timezone">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Default code area</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.default_code_area">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Local dial</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.local_dial">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Extension Length</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.extension_length">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Breakout code</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.breakout_code">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Voice Mail Pilot</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.voice_mail_pilot">
                                 </div>                  
                                 <br>                                    
                                 <h4>Domain</h4>
                                 <div class="col-lg-12">
                                     <label >Server domain</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.domain.server_domain"> 
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Presence domain</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.domain.presence_domain">
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                     <h4>Active directory</h4>
                                     <div class="col-lg-12">
                                         <label >Timezone</label>
-                                        <input type="text" class="form-control col-lg-12">
+                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.timezone">
                                     </div>
                                     <div class="col-lg-12">
                                         <label >Default code area</label>
-                                        <input type="text" class="form-control col-lg-12">
+                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.default_code_area">
                                     </div>
                                     <div class="col-lg-12">
                                         <label >Local dial</label>
-                                        <input type="text" class="form-control col-lg-12">
+                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.local_dial">
                                     </div>
                                     <div class="col-lg-12">
                                         <label >Extension Length</label>
-                                        <input type="text" class="form-control col-lg-12">
+                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.extension_length">
                                     </div>
                                     <div class="col-lg-12">
                                         <label >Breakout code</label>
-                                        <input type="text" class="form-control col-lg-12">
+                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.breakout_code">
                                     </div>
                                     <div class="col-lg-12">
                                         <label >Voice Mail Pilot</label>
-                                        <input type="text" class="form-control col-lg-12">
+                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.voice_mail_pilot">
                                     </div>
                                     <br>    
                                     <h4>Size</h4>
                                     <div class="col-lg-12">
-                                        <label >(DropDown) Build size</label>
-                                        <input type="text" class="form-control col-lg-12">
+                                        <label>Build size</label>
+                                        <select class="select-options" [(ngModel)]="currentBuild.size">
+                                                <option>Small</option>
+                                                <option>Medium</option>
+                                                <option>Large</option>
+                                        </select>
                                     </div>
                             </div>
                             <div class="col-lg-2">
                                 <h4>Unified messaging</h4>
                                 <div class="col-lg-12">
                                     <label >Username</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.unified_messaging.username">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Password</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="password" class="form-control col-lg-12" [(ngModel)]="currentBuild.unified_messaging.password">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Version</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.unified_messaging.version">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >IP Address</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.unified_messaging.ip_address">
                                 </div>
                                 <br>
                                 <h4>Platform test account</h4>
                                 <div class="col-lg-12">
                                     <label >Username</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.platform_test_account.username">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Password</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="password" class="form-control col-lg-12" [(ngModel)]="currentBuild.platform_test_account.password">
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <h4>Notes</h4>
                                 <div class="col-lg-12">
                                     <label ></label>
-                                    <textarea rows="15" cols="80"></textarea>
+                                    <textarea rows="15" cols="80" [(ngModel)]="currentBuild.customer_notes"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -168,72 +172,90 @@
                             <div class="col-lg-2">     
                                 <h4>Primary Datacenter</h4>
                                 <div class="col-lg-12">
-                                    <label >(DropDown) datacenter</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <label>Datacenter</label>
+                                    
+                                    <select class="select-options" [(ngModel)]="currentBuild.primary_datacenter.name">
+                                            <option>Denver</option>
+                                            <option>Suwanee</option>
+                                    </select>
+
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Host IP (seed)</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.primary_datacenter.host_ip">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >vLAN</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.primary_datacenter.v_lan">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Host gateway</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.primary_datacenter.host_gateway">
                                 </div>           
                                 <div class="col-lg-12">
                                     <label >ASR Address</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.primary_datacenter.asr_address">
                                 </div>        
                                 <br>
                                 <h4>Infrastructure</h4>                                              
                                 <div class="col-lg-12">
-                                    <label >(DropDown) datacenter</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <label>Datacenter</label>
+                                    <select class="select-options" [(ngModel)]="currentBuild.infrastructure.datacenter">
+                                            <option>Denver</option>
+                                            <option>Suwanee</option>
+                                    </select>
                                 </div>
                                 <div class="col-lg-12">
-                                    <label >(DropDown) cluster</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <label>Cluster</label>
+                                    <select class="select-options" [(ngModel)]="currentBuild.infrastructure.cluster">
+                                            <option>cluster_1</option>
+                                            <option>cluster_2</option>
+                                    </select>
                                 </div>
                                 <div class="col-lg-12">
-                                    <label >(DropDown) datastore</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <label>Datastore</label>
+                                    <select class="select-options" [(ngModel)]="currentBuild.infrastructure.datastore">
+                                            <option>datastore_1</option>
+                                            <option>datastore_2</option>
+                                    </select>
                                 </div>
 
                             </div>
                             <div class="col-lg-2">     
                                 <h4>Secondary Datacenter</h4>
                                 <div class="col-lg-12">
-                                    <label >(DropDown) datacenter</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <label>Datacenter</label><br>
+                                    <select class="select-options" [(ngModel)]="currentBuild.secondary_datacenter.name">
+                                            <option>Denver</option>
+                                            <option>Suwanee</option>
+                                    </select>
+                                          
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Host IP (seed)</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.secondary_datacenter.host_ip">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >vLAN</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.secondary_datacenter.v_lan">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >Host gateway</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.secondary_datacenter.host_gateway">
                                 </div>           
                                 <div class="col-lg-12">
                                     <label >ASR Address</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.secondary_datacenter.asr_address">
                                 </div>        
                                 <br>
                                 <h4>Additional Network Data</h4>                                              
                                 <div class="col-lg-12">
                                     <label >VRF</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.additional_network_data.vrf">
                                 </div>
                                 <div class="col-lg-12">
                                     <label >NAT Box IP</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.additional_network_data.nat_box_ip">
                                 </div>
 
                             </div>                             
@@ -241,40 +263,40 @@
                                 <h4>MRA / Expressway</h4>
                                 <div class="col-lg-6">
                                     <label >Primary DC External IP</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.mra_expressway.primary_dc_external_ip">
                                 </div>
                                 <div class="col-lg-6">
                                     <label >Primary DC Internal IP</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.mra_expressway.primary_dc_internal_ip">
                                 </div>
                                 <div class="col-lg-6">
                                     <label >Secondary DC External IP</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.mra_expressway.secondary_dc_external_ip">
                                 </div>
                                 <div class="col-lg-6">
                                     <label >Secondary DC Internal IP</label>
-                                    <input type="text" class="form-control col-lg-12">
+                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.mra_expressway.secondary_dc_internal_ip">
                                 </div>
                                 <br>
                                 <h4>Additional Services</h4>    
                                 <div class="col-lg-6">
-                                    <input type="checkbox" style="width: 18px; height: 18px;">
+                                    <input type="checkbox" style="width: 18px; height: 18px;" [(ngModel)]="currentBuild.additional_services.expressway">
                                     <label style="margin-left:5px"> Expressway</label>
                                 </div>                                                            
                                 <div class="col-lg-6">
-                                    <input type="checkbox" style="width: 18px; height: 18px;">
+                                    <input type="checkbox" style="width: 18px; height: 18px;" [(ngModel)]="currentBuild.additional_services.singlewire">
                                     <label style="margin-left:5px"> Singlewire</label>
                                 </div>                                      
                                 <div class="col-lg-6">
-                                    <input type="checkbox" style="width: 18px; height: 18px;">
+                                    <input type="checkbox" style="width: 18px; height: 18px;" [(ngModel)]="currentBuild.additional_services.cuaca">
                                     <label style="margin-left:5px"> CUACA</label>
                                 </div>      
                                 <div class="col-lg-6">
-                                    <input type="checkbox" style="width: 18px; height: 18px;">
+                                    <input type="checkbox" style="width: 18px; height: 18px;" [(ngModel)]="currentBuild.additional_services.egw"> 
                                     <label style="margin-left:5px"> EGW</label>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="checkbox"  style="width: 18px; height: 18px;">
+                                    <input type="checkbox"  style="width: 18px; height: 18px;" [(ngModel)]="currentBuild.additional_services.hybrid_services">
                                     <label style="margin-left:5px"> Hybrid Services</label>
                                 </div>                                                                       
                             </div>
@@ -282,7 +304,7 @@
                                 <h4>Notes</h4>
                                 <div class="col-lg-12">
                                     <label ></label>
-                                    <textarea rows="15" cols="80"></textarea>
+                                    <textarea rows="15" cols="80" [(ngModel)]="currentBuild.infrastructure_notes"></textarea>
                                 </div>                         
                             </div>
                         </div>
@@ -296,101 +318,120 @@
                         <div class="col-lg-2">   
                             <h4>DNS and NTP</h4>
                             <div class="col-lg-12">
-                                <label>Primarty DNS</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <label>Primary DNS</label>
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.dns_ntp.primary_dns">
                             </div>
                             <div class="col-lg-12">
                                 <label>Secondary DNS</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.dns_ntp.secondary_dns">
                             </div>
                             <div class="col-lg-12">
                                 <label>NTP Server 1</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.dns_ntp.ntp_server_1">
                             </div>
                             <div class="col-lg-12">
                                 <label>NTP Server 2</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.dns_ntp.ntp_server_2">
                             </div>           
                             <div class="col-lg-12">
                                 <label>NTP Server 3</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.dns_ntp.ntp_server_3">
                             </div>    
                             <div class="col-lg-12">
                                 <label>NTP Server 4</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.dns_ntp.ntp_server_4">
                             </div>     
                             <div class="col-lg-12">
                                 <label>NTP Server 5</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.dns_ntp.ntp_server_5">
                             </div>                                                                             
                         </div>      
                         <div class="col-lg-2"> 
                             <h4>Host Data</h4>
                             <div class="col-lg-12">
-                                <label>(Dropdown) timezone</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <label>Timezone</label>
+                                <select class="select-options" [(ngModel)]="currentBuild.host_data.timezone">
+                                        <option>GTM-3</option>
+                                        <option>GTM-4</option>
+                                        <option>GTM-5</option>
+                                </select>
                             </div>
                             <div class="col-lg-12">
-                                <label>(Dropdown) Continent</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <label>Continent</label>
+                                <select class="select-options" [(ngModel)]="currentBuild.host_data.continent">
+                                        <option>South America</option>
+                                        <option>North America</option>
+                                        <option>Africa</option>
+                                        <option>Asia</option>
+                                </select>
                             </div>
                             <div class="col-lg-12">
-                                <label>(DropDown) City</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <label>City</label>
+                                <select class="select-options" [(ngModel)]="currentBuild.host_data.city">
+                                        <option>San Francisco</option>
+                                        <option>California</option>
+                                        <option>Santa Fe</option>
+                                        <option>Rosario</option>
+                                </select>
                             </div>
                             <div class="col-lg-12">
                                 <label>Admin</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.host_data.admin">
                             </div>           
                             <div class="col-lg-12">
                                 <label>Password</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="password" class="form-control col-lg-12" [(ngModel)]="currentBuild.host_data.password">
                             </div>    
                             <div class="col-lg-12">
                                 <label>Security password</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="password" class="form-control col-lg-12" [(ngModel)]="currentBuild.host_data.security_password">
                             </div>     
                             <div class="col-lg-12">
                                 <label>App user password</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="password" class="form-control col-lg-12" [(ngModel)]="currentBuild.host_data.app_user_password">
                             </div>                                         
                         </div>                                  
                         <div class="col-lg-4">  
                             <h4>Certificates</h4>
                             <div class="col-lg-6">
                                 <label>Certificate Organization</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.certificates.organization">
                             </div>
                             <div class="col-lg-6">
                                 <label>Certificate Unit</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.certificates.unit">
                             </div>
                             <div class="col-lg-6">
                                 <label>Certificate Location</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.certificates.location">
                             </div>
                             <div class="col-lg-6">
                                 <label>Certoficate State</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.certificates.state">
                             </div>           
                             <div class="col-lg-6">
-                                <label>(Dropdown) Certificate Country</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <label>Certificate Country</label>
+                                <select class="select-options" [(ngModel)]="currentBuild.certificates.country">
+                                        <option>EE.UU</option>
+                                        <option>Argentina</option>
+                                        <option>England</option>
+                                        <option>China</option>
+                                </select>
                             </div>    
                             <div class="col-lg-6">
                                 <label>Auto register primary</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.certificates.auto_register_primary">
                             </div>     
                             <div class="col-lg-6">
                                 <label>App user username</label>
-                                <input type="text" class="form-control col-lg-12">
+                                <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.certificates.app_user_username">
                             </div>                                        
                         </div>                                  
                         <div class="col-lg-4">        
                             <h4>Notes</h4>
                             <div class="col-lg-12">
                                 <label ></label>
-                                <textarea rows="15" cols="80"></textarea>
+                                <textarea rows="15" cols="80" [(ngModel)]="currentBuild.host_data_notes"></textarea>
                             </div>                         
                         </div>                                  
                     </div>
@@ -692,9 +733,9 @@
                 <button class="btn btn-primary" style="margin-right: 10px;" (click)="back()">Back</button>
             </div>
             <div class="col-lg-6" align="right" >
-                <button class="btn btn-warning" style="margin-right: 10px;" (click)="save(currentBuild.id)">Save</button>
+                <button class="btn btn-warning" style="margin-right: 10px;" (click)="save(currentBuild.id)" [disabled]="!(currentBuild.status!='Completed')" >Save</button>
                 <button class="btn btn-info"    style="margin-right: 10px;" (click)="validationLogs()">Validation Log</button>
-                <button class="btn btn-primary" style="margin-right: 10px;" (click)="validateProvision()">Validate Provision</button>
+                <button class="btn btn-primary" style="margin-right: 10px;" (click)="validateProvision()" [disabled]="!(currentBuild.status!='Completed')">Validate Provision</button>
             </div>
 
         </div>

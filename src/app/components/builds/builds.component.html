@@ -15,8 +15,8 @@
                                         <th style="width: 15%">Platform Engineer</th>
                                         <th style="width: 10%">Size</th>
                                         <th style="width: 15%">Status</th>
-                                        <th style="width: 12%">Completion</th>
-                                        <th style="width: 13%">Actions</th>
+                                        <th style="width: 10%">Completion</th>
+                                        <th style="width: 15%">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -24,14 +24,14 @@
                                         <tr>
                                             <td>1</td>
                                             <td>{{build.customer.name}}</td>
-                                            <td>{{build.datacenter}}</td>
+                                            <td>{{build.primary_datacenter.name}}</td>
                                             <td>{{build.platform_engineer}}</td>
                                             <td>{{build.size}}</td>
                                             <td>{{build.status}}</td>
                                             <td>
                                                 <ngb-progressbar type="primary" showValue="true" [striped]="true" [value]="build.completion"></ngb-progressbar>
                                             </td>
-                                            <td><button class="btn btn-primary" style="margin-right: 5px;" (click)=runBuild(build.id)>Run</button><button class="btn btn-danger" style="margin-right: 5px;">Cancel</button><button class="btn btn-warning" (click)="edit(build.id)">Edit</button></td>
+                                            <td><button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!(build.status=='Pending')" (click)=runBuild(build.id)>Run</button><button class="btn btn-warning" [disabled]="!(build.status=='Running')" style="margin-right: 5px;">Cancel</button><button class="btn btn-secondary" (click)="edit(build.id)" style="margin-right: 5px;">Edit</button><button class="btn btn-danger" (click)="delete(build.id)" [disabled]="(build.status=='Running')">Delete</button></td>
                                         </tr>
                                     </ng-container>
                                 </tbody>
@@ -81,14 +81,14 @@
                                 <tr>
                                     <td>1</td>
                                     <td>{{build.customer.name}}</td>
-                                    <td>{{build.datacenter}}</td>
+                                    <td>{{build.primary_datacenter.name}}</td>
                                     <td>{{build.platform_engineer}}</td>
                                     <td>{{build.size}}</td>
                                     <td>{{build.status}}</td> 
                                     <td>
                                         <ngb-progressbar type="success" showValue="true" [striped]="true" [value]="build.completion"></ngb-progressbar>
                                     </td>
-                                    <td><button class="btn btn-info" style="margin-right: 10px;">Logs</button><button class="btn btn-warning" (click)="details(build.id)">Details</button></td>                                  
+                                    <td><button class="btn btn-info" style="margin-right: 10px;" (click)="logsCompleted(build.id)">Logs</button><button class="btn btn-warning" (click)="details(build.id)">Details</button></td>                                  
                                 </tr>
                             </ng-container>
                         </tbody>

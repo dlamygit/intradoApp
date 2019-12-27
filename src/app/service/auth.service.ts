@@ -7,16 +7,16 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  
   users:User[];
 
   constructor() {
 
-    var user1 = new User();
-    user1.username = 'demo';
-    user1.password = 'demo';
+    var userDemo = new User();
+      userDemo.username = 'demo';
+      userDemo.password = 'demo';
     this.users = new Array();
-    this.users.push(user1);
+    this.users.push(userDemo);
+    
    }
 
    private showLogoutSource = new BehaviorSubject<boolean>(false);
@@ -25,7 +25,6 @@ export class AuthService {
   setShowLogout(status:boolean){
     this.showLogoutSource.next(status);
   }      
-
 
   authenticate(user:User) {
     var validUser = this.users.find(x => x.username === user.username && x.password === user.password);
