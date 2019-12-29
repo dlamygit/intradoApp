@@ -1,8 +1,10 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { Build } from 'src/app/Model/Build';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BuildsService } from 'src/app/service/builds.service';
 import Swal from 'sweetalert2';
+import { map, take } from 'rxjs/operators';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-builds',
@@ -11,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class BuildsComponent implements OnInit {
 
-  constructor(private router:Router, private buildsService:BuildsService) { }
+  constructor(private router:Router,private route: ActivatedRoute, private buildsService:BuildsService) { }
   showLogout=true;
 
   pageInc = 1; pageSizeInc = 12; 
@@ -20,26 +22,37 @@ export class BuildsComponent implements OnInit {
   incompleted_builds:Build[];
   completed_builds:Build[];
 
-  ngOnInit() {
+   //Review how this work
+   @ViewChild("buildsTab", { static: true, read: NgbTabset }) 
+   buildsTab: NgbTabset;
+   
+  async ngOnInit() {
 
     this.buildsService.buildsN.subscribe(builds => this.incompleted_builds = builds.filter(build => build.status != 'Completed'));
     this.buildsService.buildsN.subscribe(builds => this.completed_builds = builds.filter(build => build.status == 'Completed'));
 
+    const params = await this.route.paramMap
+        .pipe(
+            map((params: ParamMap) => ({ tabName: params.get("tabName") })),
+            take(1) // <-- force to complete
+        ).toPromise();
+    this.buildsTab.select(`${params.tabName}`);
   }
 
   newCustomer() {
     this.router.navigate(["build_config","0"]);    
   }
 
-  edit(id:string){
-     this.router.navigate(["build_config", id]);    
+  edit(build_id:string){
+     this.router.navigate(["build_config", build_id]);    
   }
 
-  details(id:string){
-    this.router.navigate(["build_config", id]);    
+  details(build_id:string){
+    this.router.navigate(["build_config", build_id]);    
   }
 
-  delete(id:string){
+  delete(build_id:string){
+
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -50,7 +63,7 @@ export class BuildsComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        this.buildsService.deleteBuild(id);
+        this.buildsService.deleteBuild(build_id);
         Swal.fire(
           'Saved!',
           'Build deleted',
@@ -61,13 +74,13 @@ export class BuildsComponent implements OnInit {
 
   }
 
-  logsCompleted(id:string){
-    this.router.navigate(["logs"]);    
+  logsCompleted(build_id:string){
+    this.router.navigate(["logs",build_id,"execution"]);    
   }
 
-  runBuild(id:string){
-    this.buildsService.runBuild(id);
-    this.router.navigate(["logs"]);    
+  runBuild(build_id:string){
+    this.buildsService.runBuild(build_id);
+    this.router.navigate(["logs",build_id,"execution"]);    
   }
 
 

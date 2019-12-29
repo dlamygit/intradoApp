@@ -734,8 +734,8 @@
             </div>
             <div class="col-lg-6" align="right" >
                 <button class="btn btn-warning" style="margin-right: 10px;" (click)="save(currentBuild.id)" [disabled]="!(currentBuild.status!='Completed')" >Save</button>
-                <button class="btn btn-info"    style="margin-right: 10px;" (click)="validationLogs()">Validation Log</button>
-                <button class="btn btn-primary" style="margin-right: 10px;" (click)="validateProvision()" [disabled]="!(currentBuild.status!='Completed')">Validate Provision</button>
+                <button class="btn btn-info"    style="margin-right: 10px;" (click)="validationLogs(currentBuild.id)" [disabled]="(currentBuild.id=='0')">Validation Log</button>
+                <button class="btn btn-primary" style="margin-right: 10px;" (click)="validateProvision(currentBuild.id)" [disabled]="((currentBuild.status=='Completed') || currentBuild.id=='0')">Validate Provision</button>
             </div>
 
         </div>

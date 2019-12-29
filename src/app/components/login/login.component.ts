@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     
     console.log(user);
     if(this.authService.authenticate(user)){
-      this.router.navigate(["builds"]);
+      this.router.navigate(["builds","incomplete_builds"]);
     }
     else{
       this.invalidUser = true;

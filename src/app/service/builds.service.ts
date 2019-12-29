@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Build } from '../Model/Build';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Logs } from '../Model/Logs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class BuildsService {
 
   STORAGE_BUILDS:string = "builds";
+  STORAGE_LOGS:string = "logs";
   builds:Build[] = new  Array<Build>();
+  logs:Logs[] = new  Array<Logs>();
 
   private buildsSource = new BehaviorSubject<Build[]>(null);
   buildsN = this.buildsSource.asObservable();
@@ -17,6 +20,9 @@ export class BuildsService {
   private currentBuildSource = new BehaviorSubject<Build>(null);
   currentBuild = this.currentBuildSource.asObservable();
 
+  getBuildStatus(id:string):String{
+    return this.getBuild(id).status;
+  }
    //GET builds
   getBuilds(): Build[] {
     return this.storage.get(this.STORAGE_BUILDS);  
@@ -178,6 +184,20 @@ export class BuildsService {
 
   }
 
+  createEmptyLog(build_id:string):Logs{
+
+    var emptyLog:Logs={
+      "build_id":build_id,
+      "validationLogs":[],
+      "executionLogs":[]
+    }
+
+    return emptyLog;
+  }
+
+  getAllLogs():Logs[]{
+    return this.storage.get(this.STORAGE_LOGS);
+  }
   //POST Build
   addBuild(build: Build):Build {    
       
@@ -189,9 +209,12 @@ export class BuildsService {
 
     //Almacenar en localstorage
     this.storage.set(this.STORAGE_BUILDS,this.builds);
-
     //Actualizar el observable
     this.buildsSource.next(this.builds);
+
+    //Create logs for the build created
+    this.logs = this.getAllLogs().concat(this.createEmptyLog(build.id));
+    this.storage.set(this.STORAGE_LOGS,this.logs);
 
     //Just for checking that was added
     return this.getBuild(build.id); 
@@ -238,12 +261,16 @@ export class BuildsService {
     console.log("Runnning build: "+id);
   }
 
+  getLogs(build_id:string):Logs{
+    return this.storage.get(this.STORAGE_LOGS).find(logs => logs.build_id === build_id);  
+  }
+
   constructor(@Inject(LOCAL_STORAGE) private storage:StorageService) { 
  
     //Incomplete Builds
     var b1:Build =
     {
-      "id": "asd",
+      "id": "CYB7PSOC-0KAC-8Q56-JT3E-3Y8CAKYK7BV6",
       "customer": {
         "name":"Test Customer Name",
         "id_letters":"INT",
@@ -719,6 +746,62 @@ export class BuildsService {
     this.storage.set(this.STORAGE_BUILDS,this.builds);
     this.buildsSource.next(this.builds);
 
+    var logs:Logs ={
+      "build_id":"CYB7PSOC-0KAC-8Q56-JT3E-3Y8CAKYK7BV6",
+      "validationLogs":[
+        {"id":"1",
+         "date":new Date(),
+         "title":"Log titile",
+         "type":"Validation Log",
+         "details":"Log details",
+         "module":"Log module",
+         "status":"Success"
+        },
+        {"id":"2",
+         "date":new Date(),
+         "title":"Log titile",
+         "type":"Validation Log",
+         "details":"Log details",
+         "module":"Log module",
+         "status":"Running"
+        },
+        {"id":"3",
+         "date":new Date(),
+         "title":"Log titile",
+         "type":"Validation Log",
+         "details":"Log details",
+         "module":"Log module",
+         "status":"Failed"
+        }],
+      "executionLogs":[
+        {"id":"1",
+         "date":new Date(),
+         "title":"Log titile",
+         "type":"Execution Log",
+         "details":"Log details",
+         "module":"Log module",
+         "status":"Success"
+        },
+        {"id":"2",
+         "date":new Date(),
+         "title":"Log titile",
+         "type":"Execution Log",
+         "details":"Log details",
+         "module":"Log module",
+         "status":"Success"
+        },
+        {"id":"3",
+         "date":new Date(),
+         "title":"Log titile",
+         "type":"Execution Log",
+         "details":"Log details",
+         "module":"Log module",
+         "status":"Running"
+        }]
+    }
+
+    this.logs.push(logs);
+    this.storage.set(this.STORAGE_LOGS,this.logs);
   }
 }
 

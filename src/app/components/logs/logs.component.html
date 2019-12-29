@@ -1,75 +1,91 @@
 <div class="body-background" style="padding-left: 15px;padding-right: 15px;padding-bottom: 10px">
-        <ngb-tabset>
-            <ngb-tab title="Validation Logs">
-              <ng-template ngbTabContent>
-                  <div class="card-body border" style="height:800px">
-                        <table class="table">
-                            <thead>
+    <ngb-tabset #logsTab>
+        <ngb-tab title="Validation Logs" id="validation">
+            <ng-template ngbTabContent>
+                <div class="card-body border" style="height:800px">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">#</th>
+                                <th style="width: 10%">Title</th>
+                                <th style="width: 20%">Date</th>
+                                <th style="width: 7%">Module</th>
+                                <th style="width: 6%">Status</th>
+                                <th style="width: 40%">Detail</th>
+                                <th style="width: 12%">Low-level logs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let logs of currentLog.validationLogs">
                                 <tr>
-                                    <th style="width: 5%">#</th>
-                                    <th style="width: 10%">Module</th>
-                                    <th style="width: 15%">Configuration Type</th>
-                                    <th style="width: 10%">Status</th>
-                                    <th style="width: 50%">Detail</th>
-                                    <th style="width: 10%">Los level logs</th>
+                                    <td>{{logs.id}}</td>
+                                    <td>{{logs.title}}</td>
+                                    <td>{{logs.date}}</td>
+                                    <td>{{logs.module}}</td>
+                                    <td>{{logs.status}}</td> 
+                                    <td>{{logs.details}}</td> 
+                                    <td><button class="btn btn-info" (click)="lowLevelLogsValidation(logs.id)">...</button></td>                                                    
                                 </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>         
+                <div class="col">
+                    <div class="row" style="padding-top: 15px;">
+                        <div class="col-lg-6"  align="left" style="padding-left: 35px;" >
+                            <button class="btn btn-primary" style="margin-right: 10px;" (click)="back()">Back</button>
+                        </div>                                  
+                        <div class="col-lg-6"  align="right" style="padding-right: 15px;" >
+                            <button class="btn btn-danger"  style="margin-right: 15px;" [disabled]="!(currentBuildStatus=='Validation In-Progress')" (click)="cancel()">Cancel</button>
+                            <button class="btn btn-primary"  [disabled]="!(currentBuildStatus=='Pending')" (click)="cancelValidation()">Run</button>
+                        </div>   
                     </div>
-                    
-                   
-                    <div class="col">
-                        <div class="row" style="padding-top: 15px;">
-                            <div class="col-lg-6"  align="left" style="padding-left: 35px;" >
-                                <button class="btn btn-primary" style="margin-right: 10px;" (click)="back()">Back</button>
-                            </div>                                  
-                            <div class="col-lg-6"  align="right" style="padding-right: 15px;" >
-                                <button class="btn btn-danger"  style="margin-right: 15px;" (click)="cancel()">Cancel</button>
-                                <button class="btn btn-primary"  (click)="cancel()">Run</button>
-                            </div>   
-                        </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Execution Logs"  id="execution">
+            <ng-template ngbTabContent>
+                <div class="card-body border" style="height:800px">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">#</th>
+                                <th style="width: 10%">Title</th>
+                                <th style="width: 20%">Date</th>
+                                <th style="width: 7%">Module</th>
+                                <th style="width: 6%">Status</th>
+                                <th style="width: 40%">Detail</th>
+                                <th style="width: 12%">Low-level logs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let logs of currentLog.executionLogs">
+                                <tr>
+                                    <td>{{logs.id}}</td>
+                                    <td>{{logs.title}}</td>
+                                    <td>{{logs.date}}</td>
+                                    <td>{{logs.module}}</td>
+                                    <td>{{logs.status}}</td> 
+                                    <td>{{logs.details}}</td> 
+                                    <td><button class="btn btn-info" (click)="lowLevelLogsExecution(logs.id)">...</button></td>                                                    
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                </div>
+                <div class="col">
+                    <div class="row" style="padding-top: 15px;">
+                        <div class="col-lg-6"  align="left" style="padding-left: 35px;" >
+                            <button class="btn btn-primary" style="margin-right: 10px;" (click)="back()">Back</button>
+                        </div>                                
+                        <div class="col-lg-6"  align="right" style="padding-right: 15px;" >
+                            <button class="btn btn-danger"  [disabled]="!(currentBuildStatus=='Running')" (click)="cancelExecution()">Cancel</button>
+                        </div>   
                     </div>
-        
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab>
-              <ng-template ngbTabTitle>Execution Logs</ng-template>
-              <ng-template ngbTabContent>
-                    <div class="card-body border" style="height:800px">
-                            <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 5%">#</th>
-                                            <th style="width: 10%">Module</th>
-                                            <th style="width: 15%">Configuration Type</th>
-                                            <th style="width: 10%">Status</th>
-                                            <th style="width: 50%">Detail</th>
-                                            <th style="width: 10%">Los level logs</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="row">
-                            </div>
-
-                            <div class="col">
-
-                                <div class="row" style="padding-top: 15px;">
-                                    <div class="col-lg-6"  align="left" style="padding-left: 35px;" >
-                                        <button class="btn btn-primary" style="margin-right: 10px;" (click)="back()">Back</button>
-                                    </div>                                
-                                    <div class="col-lg-6"  align="right" style="padding-right: 15px;" >
-                                        <button class="btn btn-danger"  (click)="cancel()">Cancel</button>
-                                    </div>   
-                                </div>
-                            </div>
-              </ng-template>
-            </ngb-tab>
-          </ngb-tabset>
-        </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>

@@ -81,16 +81,16 @@ export class BuildConfigComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(["builds"]);
+    window.history.back();
   }
 
-  validationLogs(){
-    this.router.navigate(["logs"]);
+  validationLogs(build_id:string){
+    this.router.navigate(["logs",build_id,"validation"]);
 
   }
   
-  validateProvision(){
-    this.router.navigate(["logs"]);
+  validateProvision(build_id:string){
+    this.router.navigate(["logs",build_id,"validation"]);
   }
 
   save(id:string){

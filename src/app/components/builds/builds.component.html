@@ -1,7 +1,7 @@
 
 <div class="body-background " style="height:970px;padding-right: 15px;padding-left: 15px;">
-    <ngb-tabset>
-        <ngb-tab title="Incomplete Builds">
+    <ngb-tabset #buildsTab>
+        <ngb-tab title="Incomplete Builds" id="incomplete_builds">
             <ng-template ngbTabContent>
                 <div class="col">
                     <div class="row">
@@ -59,7 +59,7 @@
                 </div>
             </ng-template>
         </ngb-tab>
-        <ngb-tab title="Complete Builds">
+        <ngb-tab title="Complete Builds" id="completed_builds">
             <ng-template ngbTabContent>
                 <div class="card-body border" style="height:800px">
                     <table class="table">
