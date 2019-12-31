@@ -450,7 +450,7 @@ export class BuildsService {
         }
       },
       {"id":"cm_subscriber_2",
-      "vm_name":"CCCM1P01SWN",
+      "vm_name":"CCM1P01SWN",
          "host_name":"host_name_suwanee",
          "host_ip":"192.168.20.7",
          "v_lan":"32",
@@ -935,7 +935,7 @@ export class BuildsService {
         }
       },
       {"id":"cm_subscriber_2",
-      "vm_name":"CCCM1P01SWN",
+      "vm_name":"CCM1P01SWN",
          "host_name":"host_name_suwanee",
          "host_ip":"192.168.20.7",
          "v_lan":"32",
@@ -1420,7 +1420,7 @@ export class BuildsService {
         }
       },
       {"id":"cm_subscriber_2",
-      "vm_name":"CCCM1P01SWN",
+      "vm_name":"CCM1P01SWN",
          "host_name":"host_name_suwanee",
          "host_ip":"192.168.20.7",
          "v_lan":"32",
@@ -1905,7 +1905,7 @@ export class BuildsService {
         }
       },
       {"id":"cm_subscriber_2",
-      "vm_name":"CCCM1P01SWN",
+      "vm_name":"CCM1P01SWN",
          "host_name":"host_name_suwanee",
          "host_ip":"192.168.20.7",
          "v_lan":"32",
@@ -2390,7 +2390,7 @@ export class BuildsService {
         }
       },
       {"id":"cm_subscriber_2",
-      "vm_name":"CCCM1P01SWN",
+      "vm_name":"CCM1P01SWN",
          "host_name":"host_name_suwanee",
          "host_ip":"192.168.20.7",
          "v_lan":"32",
@@ -2875,7 +2875,7 @@ export class BuildsService {
         }
       },
       {"id":"cm_subscriber_2",
-      "vm_name":"CCCM1P01SWN",
+      "vm_name":"CCM1P01SWN",
          "host_name":"host_name_suwanee",
          "host_ip":"192.168.20.7",
          "v_lan":"32",
@@ -3360,7 +3360,7 @@ export class BuildsService {
         }
       },
       {"id":"cm_subscriber_2",
-      "vm_name":"CCCM1P01SWN",
+      "vm_name":"CCM1P01SWN",
          "host_name":"host_name_suwanee",
          "host_ip":"192.168.20.7",
          "v_lan":"32",
