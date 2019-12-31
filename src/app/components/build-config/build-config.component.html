@@ -78,43 +78,18 @@
                                     <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.customer.voice_mail_pilot">
                                 </div>                  
                                 <br>                                    
-                                <h4>Domain</h4>
-                                <div class="col-lg-12">
-                                    <label >Server domain</label>
-                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.domain.server_domain"> 
-                                </div>
-                                <div class="col-lg-12">
-                                    <label >Presence domain</label>
-                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.domain.presence_domain">
-                                </div>
                             </div>
-                            <div class="col-lg-2">
-                                    <h4>Active directory</h4>
+                            <div class="col-lg-2"> 
+                                    <h4>Domain</h4>
                                     <div class="col-lg-12">
-                                        <label >Timezone</label>
-                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.timezone">
+                                        <label >Server domain</label>
+                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.domain.server_domain"> 
                                     </div>
                                     <div class="col-lg-12">
-                                        <label >Default code area</label>
-                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.default_code_area">
+                                        <label >Presence domain</label>
+                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.domain.presence_domain">
                                     </div>
-                                    <div class="col-lg-12">
-                                        <label >Local dial</label>
-                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.local_dial">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label >Extension Length</label>
-                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.extension_length">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label >Breakout code</label>
-                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.breakout_code">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label >Voice Mail Pilot</label>
-                                        <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.active_directory.voice_mail_pilot">
-                                    </div>
-                                    <br>    
+                                    <br>
                                     <h4>Size</h4>
                                     <div class="col-lg-12">
                                         <label>Build size</label>
@@ -134,14 +109,6 @@
                                 <div class="col-lg-12">
                                     <label >Password</label>
                                     <input type="password" class="form-control col-lg-12" [(ngModel)]="currentBuild.unified_messaging.password">
-                                </div>
-                                <div class="col-lg-12">
-                                    <label >Version</label>
-                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.unified_messaging.version">
-                                </div>
-                                <div class="col-lg-12">
-                                    <label >IP Address</label>
-                                    <input type="text" class="form-control col-lg-12" [(ngModel)]="currentBuild.unified_messaging.ip_address">
                                 </div>
                                 <br>
                                 <h4>Platform test account</h4>

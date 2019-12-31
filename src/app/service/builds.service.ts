@@ -284,15 +284,15 @@ export class BuildsService {
         "city":"Denver",
         "state":"Colorado (CO)",
         "zip_code":"80201",
-        "timezone":"GTM-7",
-        "default_code_area":"+1",
-        "local_dial":"720",
-        "extension_length":"51248",
+        "timezone":"GMT-7",
+        "default_code_area":"212",
+        "local_dial":"9",
+        "extension_length":"10",
         "breakout_code":"51324",
-        "voice_mail_pilot":"521651"
+        "voice_mail_pilot":"1900"
       },
       "domain":{
-        "server_domain":"denver",
+        "server_domain":"umbrella.corp",
         "presence_domain":"suwanee"
       },
       "active_directory":{
@@ -769,15 +769,15 @@ export class BuildsService {
         "city":"Denver",
         "state":"Colorado (CO)",
         "zip_code":"80201",
-        "timezone":"GTM-7",
-        "default_code_area":"+1",
-        "local_dial":"720",
-        "extension_length":"51248",
+        "timezone":"GMT-7",
+        "default_code_area":"212",
+        "local_dial":"9",
+        "extension_length":"10",
         "breakout_code":"51324",
-        "voice_mail_pilot":"521651"
+        "voice_mail_pilot":"1900"
       },
       "domain":{
-        "server_domain":"denver",
+        "server_domain":"fedex",
         "presence_domain":"suwanee"
       },
       "active_directory":{
@@ -1254,15 +1254,15 @@ export class BuildsService {
         "city":"Denver",
         "state":"Colorado (CO)",
         "zip_code":"80201",
-        "timezone":"GTM-7",
-        "default_code_area":"+1",
-        "local_dial":"720",
-        "extension_length":"51248",
+        "timezone":"GMT-7",
+        "default_code_area":"212",
+        "local_dial":"9",
+        "extension_length":"10",
         "breakout_code":"51324",
-        "voice_mail_pilot":"521651"
+        "voice_mail_pilot":"1900"
       },
       "domain":{
-        "server_domain":"denver",
+        "server_domain":"sporks.company",
         "presence_domain":"suwanee"
       },
       "active_directory":{
@@ -1739,15 +1739,15 @@ export class BuildsService {
         "city":"Denver",
         "state":"Colorado (CO)",
         "zip_code":"80201",
-        "timezone":"GTM-7",
-        "default_code_area":"+1",
-        "local_dial":"720",
-        "extension_length":"51248",
+        "timezone":"GMT-7",
+        "default_code_area":"212",
+        "local_dial":"9",
+        "extension_length":"10",
         "breakout_code":"51324",
-        "voice_mail_pilot":"521651"
+        "voice_mail_pilot":"1900"
       },
       "domain":{
-        "server_domain":"denver",
+        "server_domain":"int.cia.morks",
         "presence_domain":"suwanee"
       },
       "active_directory":{
@@ -2224,15 +2224,15 @@ export class BuildsService {
         "city":"Denver",
         "state":"Colorado (CO)",
         "zip_code":"80201",
-        "timezone":"GTM-7",
-        "default_code_area":"+1",
-        "local_dial":"720",
-        "extension_length":"51248",
+        "timezone":"GMT-7",
+        "default_code_area":"212",
+        "local_dial":"9",
+        "extension_length":"10",
         "breakout_code":"51324",
-        "voice_mail_pilot":"521651"
+        "voice_mail_pilot":"1900"
       },
       "domain":{
-        "server_domain":"denver",
+        "server_domain":"alchemy.bars",
         "presence_domain":"suwanee"
       },
       "active_directory":{
@@ -2709,15 +2709,15 @@ export class BuildsService {
         "city":"Denver",
         "state":"Colorado (CO)",
         "zip_code":"80201",
-        "timezone":"GTM-7",
-        "default_code_area":"+1",
-        "local_dial":"720",
-        "extension_length":"51248",
+        "timezone":"GMT-7",
+        "default_code_area":"212",
+        "local_dial":"9",
+        "extension_length":"10",
         "breakout_code":"51324",
-        "voice_mail_pilot":"521651"
+        "voice_mail_pilot":"1900"
       },
       "domain":{
-        "server_domain":"denver",
+        "server_domain":"cust.mors.treps",
         "presence_domain":"suwanee"
       },
       "active_directory":{
@@ -3194,15 +3194,15 @@ export class BuildsService {
         "city":"Denver",
         "state":"Colorado (CO)",
         "zip_code":"80201",
-        "timezone":"GTM-7",
-        "default_code_area":"+1",
-        "local_dial":"720",
-        "extension_length":"51248",
+        "timezone":"GMT-7",
+        "default_code_area":"212",
+        "local_dial":"9",
+        "extension_length":"10",
         "breakout_code":"51324",
-        "voice_mail_pilot":"521651"
+        "voice_mail_pilot":"1900"
       },
       "domain":{
-        "server_domain":"denver",
+        "server_domain":"customer.customs",
         "presence_domain":"suwanee"
       },
       "active_directory":{
