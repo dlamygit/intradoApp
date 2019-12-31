@@ -691,61 +691,61 @@ export class BuildsService {
       "dns_records":{
         "dns_to_ip":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
           }          
         ],
         "ip_to_dsn":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
-          }          
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
+          }         
         ]
       },
       "platform_engineer": "Bruce Wayne",
@@ -1176,61 +1176,61 @@ export class BuildsService {
       "dns_records":{
         "dns_to_ip":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
           }          
         ],
         "ip_to_dsn":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
-          }          
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
+          }         
         ]
       },
       "platform_engineer": "Frank Castle",
@@ -1661,61 +1661,61 @@ export class BuildsService {
       "dns_records":{
         "dns_to_ip":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
           }          
         ],
         "ip_to_dsn":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
-          }          
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
+          }         
         ]
       },
       "platform_engineer": "Jhon Deere",
@@ -2146,61 +2146,61 @@ export class BuildsService {
       "dns_records":{
         "dns_to_ip":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
           }          
         ],
         "ip_to_dsn":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
-          }          
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
+          }         
         ]
       },
       "platform_engineer": "John Wick",
@@ -2631,61 +2631,61 @@ export class BuildsService {
       "dns_records":{
         "dns_to_ip":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
           }          
         ],
         "ip_to_dsn":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
-          }          
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
+          }         
         ]
       },
       "platform_engineer": "Scott Jhonson",
@@ -3116,61 +3116,61 @@ export class BuildsService {
       "dns_records":{
         "dns_to_ip":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
           }          
         ],
         "ip_to_dsn":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
-          }          
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
+          }         
         ]
       },
       "platform_engineer": "Steve Hallen",
@@ -3601,61 +3601,61 @@ export class BuildsService {
       "dns_records":{
         "dns_to_ip":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
           }          
         ],
         "ip_to_dsn":[
           {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+           "ip":"192.168.10.6"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01DEN.VMCE",
+           "ip":"192.168.10.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-           "ip":"172.0.0.1"
+          {"dns":"CCM1S01SWN.VMCE",
+           "ip":"192.168.20.7"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01DEN.VMCE",
+          "ip":"192.168.10.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"IMP1S01SWN.VMCE",
+          "ip":"192.168.20.8"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1P01DEN.VMCE",
+          "ip":"192.168.10.9"
           },          
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"CUC1S01SWN.VMCE",
+          "ip":"192.168.20.9"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
+          {"dns":"EXP1S01DEN.VMCE",
+          "ip":"192.168.10.10"
           },
-          {"dns":"CCM1P01DEN.VMCE",
-          "ip":"172.0.0.1"
-          }          
+          {"dns":"EXP1S01SWN.VMCE",
+          "ip":"192.168.20.10"
+          }         
         ]
       },
       "platform_engineer": "Mills Begant",
