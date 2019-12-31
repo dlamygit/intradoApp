@@ -275,7 +275,7 @@ export class BuildsService {
     {
       "id": "CYB7PSOC-0KAC-8Q56-JT3E-3Y8CAKYK7BV6",
       "customer": {
-        "name":"Umbrella Corp",
+        "name":"INTRADO",
         "id_letters":"INT",
         "id_numbers":"1234",
         "ITC_location":"Denver",
@@ -292,8 +292,8 @@ export class BuildsService {
         "voice_mail_pilot":"1900"
       },
       "domain":{
-        "server_domain":"umbrella.corp",
-        "presence_domain":"suwanee"
+        "server_domain":"intrado.com",
+        "presence_domain":"intrado.com"
       },
       "active_directory":{
         "timezone":"GTM-6",
@@ -331,7 +331,7 @@ export class BuildsService {
       },
       "infrastructure":{
         "datacenter":"Denver",
-        "cluster":"cluster_1",
+        "cluster":"TEMP-CLU01",
         "datastore":"datastore_1"
       },
       "additional_network_data":{
@@ -816,7 +816,7 @@ export class BuildsService {
       },
       "infrastructure":{
         "datacenter":"Denver",
-        "cluster":"cluster_1",
+        "cluster":"TEMP-CLU01",
         "datastore":"datastore_1"
       },
       "additional_network_data":{
@@ -1301,7 +1301,7 @@ export class BuildsService {
       },
       "infrastructure":{
         "datacenter":"Denver",
-        "cluster":"cluster_1",
+        "cluster":"TEMP-CLU01",
         "datastore":"datastore_1"
       },
       "additional_network_data":{
@@ -1786,7 +1786,7 @@ export class BuildsService {
       },
       "infrastructure":{
         "datacenter":"Denver",
-        "cluster":"cluster_1",
+        "cluster":"TEMP-CLU01",
         "datastore":"datastore_1"
       },
       "additional_network_data":{
@@ -2271,7 +2271,7 @@ export class BuildsService {
       },
       "infrastructure":{
         "datacenter":"Denver",
-        "cluster":"cluster_1",
+        "cluster":"TEMP-CLU01",
         "datastore":"datastore_1"
       },
       "additional_network_data":{
@@ -2756,7 +2756,7 @@ export class BuildsService {
       },
       "infrastructure":{
         "datacenter":"Denver",
-        "cluster":"cluster_1",
+        "cluster":"TEMP-CLU01",
         "datastore":"datastore_1"
       },
       "additional_network_data":{
@@ -3241,7 +3241,7 @@ export class BuildsService {
       },
       "infrastructure":{
         "datacenter":"Denver",
-        "cluster":"cluster_1",
+        "cluster":"TEMP-CLU01",
         "datastore":"datastore_1"
       },
       "additional_network_data":{
