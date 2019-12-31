@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BuildsService } from 'src/app/service/builds.service';
 import Swal from 'sweetalert2';
 import { map, take } from 'rxjs/operators';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-builds',
@@ -25,7 +25,7 @@ export class BuildsComponent implements OnInit {
    //Review how this work
    @ViewChild("buildsTab", { static: true, read: NgbTabset }) 
    buildsTab: NgbTabset;
-   
+ 
   async ngOnInit() {
 
     this.buildsService.buildsN.subscribe(builds => this.incompleted_builds = builds.filter(build => build.status != 'Completed'));
@@ -39,10 +39,33 @@ export class BuildsComponent implements OnInit {
     this.buildsTab.select(`${params.tabName}`);
   }
 
+  onTabChange($event: NgbTabChangeEvent) {
+    if ($event.nextId === 'incomplete_builds') {
+      this.router.navigate(["builds", "incomplete_builds"]);    
+    } else if ($event.nextId === 'complete_builds') {
+      this.router.navigate(["builds", "complete_builds"]);    
+
+    }
+  }
+  
   newCustomer() {
     this.router.navigate(["build_config","0"]);    
   }
 
+  progressBarTypeByStatus(status:String){
+    if(status=="Canceled"){
+      return "warning";
+    }
+    else if(status=="Failed"){
+      return "danger";
+    }
+    else if(status=="Completed"){
+      return "success";
+    }
+    else{
+      return "primary";
+    }
+  }
   edit(build_id:string){
      this.router.navigate(["build_config", build_id]);    
   }
@@ -78,9 +101,50 @@ export class BuildsComponent implements OnInit {
     this.router.navigate(["logs",build_id,"execution"]);    
   }
 
+  runValidation(build_id:string){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Build Provisioning validation process will start",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, start validation process'
+    }).then((result) => {
+      if (result.value) {
+        this.router.navigate(["logs",build_id,"validation"]);
+        Swal.fire(
+          'Started!',
+          'Build provisioning validation process started sucessfully',
+          'success'
+        )
+      }
+    })
+   
+  }
+
   runBuild(build_id:string){
-    this.buildsService.runBuild(build_id);
-    this.router.navigate(["logs",build_id,"execution"]);    
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "VM Provisioning build process will start",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, start provisioning process'
+    }).then((result) => {
+      if (result.value) {
+        this.buildsService.runBuild(build_id);
+        this.router.navigate(["logs",build_id,"execution"]);   
+        Swal.fire(
+          'Started!',
+          'VM provisioning build started sucessfully',
+          'success'
+        )
+      }
+    })
+
   }
 
 

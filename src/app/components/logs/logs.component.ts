@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BuildsService } from 'src/app/service/builds.service';
 import { Logs } from 'src/app/Model/Logs';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { map, take } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-logs',
@@ -15,6 +16,7 @@ export class LogsComponent implements OnInit {
 
   currentLog:Logs;
   currentBuildStatus:String;
+  current_build_id:string;
   selectedTab:string; 
 
   //Review how this work
@@ -24,10 +26,19 @@ export class LogsComponent implements OnInit {
   //TODO Review how to mix both route params usage.
   constructor(private router:Router,private route: ActivatedRoute,private buildsService:BuildsService) {     
     this.route.params.subscribe((params) => {
-      const build_id = params['id'] as string;
-      this.currentLog = this.buildsService.getLogs(build_id);
-      this.currentBuildStatus = this.buildsService.getBuildStatus(build_id);      
+      this.current_build_id = params['id'] as string;
+      this.currentLog = this.buildsService.getLogs(this.current_build_id);
+      this.currentBuildStatus = this.buildsService.getBuildStatus(this.current_build_id);      
     });
+  }
+
+  onTabChange($event: NgbTabChangeEvent) {
+    if ($event.nextId === 'validation') {
+      this.router.navigate(["logs",this.current_build_id, "validation"]);    
+    } else if ($event.nextId === 'execution') {
+      this.router.navigate(["logs",this.current_build_id,"execution"]);    
+
+    }
   }
 
   async ngOnInit() {
@@ -59,8 +70,27 @@ export class LogsComponent implements OnInit {
     console.log("TODO: Make cancel execution functionality")    
   }
 
-  run(){
-    console.log("TODO: Make call to job_template")    
+  run(build_id:string){
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "VM Provisioning build process will start",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, start provisioning process'
+    }).then((result) => {
+      if (result.value) {
+        this.buildsService.runBuild(build_id);
+        this.router.navigate(["logs",build_id,"execution"]);   
+        Swal.fire(
+          'Started!',
+          'VM provisioning build started sucessfully',
+          'success'
+        )
+      }
+    })
   }
 
 }

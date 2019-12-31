@@ -4,6 +4,8 @@ import { Certificates } from './Certificates'
 
 export class VirtualMachine{
 
+    id:String
+
     vm_name: String
     host_name: String
     

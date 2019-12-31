@@ -45,6 +45,8 @@ export class Build{
 
     platform_engineer: String
     status: String
+    elapsed_time: String
     completion: String
-
+    parameters_completed: String
+    parameters_required: String
 }

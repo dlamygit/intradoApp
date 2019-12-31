@@ -3,9 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BuildsService } from 'src/app/service/builds.service';
 import { Build } from 'src/app/Model/Build';
 import Swal from 'sweetalert2';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeahead, NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, Observable, merge } from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import { VirtualMachine } from 'src/app/Model/VirtualMachine';
 
 const size = ['Small','Medium','Large'];
 const states = ['Denver','Suwanee'];
@@ -16,54 +17,16 @@ const states = ['Denver','Suwanee'];
   styleUrls: ['./build-config.component.css']
 })
 
+
 export class BuildConfigComponent implements OnInit {
 
-  @ViewChild('instance', {static: true}) instance: NgbTypeahead;
-  @ViewChild('secondary_datacenter', {static: true}) secondary_datacenter_instance: NgbTypeahead;
-
-  focus$ = new Subject<string>();
-  click$ = new Subject<string>();
-
-  search = (text$: Observable<string>) => {
-      const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-      const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !!this.instance && !this.instance.isPopupOpen()));
-
-      const inputFocus$ = this.focus$;
-
-      return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-        map(term => (term === '' ? states
-          : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
-      );
-  } 
-
-  
-  size = (text$: Observable<string>) => {
-    const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-    const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !!this.instance && !this.instance.isPopupOpen()));
-
-    const inputFocus$ = this.focus$;
-
-    return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-      map(term => (term === '' ? size
-        : size.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
-    );
-
-    
-  } 
-  secondary_datacenter = (text$: Observable<string>) => {
-    const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-    const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !!this.secondary_datacenter_instance && !this.secondary_datacenter_instance.isPopupOpen()));
-
-    const inputFocus$ = this.focus$;
-
-    return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-      map(term => (term === '' ? states
-        : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
-    );
-  } 
-
-
   currentBuild:Build;
+  currentVM: VirtualMachine;
+  
+   //Review how this work
+   @ViewChild("vmTabs", { static: true, read: NgbTabset }) 
+   vmTabs: NgbTabset;
+
 
   constructor(private router:Router,private route: ActivatedRoute,private buildsService:BuildsService) { 
     this.route.params.subscribe((params) => {
@@ -73,11 +36,24 @@ export class BuildConfigComponent implements OnInit {
       }
       else{
         this.currentBuild = this.buildsService.getBuild(build_id);
-      }      
+      }
     })
   }
 
   ngOnInit() {
+    this.currentVM=this.currentBuild.vms[0];
+  }
+
+  onTabChange($event: NgbTabChangeEvent) {
+    this.setVMValues($event.nextId);
+  }
+
+  setVMValues(vm_id:string){
+    for(var i=0;i<this.currentBuild.vms.length;i++){
+      if(this.currentBuild.vms[i].id===vm_id){
+        this.currentVM=this.currentBuild.vms[i];      
+      }
+    }
   }
 
   back(){
@@ -90,7 +66,25 @@ export class BuildConfigComponent implements OnInit {
   }
   
   validateProvision(build_id:string){
-    this.router.navigate(["logs",build_id,"validation"]);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Build Provisioning validation process will start",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, start validation process'
+    }).then((result) => {
+      if (result.value) {
+        this.router.navigate(["logs",build_id,"validation"]);
+        Swal.fire(
+          'Started!',
+          'Build provisioning validation process started sucessfully',
+          'success'
+        )
+      }
+    })
+
   }
 
   save(id:string){

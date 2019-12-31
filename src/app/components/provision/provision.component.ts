@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TowerAPIService } from 'src/app/service/tower-api.service';
 import Swal from 'sweetalert2';
-import { SelectMultipleControlValueAccessor } from '@angular/forms';
-import { delay } from 'q';
 import { CloneParameter } from 'src/app/Model/CloneParameter';
 import { FolderParameter } from 'src/app/Model/FolderParameter';
 
