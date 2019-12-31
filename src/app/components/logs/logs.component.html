@@ -37,7 +37,7 @@
                             </div>                                  
                             <div class="col-lg-6"  align="right" style="padding-right: 15px;" >
                                 <button class="btn btn-danger"  style="margin-right: 15px;" [disabled]="!(currentBuildStatus=='Validation In-Progress')" (click)="cancelValidation()">Cancel</button>
-                                <button class="btn btn-info"  [disabled]="!(currentBuildStatus=='Pending')" (click)="run(current_build_id)">Build</button>
+                                <button class="btn btn-info"  [disabled]="!(currentBuildStatus=='Ready')" (click)="run(current_build_id)">Build</button>
                             </div>   
                         </div>
                     </div>
