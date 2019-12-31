@@ -1722,8 +1722,8 @@ export class BuildsService {
       "status": "Pending (FV)",
       "completion": "0",
       "elapsed_time":"-:-",
-      "parameters_required":"79",
-      "parameters_completed":"79"
+      "parameters_required":"50",
+      "parameters_completed":"50"
     }	
 	
  var b4:Build =
@@ -2692,8 +2692,8 @@ export class BuildsService {
       "status": "Failed",
       "completion": "83",
       "elapsed_time":"10:13:55",
-      "parameters_required":"79",
-      "parameters_completed":"79"
+      "parameters_required":"100",
+      "parameters_completed":"100"
     }	
 	
  var b6:Build =

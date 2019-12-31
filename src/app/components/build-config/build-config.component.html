@@ -359,6 +359,7 @@
                             <div class="col-lg-12">
                                 <label>Continent</label>
                                 <select class="select-options" [(ngModel)]="currentBuild.host_data.continent">
+                                        <option>America</option>
                                         <option>South America</option>
                                         <option>North America</option>
                                         <option>Africa</option>
@@ -367,7 +368,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <label>City</label>
-                                <select class="select-options" [(ngModel)]="currentBuild.host_data.city">
+                                <select class="select-options" [(ngModel)]="currentBuild.host_data.city">                                     
                                         <option>San Francisco</option>
                                         <option>California</option>
                                         <option>Santa Fe</option>
@@ -412,7 +413,7 @@
                             <div class="col-lg-6">
                                 <label>Certificate Country</label>
                                 <select class="select-options" [(ngModel)]="currentBuild.certificates.country">
-                                        <option>EE.UU</option>
+                                        <option>EE.UU.</option>
                                         <option>Argentina</option>
                                         <option>England</option>
                                         <option>China</option>
