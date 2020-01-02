@@ -82,8 +82,8 @@ export class LogsComponent implements OnInit {
       confirmButtonText: 'Yes, start provisioning process'
     }).then((result) => {
       if (result.value) {
-        this.buildsService.runBuild(build_id);
-        this.router.navigate(["logs",build_id,"execution"]);   
+        this.buildsService.runBuild(build_id);       
+        this.logsTab.select("execution");
         Swal.fire(
           'Started!',
           'VM provisioning build started sucessfully',

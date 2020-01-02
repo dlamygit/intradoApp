@@ -34,7 +34,7 @@
                                             <td>{{build.parameters_completed}}/{{build.parameters_required}}</td> 
                                             <td>
                                                 <ngb-progressbar type="{{progressBarTypeByStatus(build.status)}}" showValue="true" [striped]="true" [value]="build.completion"></ngb-progressbar>
-                                            </td>
+                                           </td>
                                             <td><button class="btn btn-info" style="margin-right: 5px;" [disabled]="!(build.status=='Ready' || build.status=='Canceled' || build.status=='Failed' )" (click)=runBuild(build.id)>Build</button><button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!(build.status!='Pending')" (click)=runValidation(build.id)>Validate</button><button class="btn btn-warning" [disabled]="!(build.status=='Running')" style="margin-right: 5px;">Cancel</button><button class="btn btn-secondary" (click)="edit(build.id)" style="margin-right: 5px;">Edit</button><button class="btn btn-danger" (click)="delete(build.id)" [disabled]="(build.status=='Running')">Delete</button></td>
                                         </tr>
                                     </ng-container>
