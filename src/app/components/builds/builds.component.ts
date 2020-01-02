@@ -5,6 +5,7 @@ import { BuildsService } from 'src/app/service/builds.service';
 import Swal from 'sweetalert2';
 import { map, take } from 'rxjs/operators';
 import { NgbTabset, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { TowerAPIService } from 'src/app/service/tower-api.service';
 
 @Component({
   selector: 'app-builds',
@@ -13,7 +14,7 @@ import { NgbTabset, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 })
 export class BuildsComponent implements OnInit {
 
-  constructor(private router:Router,private route: ActivatedRoute, private buildsService:BuildsService) { }
+  constructor(private router:Router,private route: ActivatedRoute, private buildsService:BuildsService,private tower_api_service:TowerAPIService) { }
   showLogout=true;
 
   pageInc = 1; pageSizeInc = 12; 
@@ -135,16 +136,26 @@ export class BuildsComponent implements OnInit {
       confirmButtonText: 'Yes, start provisioning process'
     }).then((result) => {
       if (result.value) {
-        this.buildsService.runBuild(build_id);
-        this.router.navigate(["logs",build_id,"execution"]);   
-        Swal.fire(
-          'Started!',
-          'VM provisioning build started sucessfully',
-          'success'
-        )
+        this.tower_api_service.startJob(9,this.buildsService.getBuild(build_id).customer.name)
+        .subscribe((data) => {
+          Swal.fire(
+            'Started!',
+            'VM provisioning build started sucessfully',
+            'success'
+          );          
+          console.log(data);
+          this.router.navigate(["logs",build_id,"execution"]);  
+
+        }, err => {
+          Swal.fire(
+            'VM Provisioning process failed',
+            err.error.detail,
+            'error'
+          );
+          console.log(err);
+        });
       }
     })
-
   }
 
 

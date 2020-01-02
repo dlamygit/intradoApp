@@ -5,6 +5,7 @@ import { Logs } from 'src/app/Model/Logs';
 import { NgbTabset, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { map, take } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { TowerAPIService } from 'src/app/service/tower-api.service';
 
 @Component({
   selector: 'app-logs',
@@ -24,7 +25,7 @@ export class LogsComponent implements OnInit {
   logsTab: NgbTabset;
 
   //TODO Review how to mix both route params usage.
-  constructor(private router:Router,private route: ActivatedRoute,private buildsService:BuildsService) {     
+  constructor(private router:Router,private route: ActivatedRoute,private buildsService:BuildsService,private tower_api_service:TowerAPIService) {     
     this.route.params.subscribe((params) => {
       this.current_build_id = params['id'] as string;
       this.currentLog = this.buildsService.getLogs(this.current_build_id);
@@ -82,15 +83,29 @@ export class LogsComponent implements OnInit {
       confirmButtonText: 'Yes, start provisioning process'
     }).then((result) => {
       if (result.value) {
-        this.buildsService.runBuild(build_id);       
-        this.logsTab.select("execution");
-        Swal.fire(
-          'Started!',
-          'VM provisioning build started sucessfully',
-          'success'
-        )
+        this.buildsService.runBuild(build_id);
+        
+        this.tower_api_service.startJob(9,this.buildsService.getBuild(this.current_build_id).customer.name)
+        .subscribe((data) => {
+          Swal.fire(
+            'Started!',
+            'VM provisioning build started sucessfully',
+            'success'
+          );          
+          console.log(data);
+          this.logsTab.select("execution");
+
+        }, err => {
+          Swal.fire(
+            'VM Provisioning process failed',
+            err.error.detail,
+            'error'
+          );
+          console.log(err);
+        });
       }
     })
+    
   }
 
 }

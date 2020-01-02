@@ -71,7 +71,7 @@ export class ProvisionComponent implements OnInit {
      this.folderParameters.push(f1);
      this.folderParameters.push(f2);
   
-    this.tower_api_service.startJob(18,this.cloneParameters,this.folderParameters)
+    this.tower_api_service.startJob(9,this.customerName)
     .subscribe((data) => {
       Swal.fire(
         'VM Provisioning process started successfully',
