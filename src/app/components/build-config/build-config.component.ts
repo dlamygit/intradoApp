@@ -29,6 +29,11 @@ export class BuildConfigComponent implements OnInit {
 
 
   constructor(private router:Router,private route: ActivatedRoute,private buildsService:BuildsService) { 
+   
+  }
+
+  ngOnInit() {
+
     this.route.params.subscribe((params) => {
       const build_id = params['id'] as string;
       if(build_id=="0"){
@@ -38,10 +43,14 @@ export class BuildConfigComponent implements OnInit {
         this.currentBuild = this.buildsService.getBuild(build_id);
       }
     })
-  }
 
-  ngOnInit() {
-    this.currentVM=this.currentBuild.vms[0];
+    if(this.currentBuild.vms!=null){
+      this.currentVM=this.currentBuild.vms[0];
+    }
+    else{
+      this.currentVM = new VirtualMachine();
+    }
+
   }
 
   onTabChange($event: NgbTabChangeEvent) {

@@ -456,119 +456,119 @@
                             <h4>VM Information</h4>
                             <div class="col-lg-12">
                                 <label>VM name</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentBuild.customer.id_letters}}{{currentVM.vm_name}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentBuild.customer.id_letters}}{{currentVM?.vm_name}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>Host name</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.host_name}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.host_name}}">
                             </div>                                 
                         </div>
                         <div class="col-lg-2">  
                             <h4>VM Config</h4>
                             <div class="col-lg-12">
                                 <label>Host IP (Calculated)</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.host_ip}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.host_ip}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>vLAN</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.v_lan}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.v_lan}}">
                             </div>                                  
                             <div class="col-lg-12">
                                 <label>Host gateway</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.host_gateway}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.host_gateway}}">
                             </div>  
                         </div>
                         <div class="col-lg-2">   
                             <h4>DNS and NTP</h4>
                             <div class="col-lg-12">
                                 <label>Primary DNS</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.dns_ntp.primary_dns}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.dns_ntp.primary_dns}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>Secondary DNS</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.dns_ntp.secondary_dns}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.dns_ntp.secondary_dns}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>NTP Server 1</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.dns_ntp.ntp_server_1}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.dns_ntp.ntp_server_1}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>NTP Server 2</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.dns_ntp.ntp_server_2}}"> 
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.dns_ntp.ntp_server_2}}"> 
                             </div>           
                             <div class="col-lg-12">
                                 <label>NTP Server 3</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.dns_ntp.ntp_server_3}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.dns_ntp.ntp_server_3}}">
                             </div>    
                             <div class="col-lg-12">
                                 <label>NTP Server 4</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.dns_ntp.ntp_server_4}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.dns_ntp.ntp_server_4}}">
                             </div>     
                             <div class="col-lg-12">
                                 <label>NTP Server 5</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.dns_ntp.ntp_server_5}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.dns_ntp.ntp_server_5}}">
                             </div>                                                                             
                         </div>      
                         <div class="col-lg-2"> 
                             <h4>Host Data</h4>
                             <div class="col-lg-12">
                                 <label>Timezone</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.host_data.timezone}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.host_data.timezone}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>Continent</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.host_data.continent}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.host_data.continent}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>City</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.host_data.city}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.host_data.city}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>Admin</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.host_data.admin}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.host_data.admin}}">
                             </div>           
                             <div class="col-lg-12">
                                 <label>Password</label>
-                                <input type="password" class="form-control col-lg-12" disabled value="{{currentVM.host_data.password}}">
+                                <input type="password" class="form-control col-lg-12" disabled value="{{currentVM?.host_data.password}}">
                             </div>    
                             <div class="col-lg-12">
                                 <label>Security password</label>
-                                <input type="password" class="form-control col-lg-12" disabled value="{{currentVM.host_data.security_password}}"> 
+                                <input type="password" class="form-control col-lg-12" disabled value="{{currentVM?.host_data.security_password}}"> 
                             </div>     
                             <div class="col-lg-12">
                                 <label>App user password</label>
-                                <input type="password" class="form-control col-lg-12" disabled value="{{currentVM.host_data.app_user_password}}">
+                                <input type="password" class="form-control col-lg-12" disabled value="{{currentVM?.host_data.app_user_password}}">
                             </div>                                         
                         </div>                                  
                         <div class="col-lg-2">  
                             <h4>Certificates</h4>
                             <div class="col-lg-12">
                                 <label>Certificate Organization</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.certificates.organization}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.certificates.organization}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>Certificate Unit</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.certificates.unit}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.certificates.unit}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>Certificate Location</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.certificates.location}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.certificates.location}}">
                             </div>
                             <div class="col-lg-12">
                                 <label>Certoficate State</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.certificates.state}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.certificates.state}}">
                             </div>           
                             <div class="col-lg-12">
                                 <label>Certificate Country</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.certificates.country}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.certificates.country}}">
                             </div>    
                             <div class="col-lg-12">
                                 <label>Auto register primary</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.certificates.auto_register_primary}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.certificates.auto_register_primary}}">
                             </div>     
                             <div class="col-lg-12">
                                 <label>App user username</label>
-                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM.certificates.app_user_username}}">
+                                <input type="text" class="form-control col-lg-12" disabled value="{{currentVM?.certificates.app_user_username}}">
                             </div>                                        
                         </div>                                                       
                     </div>
