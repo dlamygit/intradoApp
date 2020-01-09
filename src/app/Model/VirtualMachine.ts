@@ -2,19 +2,17 @@ import { DNSNTP } from './DNSNTP'
 import { HostData } from './Hostdata'
 import { Certificates } from './Certificates'
 
-export class VirtualMachine{
+export class VirtualMachine {
+    id: string
 
-    id:String
+    vm_name: string
+    host_name: string
 
-    vm_name: String
-    host_name: String
-    
-    host_ip: String
-    v_lan: String
-    host_gateway: String
-    
+    host_ip: string
+    v_lan: string
+    host_gateway: string
+
     dns_ntp: DNSNTP
     host_data: HostData
     certificates: Certificates
-
 }

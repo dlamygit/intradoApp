@@ -1,10 +1,8 @@
-export class ActiveDirectory{
-
-    timezone: String
-    default_code_area: String
-    local_dial: String
-    extension_length: String
-    breakout_code: String
-    voice_mail_pilot: String
-    
+export class ActiveDirectory {
+    timezone: string
+    default_code_area: string
+    local_dial: string
+    extension_length: string
+    breakout_code: string
+    voice_mail_pilot: string
 }

@@ -13,8 +13,8 @@ export class ProvisionComponent implements OnInit {
 
   constructor(private tower_api_service:TowerAPIService) { }
 
-  customerID:String = "1202INT";
-  customerName:String = "INTRADO";
+  customerID: string = "1202INT";
+  customerName: string = "INTRADO";
 
   ngOnInit() {
   }

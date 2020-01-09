@@ -53,7 +53,7 @@ export class BuildsComponent implements OnInit {
     this.router.navigate(["build_config","0"]);    
   }
 
-  progressBarTypeByStatus(status:String){
+  progressBarTypeByStatus(status:string){
     if(status=="Canceled"){
       return "warning";
     }
@@ -136,7 +136,9 @@ export class BuildsComponent implements OnInit {
       confirmButtonText: 'Yes, start provisioning process'
     }).then((result) => {
       if (result.value) {
-        this.tower_api_service.startJob(9,this.buildsService.getBuild(build_id).customer.name)
+        const customerName = (this.buildsService.getBuild(build_id)).customer.name;
+        const jobId = 9;
+        this.tower_api_service.startJob(jobId, customerName)
         .subscribe((data) => {
           Swal.fire(
             'Started!',

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProvisionComponent } from './components/provision/provision.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BuildsComponent } from './components/builds/builds.component';
 
@@ -25,6 +25,7 @@ import { BuildsService } from './service/builds.service';
     BuildsComponent,
     BuildConfigComponent,
     LogsComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,8 @@ import { BuildsService } from './service/builds.service';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    StorageServiceModule 
+    StorageServiceModule,
+    ReactiveFormsModule
   ],
   providers: [BuildsService],
   bootstrap: [AppComponent]

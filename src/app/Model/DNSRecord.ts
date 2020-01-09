@@ -1,6 +1,4 @@
-export class DNSRecord{
-
-    ip: String
-    dns: String
-    
+export class DNSRecord {
+    ip: string
+    dns: string
 }

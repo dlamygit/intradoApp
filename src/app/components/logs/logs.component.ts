@@ -16,7 +16,7 @@ import { TowerAPIService } from 'src/app/service/tower-api.service';
 export class LogsComponent implements OnInit {
 
   currentLog:Logs;
-  currentBuildStatus:String;
+  currentBuildStatus:string;
   current_build_id:string;
   selectedTab:string; 
 

@@ -1,11 +1,9 @@
-export class Certificates{
-
-    organization: String
-    unit: String
-    location: String
-    state: String
-    country: String
-    auto_register_primary: String
-    app_user_username: String
-
+export class Certificates {
+    organization: string
+    unit: string
+    location: string
+    state: string
+    country: string
+    auto_register_primary: string
+    app_user_username: string
 }
