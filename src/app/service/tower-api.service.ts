@@ -148,7 +148,7 @@ export class TowerAPIService {
           "vm_state": "poweredoff",
           "vm_name": "INTCUC1P01SWN",
           "vm_template_name": "IM&P 11.5 SU6 5000usr Skip Template",
-          "full_folder_path": "/HCS Customers/"+customer_id+"- "+customer_name,
+          "full_folder_path": "/HCS Customers/"+customer_id+" - "+customer_name,
           "datastore": "datastore8",
           "host": "172.10.6.153",
           "vm_final_state": "poweredoff",
