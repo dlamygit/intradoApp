@@ -3,8 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BuildsService } from 'src/app/service/builds.service';
 import { Build } from 'src/app/Model/Build';
 import Swal from 'sweetalert2';
-import { NgbTypeahead, NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
-import { VirtualMachine } from 'src/app/Model/VirtualMachine';
 import { FormBuilder } from '@angular/forms';
 
 const size = ['Small', 'Medium', 'Large'];
@@ -19,11 +17,6 @@ const states = ['Denver', 'Suwanee'];
 export class BuildConfigComponent implements OnInit {
 
 	currentBuild: Build;
-	currentVM: VirtualMachine;
-
-	//Review how this work
-	@ViewChild("vmTabs", { static: true, read: NgbTabset })
-	vmTabs: NgbTabset;
 
 	form = this.fb.group({
 		customer: this.fb.group({
@@ -134,22 +127,10 @@ export class BuildConfigComponent implements OnInit {
 	ngOnInit() {
 		const build_id = this.route.snapshot.paramMap.get('id');
 		this.currentBuild = build_id == "0" ? this.buildsService.createEmptyBuild() : this.buildsService.getBuild(build_id);
-		this.currentVM = this.currentBuild.vms != null && this.currentBuild.vms.length > 0 ? this.currentBuild.vms[0] : null;
 
 		const objForm = this.currentBuild.getFormDataBuild();
 		this.form.setValue(objForm);
-	}
-
-	onTabChange($event: NgbTabChangeEvent) {
-		this.setVMValues($event.nextId);
-	}
-
-	setVMValues(vm_id: string) {
-		for (var i = 0; i < this.currentBuild.vms.length; i++) {
-			if (this.currentBuild.vms[i].id === vm_id) {
-				this.currentVM = this.currentBuild.vms[i];
-			}
-		}
+		this.calculateData();
 	}
 
 	back() {
@@ -184,8 +165,12 @@ export class BuildConfigComponent implements OnInit {
 	
 	calculateData() {
 		//TODO check valid data
-		this.currentBuild.setFormDataBuild(this.form.getRawValue());
+		this.resetData();
 		this.buildsService.calculateData(this.currentBuild);
+	}
+
+	resetData() {
+		this.currentBuild.setFormDataBuild(this.form.getRawValue());
 	}
 	
 	onSubmit() {

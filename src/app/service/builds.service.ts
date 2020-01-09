@@ -7,6 +7,8 @@ import { BUILDS } from '../mocks/mock-build';
 import { LOGS } from '../mocks/mock-logs';
 import { VirtualMachine } from '../Model/VirtualMachine';
 import { BUILD_CONSTANTS } from '../constants/build-constants';
+import { VirtualMachineModel } from '../Model/VirtualMachineModel';
+import { VirtualMachineModelMedium } from '../Model/VirtualMachineModelMedium';
 
 @Injectable({
 	providedIn: 'root'
@@ -209,41 +211,37 @@ export class BuildsService {
 	}
 
 	calculateData(build: Build): Build {
-		build.vms = this.calculateVMs(build);
-		return build;
-	}
-
-	private calculateVMs(build: Build): VirtualMachine[] {
 		const buildSize = build.size;
 		switch (buildSize) {
 			case BUILD_CONSTANTS.SMALL_SIZE:
 				break;
 			case BUILD_CONSTANTS.MEDIUM_SIZE: 
-				this.calculateVMsMedium(build);
+				build.vms = this.calculateVMsMedium(build);
 				break;
 			case BUILD_CONSTANTS.LARGE_SIZE:
 				break;
 			case BUILD_CONSTANTS.EXTRA_LARGE_SIZE:
 				break;
 		}
-
-		return build.vms;
+		return build;
 	}
 
-	private calculateVMsMedium(build: Build): VirtualMachine[] {
-		while (build.vms == null || build.vms.length < 9) {
-			build.vms.push(new VirtualMachine());
-		}
+	private calculateVMsMedium(build: Build): VirtualMachineModelMedium {
+		const vmm = build.vms != null ? build.vms as VirtualMachineModelMedium : new VirtualMachineModelMedium();
 		
-		build.vms[0].vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CCMPrimaryPublisher;
-		build.vms[1].vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CCMPrimarySubscriber;
-		build.vms[2].vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].CCMSecondarySubscriber;
-		build.vms[3].vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].IMPPrimarySubscriber;
-		build.vms[4].vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].IMPSecondarySubscriber;
-		build.vms[5].vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CUCPrimarySubscriber;
-		build.vms[6].vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].CUCScondaryPublisher;
-		
-		return build.vms;
+		vmm.cmPrimaryPublisher.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CCMPrimaryPublisher;
+		vmm.cmPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CCMPrimarySubscriber;
+		vmm.cmSecondarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].CCMSecondarySubscriber;
+		vmm.impPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].IMPPrimarySubscriber;
+		vmm.impSecondarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].IMPSecondarySubscriber;
+		vmm.cucxPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CUCPrimarySubscriber;
+		vmm.cucxSecondaryPublisher.vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].CUCScondaryPublisher;
+		// vmm.expePrimaryPublisher.vm_name = "";
+		// vmm.expcPrimarySubscriber.vm_name = "";
+		// vmm.expeSecondaryPublisher.vm_name = "";
+		// vmm.expcSecondarySubscriber.vm_name = "";
+
+		return vmm;
 	}
 }
 
