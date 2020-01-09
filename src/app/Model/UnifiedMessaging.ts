@@ -1,8 +1,6 @@
 export class UnifiedMessaging{
-
-    username: String
-    password: String
-    version: String
-    ip_address: String
-    
+    username: string
+    password: string
+    version: string
+    ip_address: string
 }

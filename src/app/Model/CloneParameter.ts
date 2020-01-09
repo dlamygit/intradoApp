@@ -1,13 +1,11 @@
-export class CloneParameter{
-
-    datacenter_name: String
-    vm_state: String
-    vm_name: String
-    vm_template_name: String
-    full_folder_path: String
-    datastore: String
-    host: String
-    vm_final_state: String
-    answer_file_name: String
-
+export class CloneParameter {
+    datacenter_name: string
+    vm_state: string
+    vm_name: string
+    vm_template_name: string
+    full_folder_path: string
+    datastore: string
+    host: string
+    vm_final_state: string
+    answer_file_name: string
 }

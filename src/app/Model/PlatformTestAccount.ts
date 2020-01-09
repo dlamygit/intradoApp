@@ -1,6 +1,4 @@
-export class PlatformTestAccount{
-
-    username: String
-    password: String
-    
+export class PlatformTestAccount {
+    username: string
+    password: string
 }

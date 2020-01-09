@@ -1,9 +1,7 @@
-export class Datacenter{
-
-    name: String
-    host_ip: String
-    v_lan: String
-    host_gateway: String
-    asr_address: String
-    
+export class Datacenter {
+    name: string
+    host_ip: string
+    v_lan: string
+    host_gateway: string
+    asr_address: string
 }

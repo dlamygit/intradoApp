@@ -1,11 +1,9 @@
-export class Log{
-
-    id:String
-    title:String
-    date:Date
-    type:String
-    module:String
-    details:String
-    status:String
-    
+export class Log {
+    id: string
+    title: string
+    date: Date
+    type: string
+    module: string
+    details: string
+    status: string
 }

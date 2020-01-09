@@ -1,6 +1,4 @@
-export class AdditionalNetworkData{
-
-    vrf: String
-    nat_box_ip: String
-    
+export class AdditionalNetworkData {
+    vrf: string
+    nat_box_ip: string
 }
