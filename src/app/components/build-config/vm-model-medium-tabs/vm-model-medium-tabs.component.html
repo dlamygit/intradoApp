@@ -1,0 +1,191 @@
+<div class="row">
+    <div class="col-lg-2">
+        <ngb-tabset #vmTabs (tabChange)="onTabChange($event)" type="pills" [orientation]="vertical">
+            <ngb-tab title="CM Publisher Primary" id="cmPrimaryPublisher">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="CM Subscriber Primary" id="cmPrimarySubscriber">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="CM Subscriber Secondary" id="cmSecondarySubscriber">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="IM&P Subscriber Primary" id="impPrimarySubscriber">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="IM&P Subscriber Secondary" id="impSecondarySubscriber">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="CUCx Publisher Secondary" id="cucxPrimarySubscriber">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="CUCx Subscriber Primary" id="cucxSecondaryPublisher">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab [disabled]="true" title="Expressway Edge Primary" id="expePrimaryPublisher">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab [disabled]="true" title="Expressway Core Primary" id="expcPrimarySubscriber">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab [disabled]="true" title="Expressway Core Secondary" id="expeSecondaryPublisher">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab [disabled]="true" title="Expressway Edge Secondary" id="expcSecondarySubscriber">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+
+    </div>
+    <div class="col-lg-2">
+        <h4>VM Information</h4>
+        <div class="col-lg-12">
+            <label>VM name</label>
+            <input type="text" class="form-control col-lg-12" disabled value="{{currentVirtualMachine?.vm_name}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Host name</label>
+            <input type="text" class="form-control col-lg-12" disabled value="{{currentVirtualMachine?.host_name}}">
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <h4>VM Config</h4>
+        <div class="col-lg-12">
+            <label>Host IP (Calculated)</label>
+            <input type="text" class="form-control col-lg-12" disabled value="{{currentVirtualMachine?.host_ip}}">
+        </div>
+        <div class="col-lg-12">
+            <label>vLAN</label>
+            <input type="text" class="form-control col-lg-12" disabled value="{{currentVirtualMachine?.v_lan}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Host gateway</label>
+            <input type="text" class="form-control col-lg-12" disabled value="{{currentVirtualMachine?.host_gateway}}">
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <h4>DNS and NTP</h4>
+        <div class="col-lg-12">
+            <label>Primary DNS</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.dns_ntp?.primary_dns}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Secondary DNS</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.dns_ntp?.secondary_dns}}">
+        </div>
+        <div class="col-lg-12">
+            <label>NTP Server 1</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.dns_ntp?.ntp_server_1}}">
+        </div>
+        <div class="col-lg-12">
+            <label>NTP Server 2</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.dns_ntp?.ntp_server_2}}">
+        </div>
+        <div class="col-lg-12">
+            <label>NTP Server 3</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.dns_ntp?.ntp_server_3}}">
+        </div>
+        <div class="col-lg-12">
+            <label>NTP Server 4</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.dns_ntp?.ntp_server_4}}">
+        </div>
+        <div class="col-lg-12">
+            <label>NTP Server 5</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.dns_ntp?.ntp_server_5}}">
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <h4>Host Data</h4>
+        <div class="col-lg-12">
+            <label>Timezone</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.host_data?.timezone}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Continent</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.host_data?.continent}}">
+        </div>
+        <div class="col-lg-12">
+            <label>City</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.host_data?.city}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Admin</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.host_data?.admin}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Password</label>
+            <input type="password" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.host_data?.password}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Security password</label>
+            <input type="password" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.host_data?.security_password}}">
+        </div>
+        <div class="col-lg-12">
+            <label>App user password</label>
+            <input type="password" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.host_data?.app_user_password}}">
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <h4>Certificates</h4>
+        <div class="col-lg-12">
+            <label>Certificate Organization</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.certificates?.organization}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Certificate Unit</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.certificates?.unit}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Certificate Location</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.certificates?.location}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Certoficate State</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.certificates?.state}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Certificate Country</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.certificates?.country}}">
+        </div>
+        <div class="col-lg-12">
+            <label>Auto register primary</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.certificates?.auto_register_primary}}">
+        </div>
+        <div class="col-lg-12">
+            <label>App user username</label>
+            <input type="text" class="form-control col-lg-12" disabled
+                value="{{currentVirtualMachine?.certificates?.app_user_username}}">
+        </div>
+    </div>
+</div>

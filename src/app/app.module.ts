@@ -15,6 +15,7 @@ import { LogsComponent } from './components/logs/logs.component';
 
 import { LOCAL_STORAGE,StorageServiceModule } from 'ngx-webstorage-service';
 import { BuildsService } from './service/builds.service';
+import { VmModelMediumTabsComponent } from './components/build-config/vm-model-medium-tabs/vm-model-medium-tabs.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BuildsService } from './service/builds.service';
     ProvisionComponent,
     BuildsComponent,
     BuildConfigComponent,
-    LogsComponent
+    LogsComponent,
+    VmModelMediumTabsComponent
     
   ],
   imports: [

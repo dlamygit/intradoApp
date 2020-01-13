@@ -1,5 +1,5 @@
 import { VirtualMachine } from './VirtualMachine';
 
-export abstract class VirtualMachineModel {
-
+export interface VirtualMachineModel {
+    getFirstVirtualMachine(): VirtualMachine;
 }

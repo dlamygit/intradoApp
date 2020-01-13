@@ -11,43 +11,43 @@ import { AdditionalServices } from './AdditionalServices'
 import { DNSNTP } from './DNSNTP'
 import { HostData } from './Hostdata'
 import { Certificates } from './Certificates'
-import { VirtualMachine } from './VirtualMachine'
 import { DNSRecords } from './DNSRecords'
+import { VirtualMachineModel } from './VirtualMachineModel'
 
 export class Build {
-    id: string
+    id: string;
 
-    customer: Customer
-    domain: Domain
-    active_directory: ActiveDirectory
-    size: string
-    unified_messaging: UnifiedMessaging
-    platform_test_account: PlatformTestAccount
-    customer_notes: string
+    customer: Customer;
+    domain: Domain;
+    active_directory: ActiveDirectory;
+    size: string;
+    unified_messaging: UnifiedMessaging;
+    platform_test_account: PlatformTestAccount;
+    customer_notes: string;
 
-    primary_datacenter: Datacenter
-    secondary_datacenter: Datacenter
-    infrastructure: Infrastructure
-    additional_network_data: AdditionalNetworkData
-    mra_expressway: MRAExpressway
-    additional_services: AdditionalServices
-    infrastructure_notes: string
+    primary_datacenter: Datacenter;
+    secondary_datacenter: Datacenter;
+    infrastructure: Infrastructure;
+    additional_network_data: AdditionalNetworkData;
+    mra_expressway: MRAExpressway;
+    additional_services: AdditionalServices;
+    infrastructure_notes: string;
 
-    dns_ntp: DNSNTP
-    host_data: HostData
-    certificates: Certificates
-    host_data_notes: string
+    dns_ntp: DNSNTP;
+    host_data: HostData;
+    certificates: Certificates;
+    host_data_notes: string;
 
-    vms: VirtualMachine[]
+    vms: VirtualMachineModel;
 
-    dns_records: DNSRecords
+    dns_records: DNSRecords;
 
-    platform_engineer: string
-    status: string
-    elapsed_time: string
-    completion: string
-    parameters_completed: string
-    parameters_required: string
+    platform_engineer: string;
+    status: string;
+    elapsed_time: string;
+    completion: string;
+    parameters_completed: string;
+    parameters_required: string;
 
     constructor(build?: Build) {
         if (build) {
