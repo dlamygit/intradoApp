@@ -11,11 +11,10 @@ import { VirtualMachine } from 'src/app/Model/VirtualMachine';
 export class VmModelMediumTabsComponent implements OnInit {
 
 	//Review how this work
-	@ViewChild("vmTabs", { static: true, read: NgbTabset })
-	vmTabs: NgbTabset;
+	@ViewChild("vmTabs", { static: true, read: NgbTabset }) vmTabs: NgbTabset;
 
 	@Input() currentBuild: Build;
-	
+
 	currentVirtualMachine: VirtualMachine;
 
 	constructor() { }
