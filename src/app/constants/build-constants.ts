@@ -12,31 +12,25 @@ export const BUILD_CONSTANTS = {
     SUBSCRIBER: 'S',
 
     ServerNumbers: {
-        //DENVER
-        Denver: {
-            CCMPrimaryPublisher: '01DEN',
-            CCMPrimarySubscriber: '01DEN',
-            CCMSecondarySubscriber: '02DEN',
-            IMPPrimarySubscriber: '01DEN',
-            IMPSecondarySubscriber: '01DEN',
-            CUCScondaryPublisher: '01DEN',
-            CUCPrimarySubscriber: '01DEN'
+        Medium: {
+            //DENVER
+            Denver: {
+                First: '01DEN',
+                Second: '02DEN'
+            },
+            //SUWANEE
+            Suwanee: {
+                First: '01SWN',
+                Second: '02SWN',
+            }
         },
-        //SUWANEE
-        Suwanee: {
-            CCMPrimaryPublisher: '01SWN',
-            CCMPrimarySubscriber: '01SWN',
-            CCMSecondarySubscriber: '02SWN',
-            IMPPrimarySubscriber: '01SWN',
-            IMPSecondarySubscriber: '01SWN',
-            CUCScondaryPublisher: '01SWN',
-            CUCPrimarySubscriber: '01SWN'
-        }        
     },
 
     ClusterNumbers: {
         Denver: '1',
         Suwanee: '1'
-    }
+    },
+
+    DnsRevertEnd: '.vmce.westipc.com.',
+    DnsToIPEnd: '.VMCE'
 }
- 

@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BuildsService } from 'src/app/service/builds.service';
 import { Build } from 'src/app/Model/Build';
 import Swal from 'sweetalert2';
 import { FormBuilder } from '@angular/forms';
-
-const size = ['Small', 'Medium', 'Large'];
-const states = ['Denver', 'Suwanee'];
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-build-config',
@@ -15,8 +13,9 @@ const states = ['Denver', 'Suwanee'];
 })
 
 export class BuildConfigComponent implements OnInit {
-
 	currentBuild: Build;
+	vmModelIdTab = 'vm_model';
+	dnsRecordsIdTab = 'dns_records';
 
 	form = this.fb.group({
 		customer: this.fb.group({
@@ -142,6 +141,8 @@ export class BuildConfigComponent implements OnInit {
 	}
 
 	validateProvision(build_id: string) {
+		this.calculateData();
+
 		Swal.fire({
 			title: 'Are you sure?',
 			text: "Build Provisioning validation process will start",
@@ -163,8 +164,7 @@ export class BuildConfigComponent implements OnInit {
 
 	}
 	
-	calculateData() {
-		//TODO check valid data
+	private calculateData() {
 		this.resetData();
 		this.buildsService.calculateData(this.currentBuild);
 	}
@@ -194,6 +194,12 @@ export class BuildConfigComponent implements OnInit {
 				)
 			}
 		})
+	}
+
+	onTabChange($event: NgbTabChangeEvent) {
+		if ($event.nextId === this.vmModelIdTab || $event.nextId === this.dnsRecordsIdTab ) {
+			this.calculateData();
+		}
 	}
 
 }

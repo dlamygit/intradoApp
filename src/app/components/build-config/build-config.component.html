@@ -1,6 +1,6 @@
 <div class="body-background" style="padding-left: 15px;padding-right: 15px;padding-bottom: 15px">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <ngb-tabset #buildsConfigTab>
+        <ngb-tabset #buildsConfigTab (tabChange)="onTabChange($event)">
             <ngb-tab title="Customer Information" id="customer_information">
                 <ng-template ngbTabContent>
                     <div class="card-body border" style="height:800px">
@@ -212,8 +212,8 @@
                                     <div class="col-lg-12">
                                         <label for="cluster">Cluster</label>
                                         <select id="cluster" class="select-options" formControlName="cluster">
-                                            <option>TEMP-CLU01</option>
-                                            <option>cluster_2</option>
+                                            <option value="1">TEMP-CLU01</option>
+                                            <option value="2">cluster_2</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-12">
@@ -488,14 +488,14 @@
                     </div>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="VM's model" id="vm_model">
+            <ngb-tab title="VM's model" [id]="vmModelIdTab">
                 <ng-template ngbTabContent>
                     <div class="card-body border" style="height:800px">
                         <app-vm-model-medium-tabs [currentBuild]="currentBuild"></app-vm-model-medium-tabs>
                     </div>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="DNS Records" id="dns_records">
+            <ngb-tab title="DNS Records" [id]="dnsRecordsIdTab">
                 <ng-template ngbTabContent>
                     <div class="card-body border" style="height:800px">
                         <div class="row">
@@ -504,14 +504,14 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="width: 50%">DNS</th>
-                                            <th style="width: 50%">IP</th>
+                                            <th class="w-50">DNS</th>
+                                            <th class="w-50">IP</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <ng-container *ngFor="let dns_record of currentBuild.dns_records.dns_to_ip">
                                             <tr>
-                                                <td>{{currentBuild.customer.id_letters}}{{dns_record.dns}}</td>
+                                                <td>{{dns_record.dns}}</td>
                                                 <td>{{dns_record.ip}}</td>
                                             </tr>
                                         </ng-container>
@@ -523,15 +523,15 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="width: 50%">IP</th>
-                                            <th style="width: 50%">DNS</th>
+                                            <th class="w-50">IP</th>
+                                            <th class="w-50">DNS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <ng-container *ngFor="let dns_record of currentBuild.dns_records.dns_to_ip">
+                                        <ng-container *ngFor="let dns_record of currentBuild.dns_records.ip_to_dns">
                                             <tr>
                                                 <td>{{dns_record.ip}}</td>
-                                                <td>{{currentBuild.customer.id_letters}}{{dns_record.dns}}</td>
+                                                <td>{{dns_record.dns}}</td>
                                             </tr>
                                         </ng-container>
                                     </tbody>
@@ -559,7 +559,6 @@
             <div class="col-lg d-flex justify-content-end">
                 <input class="btn btn-warning mr-2" type="submit" [disabled]="!(currentBuild.status!='Completed')"
                     value="Save" />
-                <button type="button" class="btn btn-secondary mr-2" (click)="calculateData()">Calculate data</button>
                 <button type="button" class="btn btn-info mr-2" (click)="validationLogs(currentBuild.id)"
                     [disabled]="(currentBuild.id=='0')">Validation Log</button>
                 <button type="button" class="btn btn-primary" (click)="validateProvision(currentBuild.id)"
