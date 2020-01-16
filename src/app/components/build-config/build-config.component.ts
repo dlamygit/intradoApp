@@ -3,125 +3,39 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BuildsService } from 'src/app/service/builds.service';
 import { Build } from 'src/app/Model/Build';
 import Swal from 'sweetalert2';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { BuildConfigFormService } from './services/build-config-form-service';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { RequestComponent } from 'src/app/app-common/forms/clases/request-component';
+import { BUILD_CONSTANTS } from 'src/app/constants/build-constants';
+import { ERROR_CONSTANTS } from 'src/app/constants/errors-constatns';
+
+const size = ['Small', 'Medium', 'Large']; //TODO from constants service
+const states = ['Denver', 'Suwanee'];	//TODO from constants service
 
 @Component({
 	selector: 'app-build-config',
 	templateUrl: './build-config.component.html',
-	styleUrls: ['./build-config.component.css']
+	styleUrls: ['./build-config.component.css'],
+	providers: [
+		BuildConfigFormService
+	]
 })
 
-export class BuildConfigComponent implements OnInit {
+export class BuildConfigComponent extends RequestComponent implements OnInit {
+
 	currentBuild: Build;
 	vmModelIdTab = 'vm_model';
 	dnsRecordsIdTab = 'dns_records';
-
-	form = this.fb.group({
-		customer: this.fb.group({
-			name: '',
-			id_letters: '',
-			id_numbers: '',
-			ITC_location: '',
-			address_1: '',
-			address_2: '',
-			city: '',
-			state: '',
-			zip_code: '',
-			timezone: '',
-			default_code_area: '',
-			local_dial: '',
-			extension_length: '',
-			breakout_code: '',
-			voice_mail_pilot: ''
-		}),
-		domain: this.fb.group({
-			server_domain: '',
-			presence_domain: ''
-		}),
-		size: '',
-		unified_messaging: this.fb.group({
-			username: '',
-			password: ''
-		}),
-		platform_test_account: this.fb.group({
-			username: '',
-			password: ''
-		}),
-		customer_notes: '',
-		primary_datacenter: this.fb.group({
-			name: '',
-			host_ip: '',
-			v_lan: '',
-			host_gateway: '',
-			asr_address: ''
-		}),
-		secondary_datacenter: this.fb.group({
-			name: '',
-			host_ip: '',
-			v_lan: '',
-			host_gateway: '',
-			asr_address: ''
-		}),
-		infrastructure: this.fb.group({
-			datacenter: '',
-			cluster: '',
-			datastore: ''
-		}),
-		additional_network_data: this.fb.group({
-			vrf: '',
-			nat_box_ip: ''
-		}),
-		mra_expressway: this.fb.group({
-			primary_dc_external_ip: '',
-			primary_dc_internal_ip: '',
-			secondary_dc_external_ip: '',
-			secondary_dc_internal_ip: ''
-		}),
-		additional_services: this.fb.group({
-			expressway: '',
-			singlewire: '',
-			cuaca: '',
-			egw: '',
-			hybrid_services: ''
-		}),
-		infrastructure_notes: '',
-		dns_ntp: this.fb.group({
-			primary_dns: '',
-			secondary_dns: '',
-			ntp_server_1: '',
-			ntp_server_2: '',
-			ntp_server_3: '',
-			ntp_server_4: '',
-			ntp_server_5: ''
-		}),
-		host_data: this.fb.group({
-			timezone: '',
-			continent: '',
-			city: '',
-			admin: '',
-			password: '',
-			security_password: '',
-			app_user_password: ''
-		}),
-		certificates: this.fb.group({
-			organization: '',
-			unit: '',
-			location: '',
-			state: '',
-			country: '',
-			auto_register_primary: '',
-			app_user_username: ''
-		}),
-		host_data_notes: '',
-	}); //TODO Validators
 
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
 		private buildsService: BuildsService,
-		private fb: FormBuilder
-	) {	}
+		private buildConfigFormService: BuildConfigFormService
+	) {
+		super();
+	}
 
 	ngOnInit() {
 		const build_id = this.route.snapshot.paramMap.get('id');
@@ -129,19 +43,23 @@ export class BuildConfigComponent implements OnInit {
 
 		const objForm = this.currentBuild.getFormDataBuild();
 		this.form.setValue(objForm);
-		this.calculateData();
+		this.resetData();
+	}
+
+	get form(): FormGroup {
+		return this.buildConfigFormService.form;
 	}
 
 	back() {
 		window.history.back();
 	}
 
-	validationLogs(build_id: string) {
+	validationLogs(build_id: string) { //change to router link in the button
 		this.router.navigate(["logs", build_id, "validation"]);
 	}
 
 	validateProvision(build_id: string) {
-		this.calculateData();
+		this.resetData();
 
 		Swal.fire({
 			title: 'Are you sure?',
@@ -161,21 +79,30 @@ export class BuildConfigComponent implements OnInit {
 				)
 			}
 		})
-
-	}
-	
-	private calculateData() {
-		this.resetData();
-		this.buildsService.calculateData(this.currentBuild);
 	}
 
-	resetData() {
+	private resetData() {
 		this.currentBuild.setFormDataBuild(this.form.getRawValue());
+		this.buildConfigFormService.calculateData(this.currentBuild);
 	}
-	
+
 	onSubmit() {
-		this.calculateData();
+		const invalidTabs = this.buildConfigFormService.checkTabs();
 		
+		if (invalidTabs != null) {
+			let itemsReferenceErrors = [
+				ERROR_CONSTANTS.ReferenceErrorAdminPassword,
+				ERROR_CONSTANTS.ReferenceErrorUsername,
+				ERROR_CONSTANTS.ReferenceErrorUserPassword,
+				ERROR_CONSTANTS.ReferenceErrorCertificate,
+				ERROR_CONSTANTS.ReferenceAsciiPrintable
+			];
+
+			this.feedback.setText(ERROR_CONSTANTS.ReferenceTableErrors, true, itemsReferenceErrors);
+			return;
+		}
+		this.resetData();
+
 		Swal.fire({
 			title: 'Are you sure?',
 			text: "You won't be able to revert this!",
@@ -197,9 +124,20 @@ export class BuildConfigComponent implements OnInit {
 	}
 
 	onTabChange($event: NgbTabChangeEvent) {
-		if ($event.nextId === this.vmModelIdTab || $event.nextId === this.dnsRecordsIdTab ) {
-			this.calculateData();
+		if ($event.nextId === this.vmModelIdTab || $event.nextId === this.dnsRecordsIdTab) {
+			this.resetData();
 		}
 	}
 
+	get titleTabCustomerInformation() {
+		return BUILD_CONSTANTS.TabTitleCustomerInformation;
+	}
+
+	get titleTabInfraestructure() {
+		return BUILD_CONSTANTS.TabTitleInfrastructure;
+	}
+
+	get titleTabHostData() {
+		return BUILD_CONSTANTS.TabTitleHostData;
+	}
 }

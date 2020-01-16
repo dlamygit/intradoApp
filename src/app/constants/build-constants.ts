@@ -32,5 +32,9 @@ export const BUILD_CONSTANTS = {
     },
 
     DnsRevertEnd: '.VMCE.WESTIPC.COM.',
-    DnsToIPEnd: '.VMCE'
+    DnsToIPEnd: '.VMCE',
+
+    TabTitleCustomerInformation: 'Customer Information',
+    TabTitleInfrastructure: 'Infrastructure',
+    TabTitleHostData: 'Host Data',
 }

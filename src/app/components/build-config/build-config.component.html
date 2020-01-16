@@ -1,488 +1,538 @@
 <div class="body-background" style="padding-left: 15px;padding-right: 15px;padding-bottom: 15px">
+    <common-feedback></common-feedback>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <ngb-tabset #buildsConfigTab (tabChange)="onTabChange($event)">
-            <ngb-tab title="Customer Information" id="customer_information">
+            <ngb-tab [title]="titleTabCustomerInformation" id="customer_information">
                 <ng-template ngbTabContent>
-                    <div class="card-body border" style="height:800px">
+                    <div class="card-body border" style="min-height:800px">
                         <div class="row">
-                            <div class="col-lg-2" [formGroup]="form.get('customer')">
-
+                            <div class="col-lg-2">
                                 <h4>Customer Information</h4>
-
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="customer_name">Customer name</label>
-                                    <input id="customer_name" type="text" class="form-control col-lg-12"
-                                        formControlName="name">
-                                </div>
-
-                                <div class="input-group">
-                                    <div class="col-lg-6">
-                                        <label for="id_letters">Customer ID (letters) </label>
-                                        <input id="id_letters" type="text" class="form-control col-lg-11"
-                                            formControlName="id_letters">
+                                    <input id="customer_name" type="text" class="form-control"
+                                        formControlName="customer_name" commonFormInput>
+                                </common-form-field>
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <common-form-field>
+                                            <label for="id_letters">Customer ID (letters)</label>
+                                            <input id="id_letters" type="text" class="form-control col-lg-11"
+                                                formControlName="customer_id_letters" commonFormInput>
+                                        </common-form-field>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <label for="id_numbers">Customer ID (numbers) </label>
-                                        <input id="id_numbers" type="text" class="form-control col-lg-11"
-                                            formControlName="id_numbers">
+                                    <div class="col-lg">
+                                        <common-form-field>
+                                            <label for="id_numbers">Customer ID (numbers)</label>
+                                            <input id="id_numbers" type="text" class="form-control col-lg-11"
+                                                formControlName="customer_id_numbers" commonFormInput>
+                                        </common-form-field>
                                     </div>
                                 </div>
                                 <br>
                                 <h4>Customer Location</h4>
-
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="ITC_location">ITC Location name</label>
-                                    <input id="ITC_location" type="text" class="form-control col-lg-12"
-                                        formControlName="ITC_location">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="ITC_location" type="text" class="form-control"
+                                        formControlName="customer_ITC_location" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="address_1">Address 1</label>
-                                    <input id="address_1" type="text" class="form-control col-lg-12"
-                                        formControlName="address_1">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="address_1" type="text" class="form-control"
+                                        formControlName="customer_address_1" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="address_2">Address 2</label>
-                                    <input id="address_2" type="text" class="form-control col-lg-12"
-                                        formControlName="address_2">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="address_2" type="text" class="form-control"
+                                        formControlName="customer_address_2" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="city">City</label>
-                                    <input id="city" type="text" class="form-control col-lg-12" formControlName="city">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="city" type="text" class="form-control" formControlName="customer_city"
+                                        commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="state">State</label>
-                                    <input id="state" type="text" class="form-control col-lg-12"
-                                        formControlName="state">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="state" type="text" class="form-control" formControlName="customer_state"
+                                        commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="zip_code">Zip Code</label>
-                                    <input id="zip_code" type="text" class="form-control col-lg-12"
-                                        formControlName="zip_code">
-                                </div>
-
+                                    <input id="zip_code" type="text" class="form-control"
+                                        formControlName="customer_zip_code" commonFormInput>
+                                </common-form-field>
                             </div>
-                            <div class="col-lg-2" [formGroup]="form.get('customer')">
+                            <div class="col-lg-2">
                                 <h4>C-Location Continued</h4>
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="timezone">Timezone</label>
-                                    <input id="timezone" type="text" class="form-control col-lg-12"
-                                        formControlName="timezone">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="timezone" type="text" class="form-control"
+                                        formControlName="customer_timezone" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="default_code_area">Default code area</label>
-                                    <input id="default_code_area" type="text" class="form-control col-lg-12"
-                                        formControlName="default_code_area">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="default_code_area" type="text" class="form-control"
+                                        formControlName="customer_default_code_area" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="local_dial">Local dial</label>
-                                    <input id="local_dial" type="text" class="form-control col-lg-12"
-                                        formControlName="local_dial">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="local_dial" type="text" class="form-control"
+                                        formControlName="customer_local_dial" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="extension_length">Extension Length</label>
-                                    <input id="extension_length" type="text" class="form-control col-lg-12"
-                                        formControlName="extension_length">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="extension_length" type="text" class="form-control"
+                                        formControlName="customer_extension_length" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="breakout_code">Breakout code</label>
-                                    <input id="breakout_code" type="text" class="form-control col-lg-12"
-                                        formControlName="breakout_code">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="breakout_code" type="text" class="form-control"
+                                        formControlName="customer_breakout_code" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="voice_mail_pilot">Voice Mail Pilot</label>
-                                    <input id="voice_mail_pilot" type="text" class="form-control col-lg-12"
-                                        formControlName="voice_mail_pilot">
-                                </div>
+                                    <input id="voice_mail_pilot" type="text" class="form-control"
+                                        formControlName="customer_voice_mail_pilot" commonFormInput>
+                                </common-form-field>
                                 <br>
                             </div>
                             <div class="col-lg-2">
                                 <h4>Domain</h4>
-                                <div [formGroup]="form.get('domain')">
-                                    <div class="col-lg-12">
-                                        <label for="server_domain">Server domain</label>
-                                        <input id="server_domain" type="text" class="form-control col-lg-12"
-                                            formControlName="server_domain">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="presence_domain">Presence domain</label>
-                                        <input id="presence_domain" type="text" class="form-control col-lg-12"
-                                            formControlName="presence_domain">
-                                    </div>
-                                </div>
+                                <common-form-field>
+                                    <label for="server_domain">Server domain</label>
+                                    <input id="server_domain" type="text" class="form-control"
+                                        formControlName="server_domain" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="presence_domain">Presence domain</label>
+                                    <input id="presence_domain" type="text" class="form-control"
+                                        formControlName="presence_domain" commonFormInput>
+                                </common-form-field>
                                 <br>
                                 <h4>Size</h4>
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="size">Build size</label>
-                                    <select id="size" class="select-options" formControlName="size">
+                                    <select id="size" class="form-control" formControlName="size" commonFormInput>
                                         <option>Small</option>
                                         <option>Medium</option>
                                         <option>Large</option>
                                     </select>
-                                </div>
+                                </common-form-field>
                             </div>
                             <div class="col-lg-2">
                                 <h4>Unified messaging</h4>
-                                <div [formGroup]="form.get('unified_messaging')">
-                                    <div class="col-lg-12">
-                                        <label for="username_unified_messaging">Username</label>
-                                        <input id="username_unified_messaging" type="text"
-                                            class="form-control col-lg-12" formControlName="username">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="password_unified_messaging">Password</label>
-                                        <input id="password_unified_messaging" type="password"
-                                            class="form-control col-lg-12" formControlName="password">
-                                    </div>
-                                </div>
+                                <common-form-field>
+                                    <label for="username_unified_messaging">Username</label>
+                                    <input id="username_unified_messaging" type="text" class="form-control"
+                                        formControlName="unified_messaging_username" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="password_unified_messaging">Password</label>
+                                    <input id="password_unified_messaging" type="text" class="form-control"
+                                        formControlName="unified_messaging_password" commonFormInput>
+                                </common-form-field>
                                 <br>
                                 <h4>Platform test account</h4>
-                                <div [formGroup]="form.get('platform_test_account')">
-                                    <div class="col-lg-12">
-                                        <label for="username_platform_test_account">Username</label>
-                                        <input id="username_platform_test_account" type="text"
-                                            class="form-control col-lg-12" formControlName="username">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="password_platform_test_account">Password</label>
-                                        <input id="password_platform_test_account" type="password"
-                                            class="form-control col-lg-12" formControlName="password">
-                                    </div>
-                                </div>
+                                <common-form-field>
+                                    <label for="username_platform_test_account">Username</label>
+                                    <input id="username_platform_test_account" type="text"
+                                        class="form-control col-lg-12" formControlName="platform_test_account_username"
+                                        commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="password_platform_test_account">Password</label>
+                                    <input id="password_platform_test_account" type="password"
+                                        class="form-control col-lg-12" formControlName="platform_test_account_password"
+                                        commonFormInput>
+                                </common-form-field>
                             </div>
                             <div class="col-lg-4">
                                 <h4>Notes</h4>
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="customer_notes"></label>
-                                    <textarea id="customer_notes" rows="15" cols="80"
-                                        formControlName="customer_notes"></textarea>
-                                </div>
+                                    <textarea id="customer_notes" rows="15" cols="80" formControlName="customer_notes"
+                                        commonFormInput></textarea>
+                                </common-form-field>
                             </div>
                         </div>
                     </div>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="Infrastructure" id="infrastructure">
+            <ngb-tab [title]="titleTabInfraestructure" id="infrastructure">
                 <ng-template ngbTabContent>
-                    <div class="card-body border" style="height:800px">
+                    <div class="card-body border" style="min-height:800px">
                         <div class="row">
                             <div class="col-lg-2">
                                 <h4>Primary Datacenter</h4>
-                                <div [formGroup]="form.get('primary_datacenter')">
-                                    <div class="col-lg-12">
-                                        <label for="datacenter_name">Datacenter</label>
-
-                                        <select id="datacenter_name" class="select-options" formControlName="name">
-                                            <option>Denver</option>
-                                            <option>Suwanee</option>
-                                        </select>
-
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="datacenter_host_ip">Host IP (seed)</label>
-                                        <input id="datacenter_host_ip" type="text" class="form-control col-lg-12"
-                                            formControlName="host_ip">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="v_lan">vLAN</label>
-                                        <input id="v_lan" type="text" class="form-control col-lg-12"
-                                            formControlName="v_lan">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="host_gateway">Host gateway</label>
-                                        <input id="host_gateway" type="text" class="form-control col-lg-12"
-                                            formControlName="host_gateway">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="asr_address">ASR Address</label>
-                                        <input id="asr_address" type="text" class="form-control col-lg-12"
-                                            formControlName="asr_address">
-                                    </div>
-                                </div>
+                                <common-form-field>
+                                    <label for="datacenter_name">Datacenter</label>
+                                    <select id="datacenter_name" class="form-control"
+                                        formControlName="secondary_datacenter_name" commonFormInput>
+                                        <option>Denver</option>
+                                        <option>Suwanee</option>
+                                    </select>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="datacenter_host_ip">Host IP (seed)</label>
+                                    <input id="datacenter_host_ip" type="text" class="form-control"
+                                        formControlName="secondary_datacenter_host_ip" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="v_lan">vLAN</label>
+                                    <input id="v_lan" type="text" class="form-control"
+                                        formControlName="secondary_datacenter_v_lan" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="host_gateway">Host gateway</label>
+                                    <input id="host_gateway" type="text" class="form-control"
+                                        formControlName="secondary_datacenter_host_gateway" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="asr_address">ASR Address</label>
+                                    <input id="asr_address" type="text" class="form-control"
+                                        formControlName="secondary_datacenter_asr_address" commonFormInput>
+                                </common-form-field>
                                 <br>
-                                <div [formGroup]="form.get('infrastructure')">
-                                    <h4>Infrastructure</h4>
-                                    <div class="col-lg-12">
-                                        <label for="infraestructure_datacenter">Datacenter</label>
-                                        <select id="infraestructure_datacenter" class="select-options"
-                                            formControlName="datacenter">
-                                            <option>Denver</option>
-                                            <option>Suwanee</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="cluster">Cluster</label>
-                                        <select id="cluster" class="select-options" formControlName="cluster">
-                                            <option value="1">TEMP-CLU01</option>
-                                            <option value="2">cluster_2</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="infraestructure_datastore">Datastore</label>
-                                        <select id="infraestructure_datastore" class="select-options"
-                                            formControlName="datastore">
-                                            <option>datastore_1</option>
-                                            <option>datastore_2</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <h4>Infrastructure</h4>
+                                <common-form-field>
+                                    <label for="infraestructure_datacenter">Datacenter</label>
+                                    <select id="infraestructure_datacenter" class="form-control"
+                                        formControlName="infrastructure_datacenter" commonFormInput>
+                                        <option>Denver</option>
+                                        <option>Suwanee</option>
+                                    </select>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="cluster">Cluster</label>
+                                    <select id="cluster" class="form-control" formControlName="infrastructure_cluster"
+                                        commonFormInput>
+                                        <option value="1">TEMP-CLU01</option>
+                                        <option value="2">cluster_2</option>
+                                    </select>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="infraestructure_datastore">Datastore</label>
+                                    <select id="infraestructure_datastore" class="form-control" commonFormInput
+                                        formControlName="infrastructure_datastore">
+                                        <option>datastore_1</option>
+                                        <option>datastore_2</option>
+                                    </select>
+                                </common-form-field>
                             </div>
                             <div class="col-lg-2">
                                 <h4>Secondary Datacenter</h4>
-                                <div [formGroup]="form.get('secondary_datacenter')">
-                                    <div class="col-lg-12">
-                                        <label for="secondary_datacenter_name">Datacenter</label><br>
-                                        <select id="secondary_datacenter_name" class="select-options"
-                                            formControlName="name">
-                                            <option>Denver</option>
-                                            <option>Suwanee</option>
-                                        </select>
-
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="secondary_host_ip">Host IP (seed)</label>
-                                        <input id="secondary_host_ip" type="text" class="form-control col-lg-12"
-                                            formControlName="host_ip">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="secondary_v_lan">vLAN</label>
-                                        <input id="secondary_v_lan" type="text" class="form-control col-lg-12"
-                                            formControlName="v_lan">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="secondary_host_gateway">Host gateway</label>
-                                        <input id="secondary_host_gateway" type="text" class="form-control col-lg-12"
-                                            formControlName="host_gateway">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="secondary_asr_address">ASR Address</label>
-                                        <input id="secondary_asr_address" type="text" class="form-control col-lg-12"
-                                            formControlName="asr_address">
-                                    </div>
-                                </div>
+                                <common-form-field>
+                                    <label for="secondary_datacenter_name">Datacenter</label>
+                                    <select id="secondary_datacenter_name" class="form-control"
+                                        formControlName="secondary_datacenter_name" commonFormInput>
+                                        <option>Denver</option>
+                                        <option>Suwanee</option>
+                                    </select>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="secondary_host_ip">Host IP (seed)</label>
+                                    <input id="secondary_host_ip" type="text" class="form-control"
+                                        formControlName="secondary_datacenter_host_ip" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="secondary_v_lan">vLAN</label>
+                                    <input id="secondary_v_lan" type="text" class="form-control"
+                                        formControlName="secondary_datacenter_v_lan" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="secondary_host_gateway">Host gateway</label>
+                                    <input id="secondary_host_gateway" type="text" class="form-control"
+                                        formControlName="secondary_datacenter_host_gateway" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="secondary_asr_address">ASR Address</label>
+                                    <input id="secondary_asr_address" type="text" class="form-control"
+                                        formControlName="secondary_datacenter_asr_address" commonFormInput>
+                                </common-form-field>
                                 <br>
                                 <h4>Additional Network Data</h4>
-                                <div [formGroup]="form.get('additional_network_data')">
-                                    <div class="col-lg-12">
-                                        <label for="vrf">VRF</label>
-                                        <input id="vrf" type="text" class="form-control col-lg-12"
-                                            formControlName="vrf">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label for="nat_box_ip">NAT Box IP</label>
-                                        <input id="nat_box_ip" type="text" class="form-control col-lg-12"
-                                            formControlName="nat_box_ip">
-                                    </div>
-                                </div>
+                                <common-form-field>
+                                    <label for="vrf">VRF</label>
+                                    <input id="vrf" type="text" class="form-control"
+                                        formControlName="additional_network_data_vrf" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
+                                    <label for="nat_box_ip">NAT Box IP</label>
+                                    <input id="nat_box_ip" type="text" class="form-control"
+                                        formControlName="additional_network_data_nat_box_ip" commonFormInput>
+                                </common-form-field>
                             </div>
                             <div class="col-lg-4">
                                 <h4>MRA / Expressway</h4>
-                                <div [formGroup]="form.get('mra_expressway')">
+                                <div class="row">
                                     <div class="col-lg-6">
-                                        <label for="primary_dc_external_ip">Primary DC External IP</label>
-                                        <input id="primary_dc_external_ip" type="text" class="form-control col-lg-12"
-                                            formControlName="primary_dc_external_ip">
+                                        <common-form-field>
+                                            <label for="primary_dc_external_ip">Primary DC External IP</label>
+                                            <input id="primary_dc_external_ip" type="text" class="form-control"
+                                                formControlName="mra_expressway_primary_dc_external_ip" commonFormInput>
+                                        </common-form-field>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
-                                        <label for="primary_dc_internal_ip">Primary DC Internal IP</label>
-                                        <input id="primary_dc_internal_ip" type="text" class="form-control col-lg-12"
-                                            formControlName="primary_dc_internal_ip">
+                                        <common-form-field>
+                                            <label for="primary_dc_internal_ip">Primary DC Internal IP</label>
+                                            <input id="primary_dc_internal_ip" type="text" class="form-control"
+                                                formControlName="mra_expressway_primary_dc_internal_ip" commonFormInput>
+                                        </common-form-field>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
-                                        <label for="secondary_dc_external_ip">Secondary DC External IP</label>
-                                        <input id="secondary_dc_external_ip" type="text" class="form-control col-lg-12"
-                                            formControlName="secondary_dc_external_ip">
+                                        <common-form-field>
+                                            <label for="secondary_dc_external_ip">Secondary DC External IP</label>
+                                            <input id="secondary_dc_external_ip" type="text" class="form-control"
+                                                formControlName="mra_expressway_secondary_dc_external_ip" commonFormInput>
+                                        </common-form-field>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
-                                        <label for="secondary_dc_internal_ip">Secondary DC Internal IP</label>
-                                        <input id="secondary_dc_internal_ip" type="text" class="form-control col-lg-12"
-                                            formControlName="secondary_dc_internal_ip">
+                                        <common-form-field>
+                                            <label for="secondary_dc_internal_ip">Secondary DC Internal IP</label>
+                                            <input id="secondary_dc_internal_ip" type="text" class="form-control"
+                                                formControlName="mra_expressway_secondary_dc_internal_ip" commonFormInput>
+                                        </common-form-field>
                                     </div>
                                 </div>
                                 <br>
                                 <h4>Additional Services</h4>
-                                <div [formGroup]="form.get('additional_services')">
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <input id="additional_services_expressway" type="checkbox"
-                                            style="width: 18px; height: 18px;" formControlName="expressway">
+                                            style="width: 18px; height: 18px;"
+                                            formControlName="additional_services_expressway">
                                         <label for="additional_services_expressway" style="margin-left:5px">
                                             Expressway</label>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <input id="additional_services_singlewire" type="checkbox"
-                                            style="width: 18px; height: 18px;" formControlName="singlewire">
+                                            style="width: 18px; height: 18px;"
+                                            formControlName="additional_services_singlewire">
                                         <label for="additional_services_singlewire" style="margin-left:5px">
                                             Singlewire</label>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <input id="additional_services_cuaca" type="checkbox"
-                                            style="width: 18px; height: 18px;" formControlName="cuaca">
-                                        <label for="additional_services_cuaca" style="margin-left:5px"> CUACA</label>
+                                            style="width: 18px; height: 18px;"
+                                            formControlName="additional_services_cuaca">
+                                        <label for="additional_services_cuaca" style="margin-left:5px">
+                                            CUACA</label>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <input id="additional_services_egw" type="checkbox"
-                                            style="width: 18px; height: 18px;" formControlName="egw">
+                                            style="width: 18px; height: 18px;"
+                                            formControlName="additional_services_egw">
                                         <label for="additional_services_egw" style="margin-left:5px"> EGW</label>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <input id="additional_services_hybrid_services" type="checkbox"
-                                            style="width: 18px; height: 18px;" formControlName="hybrid_services">
-                                        <label for="additional_services_hybrid_services" style="margin-left:5px"> Hybrid
+                                            style="width: 18px; height: 18px;"
+                                            formControlName="additional_services_hybrid_services">
+                                        <label for="additional_services_hybrid_services" style="margin-left:5px">
+                                            Hybrid
                                             Services</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <h4>Notes</h4>
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="infrastructure_notes"></label>
                                     <textarea id="infrastructure_notes" rows="15" cols="80"
-                                        formControlName="infrastructure_notes"></textarea>
-                                </div>
+                                        formControlName="infrastructure_notes" commonFormInput></textarea>
+                                </common-form-field>
                             </div>
                         </div>
                     </div>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="Host Data" id="host_data">
+            <ngb-tab [title]="titleTabHostData" id="host_data">
                 <ng-template ngbTabContent>
-                    <div class="card-body border" style="height:800px">
+                    <div class="card-body border" style="min-height:800px">
                         <div class="row">
-                            <div class="col-lg-2" [formGroup]="form.get('dns_ntp')">
+                            <div class="col-lg-2">
                                 <h4>DNS and NTP</h4>
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="primary_dns">Primary DNS</label>
-                                    <input id="primary_dns" type="text" class="form-control col-lg-12"
-                                        formControlName="primary_dns">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="primary_dns" type="text" class="form-control"
+                                        formControlName="dns_ntp_primary_dns" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="secondary_dns">Secondary DNS</label>
-                                    <input id="secondary_dns" type="text" class="form-control col-lg-12"
-                                        formControlName="secondary_dns">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="secondary_dns" type="text" class="form-control"
+                                        formControlName="dns_ntp_secondary_dns" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="ntp_server_1">NTP Server 1</label>
-                                    <input id="ntp_server_1" type="text" class="form-control col-lg-12"
-                                        formControlName="ntp_server_1">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="ntp_server_1" type="text" class="form-control"
+                                        formControlName="dns_ntp_server_1" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="ntp_server_2">NTP Server 2</label>
-                                    <input id="ntp_server_2" type="text" class="form-control col-lg-12"
-                                        formControlName="ntp_server_2">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="ntp_server_2" type="text" class="form-control"
+                                        formControlName="dns_ntp_server_2" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="ntp_server_3">NTP Server 3</label>
-                                    <input id="ntp_server_3" type="text" class="form-control col-lg-12"
-                                        formControlName="ntp_server_3">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="ntp_server_3" type="text" class="form-control"
+                                        formControlName="dns_ntp_server_3" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="ntp_server_4">NTP Server 4</label>
-                                    <input id="ntp_server_4" type="text" class="form-control col-lg-12"
-                                        formControlName="ntp_server_4">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="ntp_server_4" type="text" class="form-control"
+                                        formControlName="dns_ntp_server_4" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="ntp_server_5">NTP Server 5</label>
-                                    <input id="ntp_server_5" type="text" class="form-control col-lg-12"
-                                        formControlName="ntp_server_5">
-                                </div>
+                                    <input id="ntp_server_5" type="text" class="form-control"
+                                        formControlName="dns_ntp_server_5" commonFormInput>
+                                </common-form-field>
                             </div>
-                            <div class="col-lg-2" [formGroup]="form.get('host_data')">
+                            <div class="col-lg-2">
                                 <h4>Host Data</h4>
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="timezone">Timezone</label>
-                                    <select id="timezone" class="select-options" formControlName="timezone">
+                                    <select id="timezone" class="form-control" formControlName="host_data_timezone"
+                                        commonFormInput>
                                         <option>GTM-3</option>
                                         <option>GTM-4</option>
                                         <option>GTM-5</option>
                                     </select>
-                                </div>
-                                <div class="col-lg-12">
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="continent">Continent</label>
-                                    <select id="continent" class="select-options" formControlName="continent">
+                                    <select id="continent" class="form-control" formControlName="host_data_continent"
+                                        commonFormInput>
                                         <option>America</option>
                                         <option>South America</option>
                                         <option>North America</option>
                                         <option>Africa</option>
                                         <option>Asia</option>
                                     </select>
-                                </div>
-                                <div class="col-lg-12">
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="city_host_data">City</label>
-                                    <select id="city_host_data" class="select-options" formControlName="city">
+                                    <select id="city_host_data" class="form-control" formControlName="host_data_city"
+                                        commonFormInput>
                                         <option>San Francisco</option>
                                         <option>California</option>
                                         <option>Santa Fe</option>
                                         <option>Rosario</option>
                                     </select>
-                                </div>
-                                <div class="col-lg-12">
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="admin">Admin</label>
-                                    <input id="admin" type="text" class="form-control col-lg-12"
-                                        formControlName="admin">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="admin" type="text" class="form-control" formControlName="host_data_admin"
+                                        commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="password_host_data">Password</label>
-                                    <input id="password_host_data" type="password" class="form-control col-lg-12"
-                                        formControlName="password">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="password_host_data" type="password" class="form-control"
+                                        formControlName="host_data_password" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="security_password">Security password</label>
-                                    <input id="security_password" type="password" class="form-control col-lg-12"
-                                        formControlName="security_password">
-                                </div>
-                                <div class="col-lg-12">
+                                    <input id="security_password" type="password" class="form-control"
+                                        formControlName="host_data_security_password" commonFormInput>
+                                </common-form-field>
+                                <common-form-field>
                                     <label for="app_user_password">App user password</label>
-                                    <input id="app_user_password" type="password" class="form-control col-lg-12"
-                                        formControlName="app_user_password">
-                                </div>
+                                    <input id="app_user_password" type="password" class="form-control"
+                                        formControlName="host_data_app_user_password" commonFormInput>
+                                </common-form-field>
                             </div>
-                            <div class="col-lg-4" [formGroup]="form.get('certificates')">
+                            <div class="col-lg-4">
                                 <h4>Certificates</h4>
-                                <div class="col-lg-6">
-                                    <label for="organization">Certificate Organization</label>
-                                    <input id="organization" type="text" class="form-control col-lg-12"
-                                        formControlName="organization">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <common-form-field>
+                                            <label for="organization">Certificate Organization</label>
+                                            <input id="organization" type="text" class="form-control"
+                                                formControlName="certificates_organization" commonFormInput>
+                                        </common-form-field>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <label for="unit">Certificate Unit</label>
-                                    <input id="unit" type="text" class="form-control col-lg-12" formControlName="unit">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <common-form-field>
+                                            <label for="unit">Certificate Unit</label>
+                                            <input id="unit" type="text" class="form-control" formControlName="certificates_unit"
+                                                commonFormInput>
+                                        </common-form-field>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <label for="location">Certificate Location</label>
-                                    <input id="location" type="text" class="form-control col-lg-12"
-                                        formControlName="location">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <common-form-field>
+                                            <label for="location">Certificate Location</label>
+                                            <input id="location" type="text" class="form-control"
+                                                formControlName="certificates_location" commonFormInput>
+                                        </common-form-field>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <label for="state">Certificate State</label>
-                                    <input id="state" type="text" class="form-control col-lg-12"
-                                        formControlName="state">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <common-form-field>
+                                            <label for="state">Certificate State</label>
+                                            <input id="state" type="text" class="form-control" formControlName="certificates_state"
+                                                commonFormInput>
+                                        </common-form-field>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <label for="country">Certificate Country</label>
-                                    <select id="country" class="select-options" formControlName="country">
-                                        <option>EE.UU.</option>
-                                        <option>Argentina</option>
-                                        <option>England</option>
-                                        <option>China</option>
-                                    </select>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <common-form-field>
+                                            <label for="country">Certificate Country</label>
+                                            <select id="country" class="form-control" formControlName="certificates_country"
+                                                commonFormInput>
+                                                <option>EE.UU.</option>
+                                                <option>Argentina</option>
+                                                <option>England</option>
+                                                <option>China</option>
+                                            </select>
+                                        </common-form-field>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <label for="auto_register_primary">Auto register primary</label>
-                                    <input id="auto_register_primary" type="text" class="form-control col-lg-12"
-                                        formControlName="auto_register_primary">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <common-form-field>
+                                            <label for="auto_register_primary">Auto register primary</label>
+                                            <input id="auto_register_primary" type="text" class="form-control"
+                                                formControlName="certificates_auto_register_primary" commonFormInput>
+                                        </common-form-field>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <label for="app_user_username">App user username</label>
-                                    <input id="app_user_username" type="text" class="form-control col-lg-12"
-                                        formControlName="app_user_username">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <common-form-field>
+                                            <label for="app_user_username">App user username</label>
+                                            <input id="app_user_username" type="text" class="form-control"
+                                                formControlName="certificates_app_user_username" commonFormInput>
+                                        </common-form-field>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <h4>Notes</h4>
-                                <div class="col-lg-12">
+                                <common-form-field>
                                     <label for="host_data_notes"></label>
-                                    <textarea id="host_data_notes" rows="15" cols="80"
-                                        formControlName="host_data_notes"></textarea>
-                                </div>
+                                    <textarea id="host_data_notes" rows="15" cols="80" formControlName="host_data_notes"
+                                        commonFormInput></textarea>
+                                </common-form-field>
                             </div>
                         </div>
                     </div>
@@ -490,14 +540,14 @@
             </ngb-tab>
             <ngb-tab title="VM's model" [id]="vmModelIdTab">
                 <ng-template ngbTabContent>
-                    <div class="card-body border" style="height:800px">
+                    <div class="card-body border" style="min-height:800px">
                         <app-vm-model-medium-tabs [currentBuild]="currentBuild"></app-vm-model-medium-tabs>
                     </div>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="DNS Records" [id]="dnsRecordsIdTab">
                 <ng-template ngbTabContent>
-                    <div class="card-body border" style="height:800px">
+                    <div class="card-body border" style="min-height:800px">
                         <div class="row">
                             <div class="col-lg-4">
                                 <h4>DNS A Records</h4>
@@ -546,7 +596,7 @@
             </ngb-tab>
             <ngb-tab [disabled]="true" title="ASR / SONUS" id="asr_sonus">
                 <ng-template ngbTabContent>
-                    <div class="card-body border" style="height:800px">
+                    <div class="card-body border" style="min-height:800px">
                     </div>
                 </ng-template>
             </ngb-tab>

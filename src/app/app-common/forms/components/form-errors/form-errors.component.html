@@ -1,0 +1,5 @@
+<span class="form-error" [ngClass]="{'is-visible': invalid}">
+    <ng-container *ngFor="let error of errorsMsgs">
+        <small class="form-text">{{ error }}</small>
+    </ng-container>
+</span>

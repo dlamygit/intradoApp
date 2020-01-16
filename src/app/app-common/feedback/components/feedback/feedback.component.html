@@ -1,0 +1,9 @@
+<div #alert [ngClass]="cssClass" class="alert alert-dismissible fade show" role="alert" [hidden]="hidden">
+    <button type="button" class="close" aria-label="Close" (click)="hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{message}}
+    <ul *ngIf="items">
+        <li *ngFor="let item of items">{{item}}</li>
+    </ul>
+</div>
