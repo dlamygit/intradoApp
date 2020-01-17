@@ -1,47 +1,47 @@
 <div class="row">
     <div class="col-lg-2">
         <ngb-tabset #vmTabs (tabChange)="onTabChange($event)" type="pills" [orientation]="vertical">
-            <ngb-tab title="CM Publisher Primary" id="cmPrimaryPublisher">
+            <ngb-tab title="CM Publisher {{primaryDatacenter}}" id="cmPrimaryPublisher">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="CM Subscriber Primary" id="cmPrimarySubscriber">
+            <ngb-tab title="CM Subscriber {{primaryDatacenter}}" id="cmPrimarySubscriber">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="CM Subscriber Secondary" id="cmSecondarySubscriber">
+            <ngb-tab title="CM Subscriber {{secondaryDatacenter}}" id="cmSecondarySubscriber">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="IM&P Subscriber Primary" id="impPrimarySubscriber">
+            <ngb-tab title="IM&P Subscriber {{primaryDatacenter}}" id="impPrimarySubscriber">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="IM&P Subscriber Secondary" id="impSecondarySubscriber">
+            <ngb-tab title="IM&P Subscriber {{secondaryDatacenter}}" id="impSecondarySubscriber">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="CUCx Subscriber Primary" id="cucxPrimarySubscriber">
+            <ngb-tab title="CUCx Subscriber {{primaryDatacenter}}" id="cucxPrimarySubscriber">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="CUCx Publisher Secondary" id="cucxSecondaryPublisher">
+            <ngb-tab title="CUCx Publisher {{secondaryDatacenter}}" id="cucxSecondaryPublisher">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab [disabled]="true" title="Expressway Edge Primary" id="expePrimaryPublisher">
+            <ngb-tab [disabled]="true" title="Expressway Edge {{primaryDatacenter}}" id="expePrimaryPublisher">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab [disabled]="true" title="Expressway Core Primary" id="expcPrimarySubscriber">
+            <ngb-tab [disabled]="true" title="Expressway Core {{primaryDatacenter}}" id="expcPrimarySubscriber">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab [disabled]="true" title="Expressway Core Secondary" id="expeSecondaryPublisher">
+            <ngb-tab [disabled]="true" title="Expressway Core {{secondaryDatacenter}}" id="expeSecondaryPublisher">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab [disabled]="true" title="Expressway Edge Secondary" id="expcSecondarySubscriber">
+            <ngb-tab [disabled]="true" title="Expressway Edge {{secondaryDatacenter}}" id="expcSecondarySubscriber">
                 <ng-template ngbTabContent>
                 </ng-template>
             </ngb-tab>
