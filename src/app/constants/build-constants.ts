@@ -31,6 +31,6 @@ export const BUILD_CONSTANTS = {
         Suwanee: '1'
     },
 
-    DnsRevertEnd: '.vmce.westipc.com.',
+    DnsRevertEnd: '.VMCE.WESTIPC.COM.',
     DnsToIPEnd: '.VMCE'
 }

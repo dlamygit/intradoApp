@@ -32,4 +32,12 @@ export class VmModelMediumTabsComponent implements OnInit {
 		this.currentVirtualMachine = this.currentBuild.vms != null ? this.currentBuild.vms[$event.nextId] : null;
 	}
 
+	get primaryDatacenter() {
+		return this.currentBuild.primary_datacenter.name || 'Primary';
+	}
+
+	get secondaryDatacenter() {
+		return this.currentBuild.secondary_datacenter.name || 'Secondary';
+	}
+
 }
