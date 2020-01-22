@@ -1,4 +1,4 @@
-export class User {
+export class PlatformTestAccount {
     username: string
     password: string
 }

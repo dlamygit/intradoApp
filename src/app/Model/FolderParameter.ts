@@ -1,6 +1,6 @@
-export class FolderParameter{
-    datacenter_name: String
-    sub_folder_name: String
-    parent_folder_name: String
-    folder_state: String    
+export class FolderParameter {
+    datacenter_name: string
+    sub_folder_name: string
+    parent_folder_name: string
+    folder_state: string
 }

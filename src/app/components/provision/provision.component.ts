@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TowerAPIService } from 'src/app/service/tower-api.service';
 import Swal from 'sweetalert2';
-import { SelectMultipleControlValueAccessor } from '@angular/forms';
-import { delay } from 'q';
 import { CloneParameter } from 'src/app/Model/CloneParameter';
 import { FolderParameter } from 'src/app/Model/FolderParameter';
 
@@ -15,8 +13,8 @@ export class ProvisionComponent implements OnInit {
 
   constructor(private tower_api_service:TowerAPIService) { }
 
-  customerID:String = "1202INT";
-  customerName:String = "INTRADO";
+  customerID: string = "1202INT";
+  customerName: string = "INTRADO";
 
   ngOnInit() {
   }
@@ -73,7 +71,7 @@ export class ProvisionComponent implements OnInit {
      this.folderParameters.push(f1);
      this.folderParameters.push(f2);
   
-    this.tower_api_service.startJob(18,this.cloneParameters,this.folderParameters)
+    this.tower_api_service.startJob(9,this.customerName)
     .subscribe((data) => {
       Swal.fire(
         'VM Provisioning process started successfully',

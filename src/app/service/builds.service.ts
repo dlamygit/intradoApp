@@ -1,295 +1,247 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Build } from '../Model/Build';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-
+import { BehaviorSubject, Observable, bindCallback } from 'rxjs';
+import { Logs } from '../Model/Logs';
+import { BUILDS } from '../mocks/mock-build';
+import { LOGS } from '../mocks/mock-logs';
+import { VirtualMachine } from '../Model/VirtualMachine';
+import { BUILD_CONSTANTS } from '../constants/build-constants';
+import { VirtualMachineModel } from '../Model/VirtualMachineModel';
+import { VirtualMachineModelMedium } from '../Model/VirtualMachineModelMedium';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class BuildsService {
 
-  saveCurrentBuild(id: string, build_type: string) {
+	STORAGE_BUILDS: string = "builds";
+	STORAGE_LOGS: string = "logs";
+	builds: Build[] = new Array<Build>();
+	logs: Logs[] = new Array<Logs>();
 
-    var builds:Build[];
-    if(build_type=="incomplete_builds"){
-       builds = this.incomplete_builds;
-    }
-    else{
-       builds = this.complete_builds;
-    }
-    
-    for(var i=0;i<builds.length;i++){
+	private buildsSource = new BehaviorSubject<Build[]>(null);
+	buildsN = this.buildsSource.asObservable();
 
-      if(builds[i].id==id){
-         this.currentBuild.subscribe(currentBuild => builds[i] = currentBuild);
+	private currentBuildSource = new BehaviorSubject<Build>(null);
+	currentBuild = this.currentBuildSource.asObservable();
 
-         console.log(builds[i]);
-         console.log(this.currentBuild);
-         if(build_type=="incomplete_builds"){
-            this.incomplete_builds = builds;
-            this.storage.set("incomplete_builds",this.incomplete_builds);
-          }
-          else{
-            this.complete_builds = builds;
-            this.storage.set("complete_builds",this.complete_builds);
+	getBuildStatus(id: string): string {
+		return this.getBuild(id).status;
+	}
+	//GET builds
+	getBuilds(): Build[] {
+		return this.storage.get(this.STORAGE_BUILDS);
+	}
 
-          }
-      }
-    }
+	//GET individual Build
+	getBuild(id: string): Build {
+		const obj = this.getBuilds().find(build => build.id === id);
+		const build = new Build(obj);
+		return build;
+	}
+
+	getID(size: number): string {
+		let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		var _id: string = "";
+		for (let i = 0; i < 8; i++) {
+			_id += possible.charAt(Math.floor(Math.random() * possible.length));
+		}
+		_id += "-";
+		for (let i = 0; i < 4; i++) {
+			_id += possible.charAt(Math.floor(Math.random() * possible.length));
+		}
+		_id += "-";
+		for (let i = 0; i < 4; i++) {
+			_id += possible.charAt(Math.floor(Math.random() * possible.length));
+		}
+		_id += "-";
+		for (let i = 0; i < 4; i++) {
+			_id += possible.charAt(Math.floor(Math.random() * possible.length));
+		}
+		_id += "-";
+		for (let i = 0; i < 12; i++) {
+			_id += possible.charAt(Math.floor(Math.random() * possible.length));
+		}
+		return _id;
+	}
 
 
+	createEmptyBuild(): Build {
+		var emptyBuild = new Build();
 
-  }
-  runBuild(id:string) {
-    console.log("Runnning build: "+id);
-  }
+		emptyBuild.setInitialData(BUILDS.emptyBuild);
 
-  
- 
-  private currentBuildSource = new BehaviorSubject<Build>(null);
-  currentBuild = this.currentBuildSource.asObservable();
+		return emptyBuild;
+	}
 
-  incomplete_builds:Build[] = new  Array<Build>();
-  complete_builds:Build[] = new  Array<Build>();
+	createEmptyLog(build_id: string): Logs {
 
-  setCurrentBuildObs(build:Build){
-    this.currentBuildSource.next(build);
-  }
+		var emptyLog: Logs = {
+			"build_id": build_id,
+			"validationLogs": [],
+			"executionLogs": []
+		}
 
-  setCurrentBuild(id: string, build_type: string) {
+		return emptyLog;
+	}
 
-    var builds:Build[] = this.storage.get(build_type);
-    for(var i=0;i<builds.length;i++){
-      if(builds[i].id==id){
-        this.setCurrentBuildObs(builds[i]);
-      }
-    }
+	getAllLogs(): Logs[] {
+		return this.storage.get(this.STORAGE_LOGS);
+	}
+	//POST Build
+	addBuild(build: Build): Build {
 
-  }
+		var _id: string = this.getID(64);
+		build.id = _id;
 
-  getBuilds(builds_type:string): Build[] {
-    return this.storage.get(builds_type);  
-  }
+		//Agregar build
+		this.builds = this.getBuilds().concat(build);
 
-  getBuild(buildID: string): Build {
-    return this.storage.get(buildID);  
-  }
-  
-  addBuild(b1: import("../Model/Build").Build) {
-    this.storage.set(b1.id,b1);
-  }
+		//Almacenar en localstorage
+		this.storage.set(this.STORAGE_BUILDS, this.builds);
+		//Actualizar el observable
+		this.buildsSource.next(this.builds);
 
-  constructor(@Inject(LOCAL_STORAGE) private storage:StorageService) { 
+		//Create logs for the build created
+		this.logs = this.getAllLogs().concat(this.createEmptyLog(build.id));
+		this.storage.set(this.STORAGE_LOGS, this.logs);
 
-    
-    var defaultBuild:Build =
-    {
-     "id": "",
-     "customer": {
-       "name":"",
-       "id_letters":"",
-       "id_numbers":"",
-       "location":""
-     },
-     "datacenter": "",
-     "platform_engineer": "",
-     "size": "",
-     "status": "",
-     "completion": ""
-    }
+		//Just for checking that was added
+		return this.getBuild(build.id);
+	}
 
-    this.setCurrentBuildObs(defaultBuild);
+	//PUT Build
+	updateBuild(id: string, build: Build): Build {
 
-    
-    var b1:Build =
-    {
-     "id": "customer1",
-     "customer": {
-       "name":"Customer1",
-       "id_letters":"INT",
-       "id_numbers":"1234",
-       "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "James Bond",
-     "size": "Medium",
-     "status": "Pending",
-     "completion": "100"
-    }
-    var b2:Build =
-    {
-     "id": "customer2",
-     "customer": {
-      "name":"Customer2",
-      "id_letters":"INT",
-      "id_numbers":"4321",
-      "location":"location"
-     },
-     "datacenter": "Suwanee",
-     "platform_engineer": "Patrick James",
-     "size": "Medium",
-     "status": "Pending (Failed Validation)",
-     "completion": "100"
-    }
-    var b3:Build =
-    {
-     "id": "customer3",
-     "customer": {
-      "name":"Customer3",
-      "id_letters":"ANNS",
-      "id_numbers":"4321",
-      "location":"location"
-     },
-     "datacenter": "Suwanee",
-     "platform_engineer": "Steve Hallen",
-     "size": "Small",
-     "status": "Cancelled",
-     "completion": "50"
-    }
-    var b4:Build =
-    {
-     "id": "customer4",
-     "customer": {
-      "name":"Customer4",
-      "id_letters":"ANNS",
-      "id_numbers":"1234",
-      "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "Steve Brock",
-     "size": "Medium",
-     "status": "Running",
-     "completion": "27"
-    }
-    var b5:Build =
-    {
-     "id": "customer5",
-     "customer": {
-      "name":"Customer5",
-      "id_letters":"ANNAS",
-      "id_numbers":"43221",
-      "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "John Deere",
-     "size": "Large",
-     "status": "Failed",
-     "completion": "83"
-    }
+		if (id == "0") {
+			return this.addBuild(build);
+		}
+		else {
 
-    this.incomplete_builds.push(b1);
-    this.incomplete_builds.push(b2);
-    this.incomplete_builds.push(b3);
-    this.incomplete_builds.push(b4);
-    this.incomplete_builds.push(b5);
-    this.incomplete_builds.push(b1);
-    this.incomplete_builds.push(b2);
-    this.incomplete_builds.push(b3);
-    this.incomplete_builds.push(b4);
-    this.incomplete_builds.push(b5);
-    this.incomplete_builds.push(b1);
-    this.incomplete_builds.push(b2);
-    this.incomplete_builds.push(b3);
-    this.incomplete_builds.push(b4);
-    this.incomplete_builds.push(b5);
+			for (var i = 0; i < this.builds.length; i++) {
+				if (this.builds[i].id == id) {
+					this.builds[i] = build;
+				}
+			}
 
-    this.storage.set("incomplete_builds",this.incomplete_builds);
+			this.storage.set(this.STORAGE_BUILDS, this.builds);
+			//Actualizar el observable
+			this.buildsSource.next(this.builds);
 
-    var bc12:Build =
-    {
-     "id": "customer12c",      
-     "customer": {
-      "name":"Customer1",
-      "id_letters":"INT",
-      "id_numbers":"1234",
-      "location":"location"
-    },
-     "datacenter": "Denver",
-     "platform_engineer": "James Bond",
-     "size": "Medium",
-     "status": "Completed",
-     "completion": "100"
-    }
-    var bc22:Build =
-    {      
-     "id": "customer22c",
-     "customer": {
-      "name":"Customer2",
-      "id_letters":"INT",
-      "id_numbers":"4321",
-      "location":"location"
-     },
-     "datacenter": "Suwanee",
-     "platform_engineer": "Patrick James",
-     "size": "Medium",
-     "status": "Completed",
-     "completion": "100"
-    }
-    var bc32:Build =
-    {
-     "id": "customer32c",      
-     "customer": {
-      "name":"Customer3",
-      "id_letters":"ANNS",
-      "id_numbers":"4321",
-      "location":"location"
-     },
-     "datacenter": "Suwanee",
-     "platform_engineer": "Steve Hallen",
-     "size": "Small",
-     "status": "Completed",
-     "completion": "100"
-    }
-    var bc42:Build =
-    {
-     "id": "customer42c",      
-     "customer": {
-      "name":"Customer4",
-      "id_letters":"ANNS",
-      "id_numbers":"1234",
-      "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "Steve Brock",
-     "size": "Medium",
-     "status": "Completed",
-     "completion": "100"
-    }
-    var bc52:Build =
-    {
-     "id": "customer52c",      
-     "customer": {
-      "name":"Customer5",
-      "id_letters":"ANNAS",
-      "id_numbers":"43221",
-      "location":"location"
-     },
-     "datacenter": "Denver",
-     "platform_engineer": "John Deere",
-     "size": "Large",
-     "status": "Completed",
-     "completion": "100"
-    }
+			return this.getBuild(id);
+		}
 
-    this.complete_builds.push(bc12);
-    this.complete_builds.push(bc22);
-    this.complete_builds.push(bc32);
-    this.complete_builds.push(bc42);
-    this.complete_builds.push(bc52);
-    this.complete_builds.push(bc12);
-    this.complete_builds.push(bc22);
-    this.complete_builds.push(bc32);
-    this.complete_builds.push(bc42);
-    this.complete_builds.push(bc52);
-    this.complete_builds.push(bc12);
-    this.complete_builds.push(bc22);
-    this.complete_builds.push(bc32);
-    this.complete_builds.push(bc42);
-    this.complete_builds.push(bc52);
+	}
 
-    this.storage.set("complete_builds",this.complete_builds);
+	//DELETE Build
+	deleteBuild(id: string) {
+		this.builds = this.getBuilds();
 
-  }
+		for (var i = 0; i < this.builds.length; i++) {
+			if (this.builds[i].id == id) {
+				this.builds.splice(i, 1);
+			}
+		}
+
+		this.storage.set(this.STORAGE_BUILDS, this.builds);
+		this.buildsSource.next(this.builds);
+	}
+
+	runBuild(id: string) {
+		console.log("Runnning build: " + id);
+	}
+
+	getLogs(build_id: string): Logs {
+		return this.storage.get(this.STORAGE_LOGS).find(logs => logs.build_id === build_id);
+	}
+
+	constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {
+
+		//Incomplete Builds
+		var b1 = new Build();
+		b1.setInitialData(BUILDS.b1);
+
+		var b2 = new Build();
+		b2.setInitialData(BUILDS.b2);
+
+		var b3 = new Build();
+		b3.setInitialData(BUILDS.b3);
+
+		var b4 = new Build();
+		b4.setInitialData(BUILDS.b4);
+
+		var b5 = new Build();
+		b5.setInitialData(BUILDS.b5);
+
+		var b6 = new Build();
+		b6.setInitialData(BUILDS.b6);
+
+		var b7 = new Build();
+		b7.setInitialData(BUILDS.b7);
+
+		this.builds.push(b1);
+		this.builds.push(b2);
+		this.builds.push(b3);
+		this.builds.push(b4);
+		this.builds.push(b5);
+		this.builds.push(b6);
+		this.builds.push(b7);
+
+		this.storage.set(this.STORAGE_BUILDS, this.builds);
+		this.buildsSource.next(this.builds);
+
+		var logs1: Logs = LOGS.log1;
+		var logs2: Logs = LOGS.log2;
+		var logs3: Logs = LOGS.log3;
+		var logs4: Logs = LOGS.log4;
+		var logs5: Logs = LOGS.log5;
+		var logs6: Logs = LOGS.log6;
+		var logs7: Logs = LOGS.log7;
+
+		this.logs.push(logs1);
+		this.logs.push(logs2);
+		this.logs.push(logs3);
+		this.logs.push(logs4);
+		this.logs.push(logs5);
+		this.logs.push(logs6);
+		this.logs.push(logs7);
+
+		this.storage.set(this.STORAGE_LOGS, this.logs);
+	}
+
+	calculateData(build: Build): Build {
+		const buildSize = build.size;
+		switch (buildSize) {
+			case BUILD_CONSTANTS.SMALL_SIZE:
+				break;
+			case BUILD_CONSTANTS.MEDIUM_SIZE: 
+				build.vms = this.calculateVMsMedium(build);
+				break;
+			case BUILD_CONSTANTS.LARGE_SIZE:
+				break;
+			case BUILD_CONSTANTS.EXTRA_LARGE_SIZE:
+				break;
+		}
+		return build;
+	}
+
+	private calculateVMsMedium(build: Build): VirtualMachineModelMedium {
+		const vmm = build.vms != null ? build.vms as VirtualMachineModelMedium : new VirtualMachineModelMedium();
+		
+		vmm.cmPrimaryPublisher.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CCMPrimaryPublisher;
+		vmm.cmPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CCMPrimarySubscriber;
+		vmm.cmSecondarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].CCMSecondarySubscriber;
+		vmm.impPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].IMPPrimarySubscriber;
+		vmm.impSecondarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].IMPSecondarySubscriber;
+		vmm.cucxPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CUCPrimarySubscriber;
+		vmm.cucxSecondaryPublisher.vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].CUCScondaryPublisher;
+		// vmm.expePrimaryPublisher.vm_name = "";
+		// vmm.expcPrimarySubscriber.vm_name = "";
+		// vmm.expeSecondaryPublisher.vm_name = "";
+		// vmm.expcSecondarySubscriber.vm_name = "";
+
+		return vmm;
+	}
 }
+

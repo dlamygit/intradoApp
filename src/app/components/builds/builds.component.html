@@ -1,8 +1,8 @@
 
 <div class="body-background " style="height:970px;padding-right: 15px;padding-left: 15px;">
-    <ngb-tabset>
-        <ngb-tab title="Incomplete Builds">
-            <ng-template ngbTabContent>
+    <ngb-tabset #buildsTab (tabChange)="onTabChange($event)">
+        <ngb-tab title="Incomplete Builds" id="incomplete_builds">
+            <ng-template ngbTabContent >
                 <div class="col">
                     <div class="row">
                         <div class="card-body border" style="height:800px">
@@ -10,28 +10,32 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 5%">#</th>
-                                        <th style="width: 15%">Customer</th>
-                                        <th style="width: 15%">Datacenter</th>
-                                        <th style="width: 15%">Platform Engineer</th>
+                                        <th style="width: 10%">Customer</th>
+                                        <th style="width: 9%">Primary Datacenter</th>
+                                        <th style="width: 12%">Platform Engineer</th>
                                         <th style="width: 10%">Size</th>
-                                        <th style="width: 15%">Status</th>
-                                        <th style="width: 12%">Completion</th>
-                                        <th style="width: 13%">Actions</th>
+                                        <th style="width: 10%">Status</th>
+                                        <th style="width: 8%">Elapsed time</th>
+                                        <th style="width: 8%">Parameters</th>
+                                        <th style="width: 9%">Build Progress</th>
+                                        <th style="width: 19%">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ng-container *ngFor="let build of incomplete_builds | slice: (pageInc-1) * pageSizeInc : (pageInc-1) * pageSizeInc + pageSizeInc">
+                                    <ng-container *ngFor="let build of incompleted_builds | slice: (pageInc-1) * pageSizeInc : (pageInc-1) * pageSizeInc + pageSizeInc; index as i">
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{i+1}}</td>
                                             <td>{{build.customer.name}}</td>
-                                            <td>{{build.datacenter}}</td>
+                                            <td>{{build.primary_datacenter.name}}</td>
                                             <td>{{build.platform_engineer}}</td>
                                             <td>{{build.size}}</td>
                                             <td>{{build.status}}</td>
+                                            <td>{{build.elapsed_time}}</td>
+                                            <td>{{build.parameters_completed}}/{{build.parameters_required}}</td> 
                                             <td>
-                                                <ngb-progressbar type="primary" showValue="true" [striped]="true" [value]="build.completion"></ngb-progressbar>
-                                            </td>
-                                            <td><button class="btn btn-primary" style="margin-right: 5px;" (click)=runBuild(build.id)>Run</button><button class="btn btn-danger" style="margin-right: 5px;">Cancel</button><button class="btn btn-warning" (click)="edit(build.id)">Edit</button></td>
+                                                <ngb-progressbar type="{{progressBarTypeByStatus(build.status)}}" showValue="true" [striped]="true" [value]="build.completion"></ngb-progressbar>
+                                           </td>
+                                            <td><button class="btn btn-info" style="margin-right: 5px;" [disabled]="!(build.status=='Ready' || build.status=='Canceled' || build.status=='Failed' )" (click)=runBuild(build.id)>Build</button><button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!(build.status!='Pending')" (click)=runValidation(build.id)>Validate</button><button class="btn btn-warning" [disabled]="!(build.status=='Running')" style="margin-right: 5px;">Cancel</button><button class="btn btn-secondary" (click)="edit(build.id)" style="margin-right: 5px;">Edit</button><button class="btn btn-danger" (click)="delete(build.id)" [disabled]="(build.status=='Running')">Delete</button></td>
                                         </tr>
                                     </ng-container>
                                 </tbody>
@@ -45,7 +49,7 @@
                             <ngb-pagination
                                 [(page)]="pageInc"
                                 [pageSize]="pageSizeInc"
-                                [collectionSize]="incomplete_builds.length">
+                                [collectionSize]="incompleted_builds.length">
                                 <ng-template ngbPaginationPrevious>Prev</ng-template>
                                 <ng-template ngbPaginationNext>Next</ng-template>
                             </ngb-pagination>
@@ -59,36 +63,37 @@
                 </div>
             </ng-template>
         </ngb-tab>
-        <ngb-tab title="Complete Builds">
+        <ngb-tab title="Complete Builds" id="complete_builds">
             <ng-template ngbTabContent>
                 <div class="card-body border" style="height:800px">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th style="width: 5%">#</th>
-                                <th style="width: 15%">Customer</th>
-                                <th style="width: 15%">Datacenter</th>
-                                <th style="width: 15%">Platform Engineer</th>
+                                <th style="width: 10%">Customer</th>
+                                <th style="width: 9%">Primary Datacenter</th>
+                                <th style="width: 12%">Platform Engineer</th>
                                 <th style="width: 10%">Size</th>
-                                <th style="width: 15%">Status</th>
-                                <th style="width: 12%">Completion</th>
-                                <th style="width: 13%">Actions</th>
-                                
+                                <th style="width: 10%">Status</th>
+                                <th style="width: 15%">Elapsed time</th>
+                                <th style="width: 14%">Build Progress</th>
+                                <th style="width: 15%">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <ng-container *ngFor="let build of complete_builds | slice: (pageCom-1) * pageSizeCom : (pageCom-1) * pageSizeCom + pageSizeCom">
+                            <ng-container *ngFor="let build of completed_builds | slice: (pageCom-1) * pageSizeCom : (pageCom-1) * pageSizeCom + pageSizeCom; index as i">
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{i+1}}</td>
                                     <td>{{build.customer.name}}</td>
-                                    <td>{{build.datacenter}}</td>
+                                    <td>{{build.primary_datacenter.name}}</td>
                                     <td>{{build.platform_engineer}}</td>
                                     <td>{{build.size}}</td>
                                     <td>{{build.status}}</td> 
+                                    <td>{{build.elapsed_time}}</td> 
                                     <td>
                                         <ngb-progressbar type="success" showValue="true" [striped]="true" [value]="build.completion"></ngb-progressbar>
                                     </td>
-                                    <td><button class="btn btn-info" style="margin-right: 10px;">Logs</button><button class="btn btn-warning" (click)="details(build.id)">Details</button></td>                                  
+                                    <td><button class="btn btn-info" style="margin-right: 10px;" (click)="logsCompleted(build.id)">Logs</button><button class="btn btn-warning" (click)="details(build.id)">Details</button></td>                                  
                                 </tr>
                             </ng-container>
                         </tbody>
@@ -100,7 +105,7 @@
                         <ngb-pagination
                             [(page)]="pageCom"
                             [pageSize]="pageSizeCom"
-                            [collectionSize]="complete_builds.length">
+                            [collectionSize]="completed_builds.length">
                             <ng-template ngbPaginationPrevious>Prev</ng-template>
                             <ng-template ngbPaginationNext>Next</ng-template>
                         </ngb-pagination>

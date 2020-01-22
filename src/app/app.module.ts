@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProvisionComponent } from './components/provision/provision.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BuildsComponent } from './components/builds/builds.component';
 
@@ -15,6 +15,7 @@ import { LogsComponent } from './components/logs/logs.component';
 
 import { LOCAL_STORAGE,StorageServiceModule } from 'ngx-webstorage-service';
 import { BuildsService } from './service/builds.service';
+import { VmModelMediumTabsComponent } from './components/build-config/vm-model-medium-tabs/vm-model-medium-tabs.component';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { BuildsService } from './service/builds.service';
     ProvisionComponent,
     BuildsComponent,
     BuildConfigComponent,
-    LogsComponent
+    LogsComponent,
+    VmModelMediumTabsComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { BuildsService } from './service/builds.service';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    StorageServiceModule 
+    StorageServiceModule,
+    ReactiveFormsModule
   ],
   providers: [BuildsService],
   bootstrap: [AppComponent]

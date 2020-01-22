@@ -9,9 +9,9 @@ import { LogsComponent } from './components/logs/logs.component';
 const routes: Routes = [
   {path:'', component:LoginComponent},
   {path:'provision', component:ProvisionComponent},  
-  {path:'builds', component:BuildsComponent},
-  {path:'build_config', component:BuildConfigComponent},
-  {path:'logs', component:LogsComponent}
+  {path:'builds/:tabName', component:BuildsComponent},
+  {path:'build_config/:id', component:BuildConfigComponent},
+  {path:'logs/:id/:tabName', component:LogsComponent} 
 ];
 
 @NgModule({
