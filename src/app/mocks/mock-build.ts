@@ -110,7 +110,7 @@ export const BUILDS = {
         vms: null,
         dns_records: {
             dns_to_ip: [],
-            ip_to_dsn: []
+            ip_to_dns: []
         },
         platform_engineer: "",
         status: "",
@@ -178,7 +178,7 @@ export const BUILDS = {
         },
         infrastructure: {
             datacenter: "Denver",
-            cluster: "TEMP-CLU01",
+            cluster: "1",
             datastore: "datastore_1"
         },
         additional_network_data: {
@@ -267,7 +267,7 @@ export const BUILDS = {
                     ip: "192.168.20.10"
                 }
             ],
-            ip_to_dsn: [
+            ip_to_dns: [
                 {
                     dns: "CCM1P01DEN.VMCE",
                     ip: "192.168.10.6"
@@ -372,7 +372,7 @@ export const BUILDS = {
         },
         infrastructure: {
             datacenter: "Denver",
-            cluster: "TEMP-CLU01",
+            cluster: "1",
             datastore: "datastore_1"
         },
         additional_network_data: {
@@ -461,7 +461,7 @@ export const BUILDS = {
                     ip: "192.168.20.10"
                 }
             ],
-            ip_to_dsn: [
+            ip_to_dns: [
                 {
                     dns: "CCM1P01DEN.VMCE",
                     ip: "192.168.10.6"
@@ -566,7 +566,7 @@ export const BUILDS = {
         },
         infrastructure: {
             datacenter: "Denver",
-            cluster: "TEMP-CLU01",
+            cluster: "1",
             datastore: "datastore_1"
         },
         additional_network_data: {
@@ -655,7 +655,7 @@ export const BUILDS = {
                     ip: "192.168.20.10"
                 }
             ],
-            ip_to_dsn: [
+            ip_to_dns: [
                 {
                     dns: "CCM1P01DEN.VMCE",
                     ip: "192.168.10.6"
@@ -760,7 +760,7 @@ export const BUILDS = {
         },
         infrastructure: {
             datacenter: "Denver",
-            cluster: "TEMP-CLU01",
+            cluster: "1",
             datastore: "datastore_1"
         },
         additional_network_data: {
@@ -849,7 +849,7 @@ export const BUILDS = {
                     ip: "192.168.20.10"
                 }
             ],
-            ip_to_dsn: [
+            ip_to_dns: [
                 {
                     dns: "CCM1P01DEN.VMCE",
                     ip: "192.168.10.6"
@@ -954,7 +954,7 @@ export const BUILDS = {
         },
         infrastructure: {
             datacenter: "Denver",
-            cluster: "TEMP-CLU01",
+            cluster: "1",
             datastore: "datastore_1"
         },
         additional_network_data: {
@@ -1043,7 +1043,7 @@ export const BUILDS = {
                     ip: "192.168.20.10"
                 }
             ],
-            ip_to_dsn: [
+            ip_to_dns: [
                 {
                     dns: "CCM1P01DEN.VMCE",
                     ip: "192.168.10.6"
@@ -1148,7 +1148,7 @@ export const BUILDS = {
         },
         infrastructure: {
             datacenter: "Denver",
-            cluster: "TEMP-CLU01",
+            cluster: "1",
             datastore: "datastore_1"
         },
         additional_network_data: {
@@ -1237,7 +1237,7 @@ export const BUILDS = {
                     ip: "192.168.20.10"
                 }
             ],
-            ip_to_dsn: [
+            ip_to_dns: [
                 {
                     dns: "CCM1P01DEN.VMCE",
                     ip: "192.168.10.6"
@@ -1342,7 +1342,7 @@ export const BUILDS = {
         },
         infrastructure: {
             datacenter: "Denver",
-            cluster: "TEMP-CLU01",
+            cluster: "1",
             datastore: "datastore_1"
         },
         additional_network_data: {
@@ -1431,7 +1431,7 @@ export const BUILDS = {
                     ip: "192.168.20.10"
                 }
             ],
-            ip_to_dsn: [
+            ip_to_dns: [
                 {
                     dns: "CCM1P01DEN.VMCE",
                     ip: "192.168.10.6"

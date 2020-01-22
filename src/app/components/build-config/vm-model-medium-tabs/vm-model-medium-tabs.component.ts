@@ -11,11 +11,10 @@ import { VirtualMachine } from 'src/app/Model/VirtualMachine';
 export class VmModelMediumTabsComponent implements OnInit {
 
 	//Review how this work
-	@ViewChild("vmTabs", { static: true, read: NgbTabset })
-	vmTabs: NgbTabset;
+	@ViewChild("vmTabs", { static: true, read: NgbTabset }) vmTabs: NgbTabset;
 
 	@Input() currentBuild: Build;
-	
+
 	currentVirtualMachine: VirtualMachine;
 
 	constructor() { }
@@ -31,6 +30,14 @@ export class VmModelMediumTabsComponent implements OnInit {
 
 	onTabChange($event: NgbTabChangeEvent) {
 		this.currentVirtualMachine = this.currentBuild.vms != null ? this.currentBuild.vms[$event.nextId] : null;
+	}
+
+	get primaryDatacenter() {
+		return this.currentBuild.primary_datacenter.name || 'Primary';
+	}
+
+	get secondaryDatacenter() {
+		return this.currentBuild.secondary_datacenter.name || 'Secondary';
 	}
 
 }

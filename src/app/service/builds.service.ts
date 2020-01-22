@@ -5,10 +5,9 @@ import { BehaviorSubject, Observable, bindCallback } from 'rxjs';
 import { Logs } from '../Model/Logs';
 import { BUILDS } from '../mocks/mock-build';
 import { LOGS } from '../mocks/mock-logs';
-import { VirtualMachine } from '../Model/VirtualMachine';
 import { BUILD_CONSTANTS } from '../constants/build-constants';
-import { VirtualMachineModel } from '../Model/VirtualMachineModel';
 import { VirtualMachineModelMedium } from '../Model/VirtualMachineModelMedium';
+import { DNSRecord } from '../Model/DNSRecord';
 
 @Injectable({
 	providedIn: 'root'
@@ -229,18 +228,127 @@ export class BuildsService {
 	private calculateVMsMedium(build: Build): VirtualMachineModelMedium {
 		const vmm = build.vms != null ? build.vms as VirtualMachineModelMedium : new VirtualMachineModelMedium();
 		
-		vmm.cmPrimaryPublisher.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CCMPrimaryPublisher;
-		vmm.cmPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CCMPrimarySubscriber;
-		vmm.cmSecondarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].CCMSecondarySubscriber;
-		vmm.impPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].IMPPrimarySubscriber;
-		vmm.impSecondarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].IMPSecondarySubscriber;
-		vmm.cucxPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.primary_datacenter.name].CUCPrimarySubscriber;
-		vmm.cucxSecondaryPublisher.vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.secondary_datacenter.name].CUCScondaryPublisher;
+		//calculate vm names
+		vmm.cmPrimaryPublisher.host_name = vmm.cmPrimaryPublisher.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First;
+		vmm.cmPrimarySubscriber.host_name = vmm.cmPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First;
+		vmm.cmSecondarySubscriber.host_name = vmm.cmSecondarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].Second;
+		vmm.impPrimarySubscriber.host_name = vmm.impPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First;
+		vmm.impSecondarySubscriber.host_name = vmm.impSecondarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].Second;
+		vmm.cucxPrimarySubscriber.host_name = vmm.cucxPrimarySubscriber.vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First;
+		vmm.cucxSecondaryPublisher.host_name = vmm.cucxSecondaryPublisher.vm_name = build.customer.id_letters + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].First;
 		// vmm.expePrimaryPublisher.vm_name = "";
 		// vmm.expcPrimarySubscriber.vm_name = "";
 		// vmm.expeSecondaryPublisher.vm_name = "";
 		// vmm.expcSecondarySubscriber.vm_name = "";
 
+		//calculate vms host ips
+		let primaryHostIdArray = build.primary_datacenter.host_ip.split(".");
+		let secondaryHostIdArray = build.secondary_datacenter.host_ip.split(".");
+
+		build.dns_records.dns_to_ip = [];
+		build.dns_records.ip_to_dns = [];
+		if (primaryHostIdArray.length === 4 && primaryHostIdArray[primaryHostIdArray.length - 1] !== '') {
+			let lastPortionPrimaryHostId = (parseInt(primaryHostIdArray[primaryHostIdArray.length - 1]));
+			let firstPortionPrimaryHostId = primaryHostIdArray.slice(0,3).join(".");
+			
+			vmm.cmPrimaryPublisher.host_ip = firstPortionPrimaryHostId + "." + (lastPortionPrimaryHostId + 5).toString();
+			vmm.cmPrimarySubscriber.host_ip = firstPortionPrimaryHostId + "." + (lastPortionPrimaryHostId + 6).toString();
+			vmm.cucxPrimarySubscriber.host_ip = firstPortionPrimaryHostId + "." + (lastPortionPrimaryHostId + 7).toString();
+			vmm.impPrimarySubscriber.host_ip = firstPortionPrimaryHostId + "." + (lastPortionPrimaryHostId + 8).toString();
+			// vmm.expcPrimarySubscriber.host_ip = firstPortionPrimaryHostId + "." + (lastPortionPrimaryHostId + 9).toString();
+			// vmm.expePrimaryPublisher.host_ip = firstPortionPrimaryHostId + "." + (lastPortionPrimaryHostId + 10).toString();
+
+			// calculate dns records data			 
+			build.dns_records.dns_to_ip.push({dns: build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First + BUILD_CONSTANTS.DnsToIPEnd, ip: vmm.cmPrimaryPublisher.host_ip});
+			build.dns_records.dns_to_ip.push({dns: build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First + BUILD_CONSTANTS.DnsToIPEnd, ip: vmm.cmPrimarySubscriber.host_ip});
+			build.dns_records.dns_to_ip.push({dns: build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First + BUILD_CONSTANTS.DnsToIPEnd, ip: vmm.cucxPrimarySubscriber.host_ip});
+			build.dns_records.dns_to_ip.push({dns: build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First + BUILD_CONSTANTS.DnsToIPEnd, ip: vmm.impPrimarySubscriber.host_ip});
+
+			build.dns_records.ip_to_dns.push({dns: (build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First).toUpperCase() + BUILD_CONSTANTS.DnsRevertEnd, ip: (lastPortionPrimaryHostId + 5).toString()});
+			build.dns_records.ip_to_dns.push({dns: (build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First).toUpperCase() + BUILD_CONSTANTS.DnsRevertEnd, ip: (lastPortionPrimaryHostId + 6).toString()});
+			build.dns_records.ip_to_dns.push({dns: (build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First).toUpperCase() + BUILD_CONSTANTS.DnsRevertEnd, ip: (lastPortionPrimaryHostId + 7).toString()});
+			build.dns_records.ip_to_dns.push({dns: (build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.primary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.primary_datacenter.name].First).toUpperCase() + BUILD_CONSTANTS.DnsRevertEnd, ip: (lastPortionPrimaryHostId + 8).toString()});
+		} else {
+			vmm.cmPrimaryPublisher.host_ip = "";
+			vmm.cmPrimarySubscriber.host_ip = "";
+			vmm.cucxPrimarySubscriber.host_ip = "";
+			vmm.impPrimarySubscriber.host_ip = "";
+		}
+		
+		if (secondaryHostIdArray.length === 4 && secondaryHostIdArray[secondaryHostIdArray.length - 1] !== '') {
+			let lastPortionSecondaryHostId = (parseInt(secondaryHostIdArray[secondaryHostIdArray.length - 1]));
+			let firstPortionSecondaryHostId = secondaryHostIdArray.slice(0,3).join(".");
+
+			vmm.cmSecondarySubscriber.host_ip = firstPortionSecondaryHostId + "." + (lastPortionSecondaryHostId + 5).toString();
+			vmm.cucxSecondaryPublisher.host_ip = firstPortionSecondaryHostId + "." + (lastPortionSecondaryHostId + 6).toString();
+			vmm.impSecondarySubscriber.host_ip = firstPortionSecondaryHostId + "." + (lastPortionSecondaryHostId + 7).toString();
+			// vmm.expcSecondarySubscriber.host_ip = firstPortionSecondaryHostId + "." + (lastPortionSecondaryHostId + 8).toString();
+			// vmm.expeSecondaryPublisher.host_ip = firstPortionSecondaryHostId + "." + (lastPortionSecondaryHostId + 9).toString();
+
+			// calculate dns records data
+			build.dns_records.dns_to_ip.push({dns: build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].Second + BUILD_CONSTANTS.DnsToIPEnd, ip: vmm.cmSecondarySubscriber.host_ip});
+			build.dns_records.dns_to_ip.push({dns: build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].First + BUILD_CONSTANTS.DnsToIPEnd, ip: vmm.cucxSecondaryPublisher.host_ip});
+			build.dns_records.dns_to_ip.push({dns: build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].Second + BUILD_CONSTANTS.DnsToIPEnd, ip: vmm.impSecondarySubscriber.host_ip});
+
+			build.dns_records.ip_to_dns.push({dns: (build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.CUCM + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].Second).toUpperCase() + BUILD_CONSTANTS.DnsRevertEnd, ip: (lastPortionSecondaryHostId + 5).toString()});
+			build.dns_records.ip_to_dns.push({dns: (build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.UNITY + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.PUBLISHER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].First).toUpperCase() + BUILD_CONSTANTS.DnsRevertEnd, ip: (lastPortionSecondaryHostId + 6).toString()});
+			build.dns_records.ip_to_dns.push({dns: (build.customer.id_letters + build.customer.id_numbers + BUILD_CONSTANTS.PRESENCE + BUILD_CONSTANTS.ClusterNumbers[build.secondary_datacenter.name] + BUILD_CONSTANTS.SUBSCRIBER + BUILD_CONSTANTS.ServerNumbers[build.size][build.secondary_datacenter.name].Second).toUpperCase() + BUILD_CONSTANTS.DnsRevertEnd, ip: (lastPortionSecondaryHostId + 7).toString()});
+		} else {
+			vmm.cmSecondarySubscriber.host_ip = "";
+			vmm.cucxSecondaryPublisher.host_ip = "";
+			vmm.impSecondarySubscriber.host_ip = "";
+		}
+
+		// copy v_lan and hostgateway
+		vmm.cmPrimaryPublisher.v_lan = build.primary_datacenter.v_lan;
+		vmm.cmPrimarySubscriber.v_lan = build.primary_datacenter.v_lan;
+		vmm.impPrimarySubscriber.v_lan = build.primary_datacenter.v_lan;
+		vmm.cucxPrimarySubscriber.v_lan = build.primary_datacenter.v_lan;
+		// vmm.expePrimaryPublisher.v_lan = build.primary_datacenter.v_lan;
+		// vmm.expcSecondarySubscriber.v_lan = build.primary_datacenter.v_lan;
+		vmm.cmSecondarySubscriber.v_lan = build.secondary_datacenter.v_lan;
+		vmm.impSecondarySubscriber.v_lan = build.secondary_datacenter.v_lan;
+		vmm.cucxSecondaryPublisher.v_lan = build.secondary_datacenter.v_lan;
+		// vmm.expcSecondarySubscriber.v_lan = build.secondary_datacenter.v_lan;
+		// vmm.expeSecondaryPublisher.v_lan = build.secondary_datacenter.v_lan;
+
+		vmm.cmPrimaryPublisher.host_gateway = build.primary_datacenter.host_gateway;
+		vmm.cmPrimarySubscriber.host_gateway = build.primary_datacenter.host_gateway;
+		vmm.impPrimarySubscriber.host_gateway = build.primary_datacenter.host_gateway;
+		vmm.cucxPrimarySubscriber.host_gateway = build.primary_datacenter.host_gateway;
+		// vmm.expePrimaryPublisher.host_gateway = build.primary_datacenter.host_gateway;
+		// vmm.expcSecondarySubscriber.host_gateway = build.primary_datacenter.host_gateway;
+		vmm.cmSecondarySubscriber.host_gateway = build.secondary_datacenter.host_gateway;
+		vmm.impSecondarySubscriber.host_gateway = build.secondary_datacenter.host_gateway;
+		vmm.cucxSecondaryPublisher.host_gateway = build.secondary_datacenter.host_gateway;
+		// vmm.expcSecondarySubscriber.host_gateway = build.secondary_datacenter.host_gateway;
+		// vmm.expeSecondaryPublisher.host_gateway = build.secondary_datacenter.host_gateway;
+
+		//copy DNS and NTP data, host data and certificates data
+		vmm.cmPrimaryPublisher.dns_ntp = 
+		vmm.cmPrimarySubscriber.dns_ntp =
+		vmm.cmSecondarySubscriber.dns_ntp = 
+		vmm.impPrimarySubscriber.dns_ntp = 
+		vmm.impSecondarySubscriber.dns_ntp = 
+		vmm.cucxPrimarySubscriber.dns_ntp = 
+		vmm.cucxSecondaryPublisher.dns_ntp = build.dns_ntp;
+
+		vmm.cmPrimaryPublisher.host_data = 
+		vmm.cmPrimarySubscriber.host_data =
+		vmm.cmSecondarySubscriber.host_data = 
+		vmm.impPrimarySubscriber.host_data = 
+		vmm.impSecondarySubscriber.host_data = 
+		vmm.cucxPrimarySubscriber.host_data = 
+		vmm.cucxSecondaryPublisher.host_data = build.host_data;
+
+		vmm.cmPrimaryPublisher.certificates = 
+		vmm.cmPrimarySubscriber.certificates =
+		vmm.cmSecondarySubscriber.certificates = 
+		vmm.impPrimarySubscriber.certificates = 
+		vmm.impSecondarySubscriber.certificates = 
+		vmm.cucxPrimarySubscriber.certificates = 
+		vmm.cucxSecondaryPublisher.certificates = build.certificates;
+		
 		return vmm;
 	}
 }
